@@ -8,46 +8,32 @@ const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 
-const cactusTech: { desc: string; href: string; title: string }[] = [
+const experience: { desc: string; title: string }[] = [
 	{
-		desc: "Build fast websites, faster.",
-		href: "https://astro.build",
-		title: "Astro",
+		desc: "The Innovation Lab (Formerly, Microsoft Innovation Lab)",
+		title: "Summer Intern",
 	},
 	{
-		desc: "Rapidly build modern websites without ever leaving your HTML.",
-		href: "https://tailwindcss.com",
-		title: "Tailwind CSS",
+		desc: "Centre of Data Modelling, Analytics and Visualization (CoDMAV)",
+		title: "Program Director",
 	},
 	{
-		desc: "Simple and easy-to-use markup language.",
-		href: "https://www.markdownguide.org/",
-		title: "Markdown",
+		desc: "IIT Indore",
+		title: "Research Intern",
 	},
 	{
-		desc: "Markdown for the component era.",
-		href: "https://mdxjs.com/",
-		title: "MDX",
+		desc: "PeopleplusAI",
+		title: "Machine Learning Engineer",
+	},
+];
+const skills: { desc: string; title: string }[] = [
+	{
+		desc: "Python, C, Java, Julia, Golang, JavaScript",
+		title: "Programming Languages",
 	},
 	{
-		desc: "Generating png Open Graph images for blog posts.",
-		href: "https://github.com/vercel/satori",
-		title: "Satori",
-	},
-	{
-		desc: "A fully static search library.",
-		href: "https://pagefind.app/",
-		title: "Pagefind",
-	},
-	{
-		desc: "An easy to use Icon component for Astro.",
-		href: "https://github.com/natemoo-re/astro-icon#readme",
-		title: "Astro Icon",
-	},
-	{
-		desc: "Highly customisable source code & syntax highlighter",
-		href: "https://expressive-code.com/",
-		title: "Expressive Code",
+		desc: "Tensorflow, PyTorch, OpenCV, LlamaIndex, Langchain, Keras, Spacy, FastAI, MLFlow, Docker, Kubernetes",
+		title: "Tools",
 	},
 ];
 ---
@@ -56,9 +42,8 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 	<section>
 		<h1 class="title mb-6">Hello World!</h1>
 		<p class="mb-4">
-			Hi, I’m a theme for Astro, an example of how you can use this starter to create a personal
-			blog. If you want to know more about how you can customise me, add more posts, and make it
-			your own, click on the github icon link below and it will take you to my repo.
+			Hi folks! I am an ML Engineer, a (simple) cook, and also a huge foodie. I enjoy reading tons of research papers, building communities, networking and jamming to variety of music. 
+			I am passionate about Machine Learning, Deep Learning, Generative AI. I am currently exploring Systems Engineering and (trying to build stuff back in Full Stack Development). 
 		</p>
 		<SocialList />
 	</section>
@@ -75,14 +60,34 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 		</ul>
 	</section>
 	<section class="mt-16">
-		<h2 class="title mb-4 text-xl">Technologies</h2>
+		<h2 class="title mb-4 text-xl">Experience</h2>
 		<dl class="space-y-4">
 			{
-				cactusTech.map(({ desc, href, title }) => (
+				experience.map(({ desc, title }) => (
 					<div class="flex flex-col gap-2 sm:flex-row">
 						<dt>
 							<span class="flex">
-								<a class="cactus-link" href={href} rel="noopener noreferrer" target="_blank">
+								<a class="cactus-link" rel="noopener noreferrer" target="_blank">
+									{title}
+								</a>
+								:
+							</span>
+						</dt>
+						<dd>{desc}</dd>
+					</div>
+				))
+			}
+		</dl>
+	</section>
+	<section class="mt-16">
+		<h2 class="title mb-4 text-xl">Skills</h2>
+		<dl class="space-y-4">
+			{
+				skills.map(({ desc, title }) => (
+					<div class="flex flex-col gap-2 sm:flex-row">
+						<dt>
+							<span class="flex">
+								<a class="cactus-link"  rel="noopener noreferrer" target="_blank">
 									{title}
 								</a>
 								:

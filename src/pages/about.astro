@@ -1,47 +1,61 @@
 ---
-import aboutImg from "@/assets/about-astro.png";
 import PageLayout from "@/layouts/Base.astro";
-import { Image } from "astro:assets";
 
 const meta = {
-	description: "I'm a starter theme for Astro.build",
+	description: "This is a about me page :D",
 	title: "About",
 };
 ---
 
 <PageLayout meta={meta}>
+	<!-- <div class="space-y-6">
+		<h1 class="title">about</h1>
+		<p>
+			hi, i’m a starter astro. i’m particularly great for getting you started with your own blogging
+			website.
+		</p>
+		<p>here are my some of my awesome built in features:</p>
+		<ul class="list-inside list-disc">
+			<li>i'm ultra fast as i'm a static site</li>
+			<li>i'm fully responsive</li>
+			<li>i come with a light and dark mode</li>
+			<li>i'm easy to customise and add additional content</li>
+			<li>i have tailwind css styling</li>
+			<li>shiki code syntax highlighting</li>
+			<li>satori for auto generating og images for blog posts</li>
+		</ul>
+	</div> -->
 	<div class="space-y-6">
 		<h1 class="title">About</h1>
 		<p>
-			Hi, I’m a starter Astro. I’m particularly great for getting you started with your own blogging
-			website.
+			Hello! I'm Prathamesh Devadiga, a third-year computer science student at PES University's Electronic City Campus. My interests span Machine Learning, Deep Learning, NLP, and MLOps, with an active exploration into Systems Engineering.
 		</p>
-		<div class="flex justify-center">
-			<Image
-				alt="A cartoon cactus looking at the 'Astro.build' logo"
-				fetchpriority="high"
-				loading="eager"
-				src={aboutImg}
-			/>
-		</div>
-		<p>Here are my some of my awesome built in features:</p>
+		<p>Here are some of my notable achievements and activities:</p>
 		<ul class="list-inside list-disc">
-			<li>I'm ultra fast as I'm a static site</li>
-			<li>I'm fully responsive</li>
-			<li>I come with a light and dark mode</li>
-			<li>I'm easy to customise and add additional content</li>
-			<li>I have Tailwind CSS styling</li>
-			<li>Shiki code syntax highlighting</li>
-			<li>Satori for auto generating OG images for blog posts</li>
+			<li>
+				<strong>Mentorship and Leadership:</strong> As a mentor at multiple hackathons and the Head of Technology for the Entrepreneurship Club, I enjoy sharing my knowledge and guiding fellow students in their technological endeavors.
+			</li>
+			<br>
+			<li>
+				<strong>Academic Achievements:</strong> I have been accepted to Oxford University's Machine Learning School 2024. As a member of GDSC, I am actively engaged in the tech community and look forward to the valuable insights and knowledge I will gain from this upcoming experience.
+			</li>
+			<br>
+			<li>
+				<strong>Technical Contributions:</strong> Previously, as the Webmaster at IEEE RAS PESU ECC, I led a talented team to develop an impactful online presence from scratch, demonstrating my ability to manage and execute complex projects.
+			</li>
+			<br>
+			<li>
+				<strong>AWS AI/ML Scholar:</strong> I am honored to be recognized as an AI/ML Scholar by AWS, highlighting my expertise and commitment to advancing in the field of artificial intelligence and machine learning.
+			</li>
+			<br>
+			<li>
+				<strong>Public Speaking:</strong> I have given talks on Neural Networks and Fine Tuning LLMs, sharing my knowledge and insights with a wider audience.
+			</li>
+			<br>
+			<li>
+				<strong>Project Leadership:</strong> As a mentor at HSP PESUECC, I will be leading a team of four in building an open-source project in the field of machine learning, fostering collaboration and innovation.
+			</li>
 		</ul>
-		<p>
-			Clone or fork my <a
-				aria-label="github repository"
-				class="cactus-link inline-block"
-				href="https://github.com/chrismwilliams/astro-cactus"
-				rel="noopener noreferrer"
-				target="_blank">repo</a
-			> if you like me!
-		</p>
 	</div>
+
 </PageLayout>
