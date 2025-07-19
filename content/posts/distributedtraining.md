@@ -6,7 +6,7 @@ categories: ["ML Engineering", "Infrastructure"]
 
 ---
 
-## Introduction: The Unavoidable Rise of Distributed Training
+## Introduction
 
 In the world of machine learning, it feels like we're living in a shell due to all the new advancements that _literally_ happen every week. Models like Gemini 2.5 Pro, Kimi K2, GPT-4o and Stable Diffusion aren't just small improvements; they're a massive leap in capability which in turn is also an increase in scale. A few years ago, training a top model on a single, powerful GPU was normal. Today, that’s like trying to build a skyscraper with a single crane. It’s simply not possible.
 
