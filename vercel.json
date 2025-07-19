@@ -1,13 +1,5 @@
 {
-  "build": {
-    "env": {
-      "HUGO_VERSION": "0.134.3"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "github": {
+    "silent": true
+  }
 }
