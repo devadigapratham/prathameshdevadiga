@@ -86,7 +86,7 @@ The output of one GPU becomes the input for the next.
 
 {{<mermaid>}}
 %%{init: {'theme': 'dark'}}%%
-graph TD
+graph LR
     Input --> GPU0[Stage 0: Layers 1-8]
     GPU0 -->|Activations| GPU1[Stage 1: Layers 9-16]
     GPU1 -->|Activations| GPU2[Stage 2: Layers 17-24]
@@ -152,7 +152,7 @@ Imagine the GPUs are sitting in a circle. Each GPU passes a piece of its data to
 
 {{<mermaid>}}
 %%{init: {'theme': 'dark'}}%%
-graph TD
+graph LR
     subgraph Ring Communication
         GPU0 <-->|Chunk| GPU1
         GPU1 <-->|Chunk| GPU2
@@ -239,12 +239,11 @@ These two tricks are used almost universally.
 Remember the assembly line analogy for pipeline parallelism, where GPUs might sit idle? The solution is to split the data batch into many tiny **micro-batches**. The pipeline stages then process these micro-batches in a staggered fashion. As soon as the first micro-batch is done with stage 1, it moves to stage 2, and stage 1 can immediately start on the second micro-batch. This keeps all the GPUs working most of the time, dramatically improving efficiency.
 
 {{<mermaid>}}
-%%{init: {'theme': 'dark'}}%%
+%%{init: {'theme': 'dark', 'themeVariables': {'primaryTextColor': '#fff'}}}%%
 gantt
     title Pipeline Execution Schedule (Showing Bubbles)
     dateFormat S
     axisFormat %Ss
-    
     section GPU 0 (Stage 0)
     Forward MB 1 : 0, 2
     Forward MB 2 : 2, 2
@@ -252,7 +251,6 @@ gantt
     Backward MB 3 : 6, 2
     Backward MB 2 : 8, 2
     Backward MB 1 : 10, 2
-    
     section GPU 1 (Stage 1)
     Bubble (Idle) : 0, 2
     Forward MB 1 : 2, 2
@@ -260,7 +258,6 @@ gantt
     Forward MB 3 : 6, 2
     Bubble (Idle) : 8, 2
     Backward MB 2 : 10, 2
-    
     section GPU 2 (Stage 2)
     Bubble (Idle) : 0, 4
     Forward MB 1 : 4, 2
@@ -268,6 +265,7 @@ gantt
     Bubble (Idle) : 8, 4
     Backward MB 1 : 12, 2
 {{</mermaid>}}
+    
 ***
 
 ## How do we perform all these methods tho?
