@@ -7,7 +7,7 @@ categories: ["ML Engineering", "Infrastructure"]
 
 ## Introduction
 
-We've all felt the magic of modern AI. You speak to your phone and get an instant answer. Your news feed recommends an article you actually want to read. Your bank flags a weird transaction moments after it happens. This isn't just "smart" software; it's the result of massive machine learning models working in **real-time**.
+We've all used AI applications and it's become an habit in the current era. You speak to your phone and get an instant answer. Your news feed recommends an article you actually want to read. Your bank flags a weird transaction moments after it happens. This isn't just "smart" software; it's the result of massive machine learning models working in **real-time**.
 
 While training these giant models gets all the headlines, it's the **inference**, the process of using a trained model to make a prediction, where the real value is delivered to users. And for most user-facing applications, the single most important metric is **latency**. If a translation takes five seconds or a recommendation engine stutters, users will leave. High latency is a silent product killer.
 
