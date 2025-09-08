@@ -15,9 +15,11 @@ Currently, I’m contributing to **Google Summer of Code 2025** with **UC Santa 
 **Research and Development**  
 I lead [Ādhāra AI Labs](https://aadhara-ai-labs.vercel.app/), an independent research lab focused on Generative AI, LLM systems, and Retrieval-Augmented Generation (RAG). We design open-source tools that help bridge the gap between cutting-edge research and production-ready applications.
 
-Past research work includes:
+**Research Work**:
 - Deep learning for PDF malware detection at **IIT Indore**
 - Applied ML for Social Media research at **Deakin University**
+- AI Safety Research at **Dartmouth College** 
+- AI Researcher at a *Stealth Startup*. 
 
 **Teaching and Mentorship**  
 - Co-instructor for a 30-hour “Deep Learning from Scratch” course at **PESU IO**  
