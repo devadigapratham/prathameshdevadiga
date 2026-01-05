@@ -54,7 +54,7 @@ customSCSS = []
 customJS = []
 
 # Custom remote JS files
-customRemoteJS = []
+customRemoteJS = ["https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"]
 
 # If you want to use fathom(https://usefathom.com) for analytics, add this section
 # [params.fathomAnalytics]
@@ -184,6 +184,11 @@ url = "posts/"
 name = "Projects"
 weight = 3
 url = "projects/"
+
+[[languages.en.menu.main]]
+name = "Publications"
+weight = 4
+url = "publications/"
 
 [[languages.en.menu.main]]
 name = "Contact me"
