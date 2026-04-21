@@ -97,13 +97,34 @@ Selected projects across ML systems, distributed infrastructure, and applied AI 
   </div>
   <div class="project-card-label">AI-Powered Code Optimization</div>
   <div class="project-card-desc">
-    Code optimization system using Chain-of-Thought and ReAct reasoning with local LLMs. Autonomous refactoring, syntax analysis, and automated test generation — fully local, no API costs.
+    Code optimization system using Chain-of-Thought and ReAct reasoning with local LLMs. Autonomous refactoring, syntax analysis, and automated test generation, fully local, no API costs.
   </div>
   <div class="project-card-tags">
     <span class="project-card-tag">DSPy</span>
     <span class="project-card-tag">CoT Reasoning</span>
     <span class="project-card-tag">Gradio</span>
     <span class="project-card-tag">Local LLMs</span>
+  </div>
+</div>
+
+<div class="project-card">
+  <div class="project-card-header">
+    <div class="project-card-title">Attention Rollout Live</div>
+    <div class="project-card-links">
+      <a href="https://github.com/devadigapratham/attention-rollout" target="_blank" rel="noopener" class="project-card-link">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="project-card-label">Transformer Attention Visualizer · Apple Silicon</div>
+  <div class="project-card-desc">
+    Interactive visualizer that animates transformer attention weights in real time as a local LLM generates text. Every new token shows which prior tokens the model attended to, across all 28 layers and 12 heads. Live heatmap, per-layer scrubber with entropy sparkline, and per-head selection. No cloud API required.
+  </div>
+  <div class="project-card-tags">
+    <span class="project-card-tag">PyTorch</span>
+    <span class="project-card-tag">FastAPI</span>
+    <span class="project-card-tag">React</span>
+    <span class="project-card-tag">D3</span>
+    <span class="project-card-tag">SSE</span>
+    <span class="project-card-tag">Apple Silicon</span>
   </div>
 </div>
 
