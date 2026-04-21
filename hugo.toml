@@ -26,7 +26,7 @@ author = "Prathamesh Devadiga"
 # license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
 description = "Prathamesh Devadiga's personal website"
 keywords = "blog,developer,personal"
-info = ["AI Researcher", "Machine Learning, AI Security and MLSys"]
+info = ["Incoming CS PhD Student, Dartmouth College", "ML Security · LLM Privacy · Production AI Systems"]
 avatarURL = "images/avatar.jpg"
 #gravatar = "john.doe@example.com"
 dateFormat = "January 2, 2006"
@@ -48,7 +48,7 @@ maxSeeAlsoItems = 5
 # Custom CSS
 customCSS = []
 # Custom SCSS, file path is relative to Hugo's asset folder (default: {your project root}/assets)
-customSCSS = []
+customSCSS = ["scss/custom.scss"]
 
 # Custom JS
 customJS = []
