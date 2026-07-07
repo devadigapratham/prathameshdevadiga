@@ -521,6 +521,28 @@ hr {
       font-size: 0.8125rem !important;
       line-height: 1.5;
     }
+
+    .mermaid-wrap {
+      margin: var(--space-4) 0;
+      padding: var(--space-3);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mermaid-wrap .mermaid {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .mermaid-wrap svg {
+      display: block;
+      max-width: none;
+      height: auto;
+    }
   }
 
   article {
@@ -1048,18 +1070,6 @@ hr {
   }
 }
 
-.about-contact {
-  font-size: var(--text-sm);
-  color: var(--color-muted);
-  margin-top: var(--space-5);
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--color-border);
-
-  a {
-    color: var(--color-link);
-    &:hover { color: var(--color-link-hover); }
-  }
-}
 
 // ============================================================
 // FOOTER

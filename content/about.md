@@ -60,5 +60,3 @@ layout = "about"
 <div class="about-section-label">Beyond Research</div>
 
 <p class="about-text">Co-instructed a 30-hour Deep Learning course, served as Head of Technology for the PES Entrepreneurship Club, mentored 50+ teams in hackathons and the WiDS Datathon, and delivered talks on DSPy and LLM fine-tuning at FOSS United and GDSC events.</p>
-
-<p class="about-contact">Starting PhD at Dartmouth in fall 2026. <a href="mailto:devadigapratham8@gmail.com">Email</a> · <a href="https://linkedin.com/in/prathamesh-devadiga">LinkedIn</a> · <a href="/publications/">Publications</a></p>
