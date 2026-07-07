@@ -4,7 +4,7 @@ slug = "about"
 layout = "about"
 +++
 
-<p class="about-lead">I'm Prathamesh Devadiga, an incoming CS PhD student at Dartmouth College, working with <a href="https://www.shawnshan.com">Prof. Shawn Shan</a> on machine learning security and LLM privacy. I completed my B.Tech in Computer Science at PES University, Bangalore (GPA: 8.91/10).</p>
+<p class="about-lead">I'm Prathamesh Devadiga, an incoming CS PhD student at Dartmouth College, working with <a href="https://www.shawnshan.com">Prof. Shawn Shan</a> on machine learning security and LLM privacy. I completed my B.Tech in Computer Science at PES University, Bangalore.</p>
 
 <p class="about-thesis">My research sits at the intersection of ML security, production AI systems, and trustworthy AI. The core question I keep coming back to: <em>what does a model actually know, and what are the limits of our ability to control that?</em></p>
 
@@ -73,7 +73,7 @@ layout = "about"
   <span class="about-timeline-date">2022–2026</span>
   <div class="about-timeline-body">
     <strong>B.Tech, Computer Science</strong>
-    <span>PES University, Bangalore · GPA 8.91/10 · TA for ML and Deep Learning</span>
+    <span>PES University, Bangalore · TA for ML and Deep Learning</span>
   </div>
 </div>
 
@@ -118,15 +118,6 @@ layout = "about"
 </div>
 
 </div>
-
-<div class="about-section-label">Recognition</div>
-
-<ul class="about-recognition">
-  <li>Amazon AI-ML Scholar (top 1,000 in India)</li>
-  <li>Cisco ThingQbator Hackathon winner</li>
-  <li>Oxford Machine Learning School · Cohere AI Summer School</li>
-  <li>6× Merit Scholarships, PES University</li>
-</ul>
 
 <div class="about-section-label">Beyond Research</div>
 
