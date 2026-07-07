@@ -1,0 +1,302 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> ML System Load Testing and Capacity Planning | Prathamesh Devadiga </title> <meta name="author" content="Prathamesh Devadiga"> <meta name="description" content="Incoming CS PhD student at Dartmouth. Research on ML security, LLM privacy, and production AI systems. "> <meta name="keywords" content="machine learning, llm security, academic website, portfolio"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+
+  .post article h2,
+  .post article h3 {
+    margin-top: 1.75rem;
+  }
+
+  .post article hr + h2,
+  .post article hr + h3 {
+    margin-top: 1.25rem;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="stylesheet" href="/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://prathameshdevadiga.vercel.app/blog/2025/mlsysloadtest/"> <script src="/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Prathamesh</span> Devadiga </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/talks/">talks </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">ML System Load Testing and Capacity Planning</h1> <p class="post-meta"> Created on August 05, 2025 </p> <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/mlops"> <i class="fa-solid fa-hashtag fa-sm"></i> mlops</a>   <a href="/blog/tag/load-testing"> <i class="fa-solid fa-hashtag fa-sm"></i> load-testing</a>   <a href="/blog/tag/capacity-planning"> <i class="fa-solid fa-hashtag fa-sm"></i> capacity-planning</a>   <a href="/blog/tag/sre"> <i class="fa-solid fa-hashtag fa-sm"></i> sre</a>   <a href="/blog/tag/infrastructure"> <i class="fa-solid fa-hashtag fa-sm"></i> infrastructure</a>   <a href="/blog/tag/kubernetes"> <i class="fa-solid fa-hashtag fa-sm"></i> kubernetes</a>   <a href="/blog/tag/performance"> <i class="fa-solid fa-hashtag fa-sm"></i> performance</a>   ·   <a href="/blog/category/ml-engineering"> <i class="fa-solid fa-tag fa-sm"></i> ML Engineering</a>   <a href="/blog/category/infrastructure"> <i class="fa-solid fa-tag fa-sm"></i> Infrastructure</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <h2 id="introduction">Introduction</h2> <p>In machine learning, creating a model with high accuracy is often celebrated as the finish line. But in reality, it’s just the starting pistol for the race to production. A model that performs amazingly well in a Jupyter notebook can fail spectacularly under the chaotic, high-stakes conditions of live traffic. Imagine building a recommendation engine and it starts crashing during a holiday sale or your fraud detection API timing out on every transaction. This isn’t just a technical glitch; it’s a direct impact on business revenue and user trust.</p> <p>This is where load testing and capacity planning become critical. Unlike traditional web services, ML systems have a unique and often demanding resource footprint. Their performance doesn’t always scale linearly, and they rely heavily on specialized hardware like GPUs. A few years ago, deploying a model might have involved manually provisioning a large server and just “hoping for the best.” Today, that’s like navigating a ship in a storm without a compass.</p> <p>This shift is driven by two things: real-time demand and economic pressure. Users expect instantaneous results, whether it’s a language translation or an image generation. At the same time, the cloud resources needed to power these models, especially GPUs, are expensive. The goal is to provision just enough capacity to deliver a flawless user experience without burning a hole in your budget.</p> <p>This has made systematic performance engineering an absolute necessity. The evolution was predictable:</p> <ol> <li>Manual “Guesswork” Deployment: Provisioning a server based on intuition.</li> <li>Basic Load Testing: Running a simple script to see “if it breaks.”</li> <li>Continuous Load Testing &amp; Automated Capacity Planning: Integrating performance validation into the CI/CD pipeline and using data to drive automated scaling decisions.</li> </ol> <p>The impact is profound. A well-planned system can serve millions of users reliably, while a poorly planned one becomes a constant source of outages and excessive costs. Proactive planning is the difference between a product that scales and a product that fails.</p> <h2 id="why-is-load-testing-ml-systems-different">Why is Load Testing ML Systems Different?</h2> <p>The goal of load testing is to understand how a system behaves under a specific load. But for ML inference services, the “load” and the “system” have unique characteristics that make them different from a standard REST API serving data from a database.</p> <ul> <li> <strong>Payload Complexity:</strong> The input to a model isn’t always a small JSON object. It can be high-resolution images, long audio clips, or large blocks of text, which puts a strain on network I/O and memory before the model even starts its work.</li> <li> <strong>Non-Linear Resource Profile:</strong> A traditional API might see its CPU usage grow linearly with requests. An ML model’s GPU or CPU usage might behave erratically depending on the input and techniques like batching.</li> <li> <strong>The Latency vs. Throughput Trade-off:</strong> This is a central challenge in ML serving. We can often increase throughput (predictions per second) by batching requests together, but this almost always comes at the cost of higher latency for each individual request. Finding the right balance is key.</li> <li> <strong>Cold Starts:</strong> When a new model instance starts up, it needs to load the model weights (which can be gigabytes) into memory (CPU and GPU). The first request to this “cold” instance can be orders of magnitude slower than subsequent requests.</li> </ul> <table> <thead> <tr> <th style="text-align: left"><strong>Traditional Web Service</strong></th> <th style="text-align: left"><strong>ML Inference Service</strong></th> </tr> </thead> <tbody> <tr> <td style="text-align: left">Small JSON Request</td> <td style="text-align: left">Large Payload (Images/Text)</td> </tr> <tr> <td style="text-align: left">CPU/RAM Bound Processing</td> <td style="text-align: left">GPU/RAM Bound Processing</td> </tr> <tr> <td style="text-align: left">Fast Database Query</td> <td style="text-align: left">Model Loading (Cold Start)</td> </tr> <tr> <td style="text-align: left">Simple Response Logic</td> <td style="text-align: left">Inference + Batching</td> </tr> <tr> <td style="text-align: left">Small JSON Response</td> <td style="text-align: left">Processed Response</td> </tr> <tr> <td style="text-align: left"><strong>Predictable resource usage</strong></td> <td style="text-align: left"><strong>Variable resource patterns</strong></td> </tr> <tr> <td style="text-align: left"><strong>Linear scaling</strong></td> <td style="text-align: left"><strong>Non-linear scaling</strong></td> </tr> </tbody> </table> <h2 id="the-core-metrics-what-should-we-measure">The Core Metrics: What Should We Measure?</h2> <p>To effectively test and plan, you need to measure what matters. Vanity metrics are useless; we need actionable data that maps directly to user experience and cost.</p> <ol> <li> <p><strong>Latency:</strong> This is the time it takes for a single request to be processed. We almost always measure it in percentiles.</p> <ul> <li> <strong>p50 (Median):</strong> Half of your users experience this latency or less.</li> <li> <strong>p90/p95:</strong> Your power users’ experience.</li> <li> <strong>p99/p99.9:</strong> The “worst-case” experience. A high p99 latency means some users are having a very slow and frustrating time, even if the median looks good. This is often the most important metric for SLOs.</li> </ul> </li> <li> <p><strong>Throughput:</strong> The number of requests the system can handle per unit of time, usually measured in Queries Per Second (QPS) or Requests Per Second (RPS). This is a measure of a system’s total capacity.</p> </li> <li> <p><strong>Utilization:</strong> How much of the provisioned resources are being used? This includes CPU, RAM, and most importantly for many models, GPU compute utilization and GPU memory utilization. Low utilization means you’re wasting money; consistently high utilization (for example, &gt;90%) means you have no headroom and are at risk of latency spikes and failures.</p> </li> <li> <p><strong>Cost:</strong> The ultimate business metric. A common way to normalize this is cost per million inferences. This allows you to compare the efficiency of different hardware, models, or configurations. A simplified formula is:</p> <p>Cost per 1M Inferences = (Instance Cost per Hour) / (QPS × 3600) × 1,000,000</p> </li> </ol> <pre><code class="language-mermaid">graph TD
+ subgraph "Key Performance Indicators"
+ A[Latency p99 less than 200ms]
+ B[Throughput greater than 500 QPS]
+ C[GPU Utilization 60 to 80 percent]
+ D[Cost per 1M Inferences less than 50 cents]
+ end
+ classDef default fill:#2d2d2d,stroke:#ccc,stroke-width:2px,color:#fff
+</code></pre> <h2 id="a-systematic-approach-to-load-testing">A Systematic Approach to Load Testing</h2> <p>A successful load testing strategy is a scientific process, not a random exploration. It involves a clear plan and methodical execution.</p> <h3 id="the-process">The Process</h3> <ol> <li> <strong>Define Service Level Objectives (SLOs):</strong> What does “good performance” mean for your application? This is a contract with your users (and your business). Example: “The p99 latency for the text summarization API must be below 500ms while serving 100 QPS.”</li> <li> <strong>Characterize the Workload:</strong> Simulate realistic traffic. Are requests arriving in bursts or a steady stream? What is the distribution of payload sizes? Using production trace data to model your load is the gold standard.</li> <li> <strong>Choose Your Tools:</strong> Use a modern load testing tool. K6 (JavaScript-based) and Locust (Python-based) are popular open-source choices that are developer-friendly and highly extensible.</li> <li> <strong>Execute and Monitor:</strong> Run the tests against a production-like staging environment. As the load generator runs, watch your monitoring dashboards (for example, in Grafana) to see how the system’s core metrics respond in real-time.</li> </ol> <h3 id="test-types">Test Types</h3> <ul> <li> <strong>Capacity Test:</strong> Start with low traffic and gradually ramp it up. Your goal is to find the maximum throughput the system can handle before one of your SLOs (usually p99 latency) is breached. This tells you the effective capacity of a single instance.</li> <li> <strong>Soak Test:</strong> Run a moderate, sustained load for a long period (hours or even days). This is excellent for detecting memory leaks or other performance degradation issues that only appear over time.</li> <li> <strong>Stress Test:</strong> Push the system far beyond its breaking point. What happens? Does it fail gracefully with HTTP 503 errors, or does it crash and burn? This tests the system’s resilience.</li> </ul> <pre><code class="language-mermaid">graph TD
+ A[Load Tester] --&gt; B[Start Capacity Test Plan]
+ B --&gt; C[Ramp Up Traffic]
+ C --&gt; D[Send Batch Requests]
+ D --&gt; E[ML Service Response]
+ E --&gt; F[Monitor Latency and Utilization]
+ F --&gt; G{Latency p99 exceeds SLO?}
+ G --&gt;|Yes| H[Stop Test]
+ G --&gt;|No| C
+ H --&gt; I[Analyze Results Find Max QPS]
+ classDef default fill:#2d2d2d,stroke:#ccc,stroke-width:2px,color:#fff
+</code></pre> <h2 id="from-testing-to-capacity-planning">From Testing to Capacity Planning</h2> <p>Load testing gives you the raw data. Capacity planning is the process of using that data to make informed architectural and financial decisions.</p> <h3 id="finding-the-knee-and-scaling">Finding the “Knee” and Scaling</h3> <p>From your capacity test, you can plot latency against throughput. You will inevitably find a “knee” in the curve - the point where latency begins to shoot up exponentially. The QPS at this point is the maximum effective capacity of a single replica.</p> <pre><code class="language-mermaid">graph TD
+ A[Throughput vs Latency Analysis] --&gt; B[Identify Knee Point]
+ B --&gt; C[Max Capacity approximately 65 QPS]
+ C --&gt; D[Calculate Required Replicas]
+ D --&gt; E[Target 500 QPS requires 8 replicas]
+ E --&gt; F[Add Buffer for Redundancy]
+ classDef default fill:#2d2d2d,stroke:#ccc,stroke-width:2px,color:#fff
+</code></pre> <p>With this number, you can plan your scaling strategy:</p> <ul> <li> <strong>Horizontal Scaling (More Replicas):</strong> This is the most common strategy. If your target is 500 QPS and you know one replica handles 65 QPS, you’ll need at least ceil(500 / 65) = 8 replicas, plus some buffer for redundancy and traffic spikes. This is the foundation of autoscaling, where systems like Kubernetes’ Horizontal Pod Autoscaler (HPA) automatically add or remove replicas based on observed metrics like CPU utilization.</li> <li> <strong>Vertical Scaling (Bigger Machines):</strong> Sometimes, adding more replicas doesn’t help. If your model is too large to fit into the memory of a smaller GPU, you have no choice but to scale up to a larger instance (for example, from an NVIDIA T4 to an A100). Load testing different instance types is crucial for finding the most cost-effective option.</li> </ul> <h3 id="autoscaling-on-the-right-metrics">Autoscaling on the Right Metrics</h3> <p>CPU-based autoscaling often works poorly for GPU-bound models. A model could be using 100% of its GPU while the CPU sits nearly idle. This is where custom metrics come in. Using tools like KEDA, you can autoscale based on more relevant signals like GPU utilization or even the number of messages in a request queue.</p> <h2 id="how-do-we-perform-all-these-methods">How do we perform all these methods?</h2> <p>Thankfully, a mature ecosystem of tools exists to help you implement a robust testing and serving strategy.</p> <table> <thead> <tr> <th style="text-align: left">Tool/Framework</th> <th style="text-align: left">What It’s For</th> </tr> </thead> <tbody> <tr> <td style="text-align: left"><strong>Locust / K6</strong></td> <td style="text-align: left">Modern, developer-friendly load generation tools. Perfect for defining your load tests as code and integrating them into CI/CD pipelines.</td> </tr> <tr> <td style="text-align: left"><strong>Kubernetes / KServe</strong></td> <td style="text-align: left">The standard for orchestrating containerized applications. KServe (formerly KFServing) provides a production-ready serving layer on top of Kubernetes with features like autoscaling, traffic splitting, and canary deployments.</td> </tr> <tr> <td style="text-align: left"><strong>Triton / TorchServe</strong></td> <td style="text-align: left">High-performance inference servers from NVIDIA and PyTorch, respectively. They offer critical optimizations out-of-the-box, such as dynamic batching and concurrent model execution, which are essential for maximizing throughput.</td> </tr> <tr> <td style="text-align: left"><strong>Prometheus &amp; Grafana</strong></td> <td style="text-align: left">The de-facto open-source stack for monitoring and observability. Scrape metrics from your servers and build dashboards to visualize your key performance indicators during load tests.</td> </tr> <tr> <td style="text-align: left"><strong>NVIDIA Nsight Systems</strong></td> <td style="text-align: left">An advanced profiler for drilling deep into performance on the GPU. When you need to understand exactly where every millisecond is going inside the model’s execution, this is the tool.</td> </tr> </tbody> </table> <h2 id="conclusion">Conclusion</h2> <p>ML system load testing and capacity planning are no longer optional “nice-to-haves.” They are core competencies of any team serious about running machine learning in production. Moving past the notebook means embracing the principles of SRE and performance engineering. By systematically measuring your system’s limits, you can make data-driven decisions that balance cost, performance, and reliability.</p> <p>The process is an iterative loop: deploy, test, analyze, plan, and repeat. It’s the crucial bridge that turns a powerful model into a dependable and cost-effective product that delights users at scale.</p> <h2 id="further-reading">Further Reading</h2> <p>For those who want to dive deeper into the technical details and best practices, here are some excellent resources:</p> <ol> <li> <strong>Locust Documentation:</strong> The official docs are a great place to start learning how to write your first load test. <a href="https://docs.locust.io/" rel="external nofollow noopener" target="_blank">Read the Docs</a> </li> <li> <strong>K6 Documentation:</strong> The official documentation for K6, another excellent load testing tool. <a href="https://k6.io/docs/" rel="external nofollow noopener" target="_blank">k6.io/docs</a> </li> <li> <strong>NVIDIA Triton Inference Server Best Practices:</strong> A guide from NVIDIA on how to get the maximum performance out of Triton, including details on dynamic batching and model configuration. <a href="https://www.google.com/search?q=https://github.com/triton-inference-server/server/blob/main/docs/user_guide/optimization.md" rel="external nofollow noopener" target="_blank">Read the Guide</a> </li> <li> <strong>Google SRE Book - Chapter on Capacity Planning:</strong> While not specific to ML, this chapter from the seminal book on Site Reliability Engineering covers the fundamental principles of capacity planning. <a href="https://www.google.com/search?q=https://sre.google/sre-book/capacity-planning/" rel="external nofollow noopener" target="_blank">Read the Chapter</a> </li> <li> <strong>KServe Official Website:</strong> Explore the documentation for KServe to understand how to build a modern, scalable inference platform on Kubernetes. <a href="https://kserve.github.io/website/" rel="external nofollow noopener" target="_blank">kserve.github.io</a> </li> <li> <strong>“Operationalizing Machine Learning: An Interview Study”</strong>: An insightful research paper that surveyed ML practitioners about the challenges they face in production, highlighting the importance of testing and monitoring. <a href="https://arxiv.org/abs/2209.09125" rel="external nofollow noopener" target="_blank">Read the Paper on arXiv</a> </li> </ol> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Prathamesh Devadiga. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" integrity="sha256-1rA678n2xEx7x4cTZ5x4wpUCj6kUMZEZ5cxLSVSFWxw=" crossorigin="anonymous"></script> <script defer src="/assets/al_charts/js/mermaid-setup.js" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-publications",
+          title: "publications",
+          description: "Publications in reversed chronological order.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "Selected projects across ML systems, distributed infrastructure, and applied AI research.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-talks",
+          title: "talks",
+          description: "Invited talks, guest lectures, teaching, and presentations.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/talks/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Curriculum vitae covering research, teaching, publications, projects, and service.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "post-advanced-jailbreak-attacks-on-large-language-models-a-technical-analysis",
+        
+          title: "Advanced Jailbreak Attacks on Large Language Models: A Technical Analysis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/jailbreakattacks/";
+          
+        },
+      },{id: "post-ml-system-load-testing-and-capacity-planning",
+        
+          title: "ML System Load Testing and Capacity Planning",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/mlsysloadtest/";
+          
+        },
+      },{id: "post-real-time-ml-inference-serving-models-with-low-latency",
+        
+          title: "Real-time ML Inference: Serving Models with Low Latency",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/mlinference/";
+          
+        },
+      },{id: "post-multi-gpu-and-distributed-training-strategies",
+        
+          title: "Multi-GPU and Distributed Training Strategies",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/distributedtraining/";
+          
+        },
+      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "news-research-affiliate-at-lossfunk-working-on-low-resource-nlp-and-structured-prompting",
+          title: 'Research affiliate at Lossfunk, working on low-resource NLP and structured prompting.',
+          description: "",
+          section: "News",},{id: "news-tulu-structured-prompting-paper-accepted-at-eacl-2025-loreslm-workshop",
+          title: 'Tulu structured prompting paper accepted at EACL 2025 LoResLM Workshop.',
+          description: "",
+          section: "News",},{id: "news-completed-google-summer-of-code-2025-with-ucsc-ospo-on-billion-scale-ann-embedding-benchmarks",
+          title: 'Completed Google Summer of Code 2025 with UCSC-OSPO on billion-scale ANN embedding benchmarks....',
+          description: "",
+          section: "News",},{id: "news-paper-accepted-at-icml-2026-ai4law-workshop-resistant-to-lawyers-defeated-by-disagreement",
+          title: 'Paper accepted at ICML 2026 AI4Law Workshop: Resistant to Lawyers, Defeated by Disagreement....',
+          description: "",
+          section: "News",},{id: "news-starting-cs-phd-at-dartmouth-college-with-prof-shawn-shan-working-on-ml-security-and-llm-privacy",
+          title: 'Starting CS PhD at Dartmouth College with Prof. Shawn Shan, working on ML...',
+          description: "",
+          section: "News",},{id: "projects-cerebrum",
+          title: 'Cerebrum',
+          description: "Production LLM training and serving with Mixture-of-Refusals safety routing, FSDP/DDP, vLLM, and Kubernetes deployment.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_cerebrum/";
+            },},{id: "projects-godfs",
+          title: 'goDFS',
+          description: "Decentralized content-addressable file storage in Go for streaming large files across distributed nodes.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_godfs/";
+            },},{id: "projects-jurisqwen",
+          title: 'JurisQwen',
+          description: "Qwen2.5-7B fine-tuned on Indian legal datasets with LoRA and 4-bit quantization, deployed on Modal.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_jurisqwen/";
+            },},{id: "projects-raft3d",
+          title: 'Raft3D',
+          description: "Distributed 3D printer management using the Raft consensus algorithm for persistence without centralized databases.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_raft3d/";
+            },},{id: "projects-kasper",
+          title: 'KASPER',
+          description: "PDF malware detection with adversarial robustness. Published in Applied Soft Computing (Q1).",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_kasper/";
+            },},{id: "projects-arcane-ml",
+          title: 'Arcane ML',
+          description: "Production-ready distributed ML training framework across SSH clusters, Modal Cloud GPUs, and local multi-GPU setups.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_arcane-ml/";
+            },},{id: "talks-building-neural-networks",
+          title: 'Building Neural Networks',
+          description: "Technical talk on deep learning fundamentals, neural network intuition, backpropagation, and practical model-building workflows.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/deep-learning-fundamentals/";
+            },},{id: "talks-fine-tuning-llms-with-lora",
+          title: 'Fine-Tuning LLMs with LoRA',
+          description: "Workshop on LoRA fine-tuning, lightweight adaptation, and practical deployment patterns for small language models.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/2024-gdsc-dspy/";
+            },},{id: "talks-dspy-for-structured-llm-pipelines",
+          title: 'DSPy for Structured LLM Pipelines',
+          description: "Technical talk on DSPy, prompt programming, and practical LLM fine-tuning workflows for student builders.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/2024-foss-united-dspy/";
+            },},{id: "teachings-deep-learning",
+          title: 'Deep Learning',
+          description: "Co-instructed an intensive 30-hour deep learning course for a cohort of 40 students, covering fundamentals through hands-on model building.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/deep-learning-pes/";
+            },},{id: "teachings-machine-learning",
+          title: 'Machine Learning',
+          description: "Teaching assistant for undergraduate machine learning, mentoring 75+ students across tutorials, labs, and assignments.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/ml-ta-pes/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%64%65%76%61%64%69%67%61%70%72%61%74%68%61%6D%38@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=JvdmV2YAAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/devadigapratham", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/prathamesh-devadiga", "_blank");
+        },
+      },{
+        id: 'social-x',
+        title: 'X',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://twitter.com/PrathameshD_8", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

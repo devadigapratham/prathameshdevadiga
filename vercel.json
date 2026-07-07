@@ -1,0 +1,1 @@
+{"installCommand":"bundle install && npm ci","buildCommand":"JEKYLL_ENV=production bundle exec jekyll build","outputDirectory":"_site","framework":null}

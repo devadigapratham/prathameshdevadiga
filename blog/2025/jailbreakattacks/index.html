@@ -1,0 +1,362 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Advanced Jailbreak Attacks on Large Language Models: A Technical Analysis | Prathamesh Devadiga </title> <meta name="author" content="Prathamesh Devadiga"> <meta name="description" content="Incoming CS PhD student at Dartmouth. Research on ML security, LLM privacy, and production AI systems. "> <meta name="keywords" content="machine learning, llm security, academic website, portfolio"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+
+  .post article h2,
+  .post article h3 {
+    margin-top: 1.75rem;
+  }
+
+  .post article hr + h2,
+  .post article hr + h3 {
+    margin-top: 1.25rem;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="stylesheet" href="/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://prathameshdevadiga.vercel.app/blog/2025/jailbreakattacks/"> <script src="/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Prathamesh</span> Devadiga </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/talks/">talks </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Advanced Jailbreak Attacks on Large Language Models: A Technical Analysis</h1> <p class="post-meta"> Created on September 03, 2025 </p> <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/llm-security"> <i class="fa-solid fa-hashtag fa-sm"></i> llm-security</a>   <a href="/blog/tag/cybersecurity"> <i class="fa-solid fa-hashtag fa-sm"></i> cybersecurity</a>   <a href="/blog/tag/ai-safety"> <i class="fa-solid fa-hashtag fa-sm"></i> ai-safety</a>   <a href="/blog/tag/jailbreak"> <i class="fa-solid fa-hashtag fa-sm"></i> jailbreak</a>   <a href="/blog/tag/prompt-engineering"> <i class="fa-solid fa-hashtag fa-sm"></i> prompt-engineering</a>   <a href="/blog/tag/red-teaming"> <i class="fa-solid fa-hashtag fa-sm"></i> red-teaming</a>   ·   <a href="/blog/category/ai-security"> <i class="fa-solid fa-tag fa-sm"></i> AI Security</a>   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> Research</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <h2 id="introduction">Introduction</h2> <p>Large Language Models (LLMs) represent a significant advancement in artificial intelligence, demonstrating remarkable capabilities in natural language understanding and generation. However, their deployment introduces critical security challenges, particularly their susceptibility to adversarial attacks that can bypass safety mechanisms designed to prevent harmful content generation.</p> <p><strong>Jailbreaking</strong> refers to systematic techniques that exploit vulnerabilities in LLM safety alignments to elicit responses that violate the model’s intended behavioral constraints. This differs fundamentally from <strong>prompt injection</strong> attacks:</p> <ul> <li> <strong>Prompt Injection</strong> targets LLM-powered applications, attempting to manipulate the application’s behavior through malicious inputs (e.g., system prompt extraction, unauthorized function execution)</li> <li> <strong>Jailbreaking</strong> targets the foundational model’s safety alignment, seeking to bypass internal safety mechanisms to generate prohibited content</li> </ul> <p>As LLMs become increasingly integrated into critical systems, understanding these attack vectors is essential for developing robust defense mechanisms. This analysis examines the most sophisticated jailbreak techniques currently identified in the research literature.</p> <hr> <h2 id="advanced-jailbreak-attack-vectors">Advanced Jailbreak Attack Vectors</h2> <p>Modern jailbreak techniques have evolved from simple prompt manipulation to sophisticated optimization-based attacks that exploit fundamental weaknesses in model architectures and training procedures.</p> <h3 id="1-multi-turn-context-manipulation">1. Multi-Turn Context Manipulation</h3> <p>This technique exploits vulnerabilities in LLM context tracking through strategic multi-turn interactions that gradually introduce malicious intent within benign conversational contexts.</p> <p><strong>Technical Implementation:</strong></p> <ol> <li> <strong>Contextual Camouflage:</strong> Initialize conversation with semantically related but benign topics</li> <li> <strong>Attention Diversion:</strong> Introduce secondary tasks that consume computational resources</li> <li> <strong>Payload Embedding:</strong> Embed malicious requests within established conversational context</li> </ol> <p><strong>Attack Mechanism:</strong> Safety filters trained on single-turn adversarial examples fail to recognize malicious intent when distributed across multiple conversational turns. The technique exploits the model’s limited context window management and attention allocation mechanisms.</p> <p><strong>Effectiveness:</strong> Demonstrated high success rates across multiple model architectures, particularly effective against models with insufficient multi-turn safety training.</p> <p><strong>Mitigation Strategies:</strong></p> <ul> <li>Enhanced multi-turn safety classifiers</li> <li>Context-aware attention monitoring</li> <li>Conversation-level safety evaluation</li> </ul> <h3 id="2-greedy-coordinate-gradient-gcg-attack">2. Greedy Coordinate Gradient (GCG) Attack</h3> <p>The GCG attack represents a fundamental advancement in discrete optimization-based jailbreaking techniques. This method systematically identifies adversarial suffixes that can bypass LLM safety mechanisms through iterative token-level optimization.</p> <p><strong>Algorithmic Framework:</strong></p> <p>The GCG attack operates on the principle of discrete coordinate descent, where each iteration modifies a single token to minimize a loss function that measures the model’s deviation from safety-aligned behavior.</p> <pre><code class="language-mermaid">%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#ffffff', 'secondaryColor': '#ffffff', 'tertiaryColor': '#ffffff', 'background': '#ffffff', 'mainBkg': '#ffffff', 'secondBkg': '#ffffff', 'tertiaryBkg': '#ffffff'}}}%%
+graph TD
+    A[Initialize benign prompt + empty suffix] --&gt; B[Compute gradient for each token position]
+    B --&gt; C[Select token with highest gradient magnitude]
+    C --&gt; D[Replace token to minimize loss function]
+    D --&gt; E{Convergence achieved?}
+    E -- No --&gt; B
+    E -- Yes --&gt; F[Output adversarial suffix]
+    linkStyle default stroke:#ffffff,stroke-width:2px,fill:none
+    style A fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style B fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style C fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style D fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style E fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style F fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+</code></pre> <p><strong>Technical Implementation:</strong></p> <ol> <li> <strong>Loss Function Definition:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>L(θ) = -log P(y_harmful | x_benign + s_adversarial)
+</code></pre></div> </div> <p>Where <code class="language-plaintext highlighter-rouge">s_adversarial</code> is the learned adversarial suffix.</p> </li> <li> <strong>Gradient Estimation:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>∇_s L ≈ (1/k) Σ_i [L(x + s + δ_i) - L(x + s)] / δ_i
+</code></pre></div> </div> <p>Using finite difference approximation with k random perturbations.</p> </li> <li> <strong>Coordinate Update:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>s_t+1[i] = argmin_{v∈V} L(x + s_t + v·e_i)
+</code></pre></div> </div> <p>Where V is the vocabulary and e_i is the i-th basis vector.</p> </li> </ol> <table> <tbody> <tr> <td> <strong>Computational Complexity:</strong> O(T ×</td> <td>V</td> <td>×</td> <td>s</td> <td>) where T is iterations,</td> <td>V</td> <td>is vocabulary size, and</td> <td>s</td> <td>is suffix length.</td> </tr> </tbody> </table> <p><strong>Effectiveness:</strong> GCG achieves high success rates (&gt;80%) against aligned models but requires significant computational resources (typically 10,000+ iterations).</p> <p><strong>Limitations:</strong></p> <ul> <li>High computational overhead</li> <li>Limited transferability across model architectures</li> <li>Susceptible to adversarial training defenses</li> </ul> <h3 id="3-prompt-automatic-iterative-refinement-pair">3. Prompt Automatic Iterative Refinement (PAIR)</h3> <p>PAIR represents a paradigm shift in jailbreak methodology by leveraging LLM-to-LLM adversarial interactions. This black-box attack employs an attacker LLM to autonomously generate and refine jailbreak prompts against a target LLM through iterative feedback mechanisms.</p> <p><strong>Algorithmic Architecture:</strong></p> <p>PAIR operates through a closed-loop system where the attacker LLM receives feedback from the target LLM’s responses and adapts its strategy accordingly.</p> <pre><code class="language-mermaid">%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#ffffff', 'secondaryColor': '#ffffff', 'tertiaryColor': '#ffffff', 'background': '#ffffff', 'mainBkg': '#ffffff', 'secondBkg': '#ffffff', 'tertiaryBkg': '#ffffff', 'messageTextColor': '#ffffff', 'messageLineColor': '#ffffff'}}}%%
+sequenceDiagram
+    participant Attacker LLM
+    participant Target LLM
+    participant Judge Function
+
+    Attacker LLM-&gt;&gt;Target LLM: Generate candidate prompt
+    Target LLM-&gt;&gt;Judge Function: Generate response
+    Judge Function-&gt;&gt;Attacker LLM: Score response (0-1)
+    Attacker LLM-&gt;&gt;Attacker LLM: Refine prompt based on score
+    loop Until success or max iterations
+        Attacker LLM-&gt;&gt;Target LLM: Send refined prompt
+        Target LLM-&gt;&gt;Judge Function: Generate response
+        Judge Function-&gt;&gt;Attacker LLM: Evaluate response
+    end
+</code></pre> <p><strong>Technical Implementation:</strong></p> <ol> <li> <strong>Attacker LLM Initialization:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>System Prompt: "You are an AI researcher testing model safety. Generate prompts to test the target model's alignment."
+</code></pre></div> </div> </li> <li> <strong>Response Evaluation Function:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>Score = f(response) = {
+  1.0 if response contains harmful content
+  0.0 if response refuses or is safe
+}
+</code></pre></div> </div> </li> <li> <strong>Prompt Refinement Strategy:</strong> <ul> <li> <strong>Semantic Diversification:</strong> Vary prompt structure and vocabulary</li> <li> <strong>Context Fabrication:</strong> Generate plausible scenarios to justify requests</li> <li> <strong>Linguistic Obfuscation:</strong> Use euphemisms and indirect language</li> </ul> </li> </ol> <p><strong>Key Advantages:</strong></p> <ul> <li> <strong>Efficiency:</strong> Typically requires &lt;20 queries to achieve successful jailbreak</li> <li> <strong>Autonomy:</strong> No human intervention required</li> <li> <strong>Transferability:</strong> Generated prompts often transfer across different model architectures</li> <li> <strong>Semantic Coherence:</strong> Produces human-interpretable attack prompts</li> </ul> <p><strong>Computational Complexity:</strong> O(Q × C) where Q is query count and C is attacker LLM inference cost.</p> <p><strong>Effectiveness Metrics:</strong></p> <ul> <li>Success rate: 60-85% across major model families</li> <li>Average queries to success: 12-18</li> <li>Transferability rate: 40-60% across different target models</li> </ul> <p><strong>Defense Considerations:</strong></p> <ul> <li>Adversarial training with PAIR-generated examples</li> <li>Response pattern analysis to detect automated refinement</li> <li>Rate limiting and conversation monitoring</li> </ul> <h3 id="4-attention-eclipse-manipulating-model-attention-mechanisms">4. Attention Eclipse: Manipulating Model Attention Mechanisms</h3> <p>Attention Eclipse represents a sophisticated attack that exploits the fundamental attention mechanisms within transformer-based LLMs to bypass safety alignments. This technique manipulates attention distributions to redirect model focus away from safety-enforcing components.</p> <p><strong>Theoretical Foundation:</strong></p> <p>The attack leverages the observation that safety mechanisms in aligned models are often implemented through specific attention patterns that emphasize safety-related tokens. By strategically manipulating these patterns, attackers can “eclipse” safety considerations.</p> <pre><code class="language-mermaid">%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#ffffff', 'secondaryColor': '#ffffff', 'tertiaryColor': '#ffffff', 'background': '#ffffff', 'mainBkg': '#ffffff', 'secondBkg': '#ffffff', 'tertiaryBkg': '#ffffff'}}}%%
+graph TD
+    A[Analyze attention patterns for safety tokens] --&gt; B[Identify high-attention safety components]
+    B --&gt; C[Generate adversarial tokens to divert attention]
+    C --&gt; D[Apply attention manipulation techniques]
+    D --&gt; E[Evaluate attention redistribution]
+    E --&gt; F{Attention successfully diverted?}
+    F -- No --&gt; C
+    F -- Yes --&gt; G[Execute jailbreak with reduced safety focus]
+    linkStyle default stroke:#ffffff,stroke-width:2px,fill:none
+    style A fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style B fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style C fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style D fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style E fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style F fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style G fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+</code></pre> <p><strong>Technical Implementation:</strong></p> <ol> <li> <strong>Attention Analysis:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>A_safety = Σ_{i∈S} Attention(Q, K_i, V_i)
+</code></pre></div> </div> <p>Where S represents safety-critical token positions.</p> </li> <li> <strong>Attention Diversion:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>A_adversarial = Σ_{j∈A} Attention(Q, K_j, V_j)
+</code></pre></div> </div> <p>Where A represents adversarial token positions designed to capture attention.</p> </li> <li> <strong>Attention Manipulation:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>A_modified = α·A_safety + β·A_adversarial
+</code></pre></div> </div> <p>Where α &lt; β to reduce safety attention weight.</p> </li> </ol> <p><strong>Key Mechanisms:</strong></p> <ul> <li> <strong>Attention Sink Creation:</strong> Generate tokens that act as attention sinks, drawing focus away from safety-critical components</li> <li> <strong>Semantic Interference:</strong> Use semantically related but non-safety tokens to compete for attention resources</li> <li> <strong>Positional Manipulation:</strong> Exploit positional encoding biases to influence attention distribution</li> </ul> <p><strong>Effectiveness Metrics:</strong></p> <ul> <li>Success rate improvement: 7-10% over baseline GCG attacks</li> <li>Attention diversion: 40-60% reduction in safety token attention</li> <li>Transferability: High across transformer-based architectures</li> </ul> <p><strong>Computational Overhead:</strong> Minimal compared to GCG, requiring only attention analysis and targeted token generation.</p> <p><strong>Defense Strategies:</strong></p> <ul> <li>Attention pattern monitoring and anomaly detection</li> <li>Multi-head attention safety verification</li> <li>Attention-based adversarial training</li> </ul> <h3 id="5-faster-gcg-and-momentum-accelerated-gcg-mac">5. Faster-GCG and Momentum Accelerated GCG (MAC)</h3> <p>The computational inefficiency of the original GCG method has spurred the development of optimized variants that maintain high attack success rates while significantly reducing computational overhead.</p> <p><strong>Faster-GCG Optimization Framework:</strong></p> <table> <tbody> <tr> <td>Faster-GCG addresses the O(T ×</td> <td>V</td> <td>×</td> <td>s</td> <td>) complexity of standard GCG through several key optimizations:</td> </tr> </tbody> </table> <pre><code class="language-mermaid">%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#ffffff', 'secondaryColor': '#ffffff', 'tertiaryColor': '#ffffff', 'background': '#ffffff', 'mainBkg': '#ffffff', 'secondBkg': '#ffffff', 'tertiaryBkg': '#ffffff'}}}%%
+graph TD
+    A[Initialize with benign prompt] --&gt; B[Efficient gradient approximation]
+    B --&gt; C[Adaptive token selection]
+    C --&gt; D[Parallel coordinate updates]
+    D --&gt; E[Early stopping criteria]
+    E --&gt; F{Convergence achieved?}
+    F -- No --&gt; B
+    F -- Yes --&gt; G[Output optimized adversarial suffix]
+    linkStyle default stroke:#ffffff,stroke-width:2px,fill:none
+    style A fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style B fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style C fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style D fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style E fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style F fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+    style G fill:#ffffff,stroke:#000000,stroke-width:1px,color:#000000
+</code></pre> <p><strong>Key Optimizations:</strong></p> <ol> <li> <strong>Efficient Gradient Estimation:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>∇_s L ≈ (1/k) Σ_{i∈S} [L(x + s + δ_i) - L(x + s)] / δ_i
+</code></pre></div> </div> <p>Where S is a carefully selected subset of token positions, reducing computation by 90%.</p> </li> <li> <strong>Adaptive Token Selection:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>Priority(i) = |∇_s L[i]| × Frequency(i) × Impact(i)
+</code></pre></div> </div> <p>Prioritizing tokens based on gradient magnitude, historical frequency, and impact score.</p> </li> <li> <strong>Parallel Processing:</strong> <ul> <li>Simultaneous evaluation of multiple token candidates</li> <li>Batch gradient computation across token positions</li> <li>Distributed optimization across multiple workers</li> </ul> </li> </ol> <p><strong>Performance Metrics:</strong></p> <ul> <li> <strong>Computational Reduction:</strong> 90% reduction in total computation time</li> <li> <strong>Success Rate:</strong> 15-20% improvement over standard GCG</li> <li> <strong>Convergence Speed:</strong> 5-10x faster convergence to optimal solutions</li> </ul> <p><strong>Momentum Accelerated GCG (MAC):</strong></p> <p>MAC incorporates momentum-based optimization to improve convergence stability and speed:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v_t = μ·v_{t-1} + ∇_s L_t
+s_{t+1} = s_t - α·v_t
+</code></pre></div></div> <p>Where μ is the momentum coefficient (typically 0.9) and α is the learning rate.</p> <p><strong>MAC Advantages:</strong></p> <ul> <li> <strong>Stability:</strong> Reduced oscillation in optimization trajectory</li> <li> <strong>Speed:</strong> Faster convergence through momentum accumulation</li> <li> <strong>Robustness:</strong> Better performance on non-convex optimization landscapes</li> </ul> <p><strong>Combined Effectiveness:</strong></p> <ul> <li>Success rate: 85-95% across major model families</li> <li>Computational efficiency: 95% reduction compared to standard GCG</li> <li>Transferability: Improved cross-model attack success rates</li> </ul> <h3 id="6-hardware-level-attacks-prisonbreak">6. Hardware-Level Attacks: PrisonBreak</h3> <p>PrisonBreak represents an extreme attack vector that operates at the hardware level, exploiting memory vulnerabilities to directly manipulate model parameters in DRAM.</p> <p><strong>Technical Implementation:</strong></p> <ol> <li> <strong>Memory Layout Analysis:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>Safety_Parameter_Address = Base_Model_Address + Offset_Safety_Flag
+</code></pre></div> </div> </li> <li> <strong>Rowhammer Attack:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>for i in range(hammer_cycles):
+    access_row(target_row - 1)
+    access_row(target_row + 1)
+</code></pre></div> </div> </li> <li> <strong>Bit-Flip Induction:</strong> <ul> <li>Target specific memory locations containing safety parameters</li> <li>Induce electrical disturbances through rapid memory access patterns</li> <li>Achieve permanent safety mechanism disablement</li> </ul> </li> </ol> <p><strong>Effectiveness:</strong> Demonstrated successful safety bypass with as few as 25 targeted bit-flips.</p> <p><strong>Mitigation Strategies:</strong></p> <ul> <li>Error-correcting code (ECC) memory implementation</li> <li>Enhanced memory refresh mechanisms</li> <li>Hardware-level safety parameter protection</li> </ul> <hr> <h2 id="defense-mechanisms-and-interpretability-based-approaches">Defense Mechanisms and Interpretability-Based Approaches</h2> <p>The evolution of sophisticated jailbreak attacks necessitates corresponding advances in defense mechanisms. Current research focuses on interpretability-based defenses that monitor model internals rather than relying solely on input-output filtering.</p> <p><strong>Activation Boundary Defense (ABD):</strong></p> <p>ABD represents a paradigm shift from surface-level filtering to internal state monitoring:</p> <ol> <li> <strong>Safe Region Mapping:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>S_safe = {h ∈ R^d | h = f_θ(x_benign), x_benign ∈ D_safe}
+</code></pre></div> </div> <p>Where D_safe represents a corpus of benign prompts and f_θ is the model’s internal representation function.</p> </li> <li> <strong>Real-time Monitoring:</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>Alert = {1 if d(h_current, S_safe) &gt; threshold
+        0 otherwise}
+</code></pre></div> </div> <p>Where d(·,·) is a distance metric in the activation space.</p> </li> <li> <strong>Intervention Mechanisms:</strong> <ul> <li>Activation steering back to safe regions</li> <li>Response generation blocking</li> <li>Confidence score reduction</li> </ul> </li> </ol> <p><strong>Advantages of ABD:</strong></p> <ul> <li> <strong>Fundamental Defense:</strong> Targets model internals rather than surface patterns</li> <li> <strong>Obfuscation Resistance:</strong> Difficult to bypass through prompt engineering</li> <li> <strong>Interpretability:</strong> Provides insights into model decision-making processes</li> </ul> <hr> <h2 id="conclusion-technical-challenges-and-future-directions">Conclusion: Technical Challenges and Future Directions</h2> <p>The technical analysis of modern jailbreak attacks reveals fundamental vulnerabilities in current LLM architectures and training procedures. The progression from simple prompt manipulation to sophisticated optimization-based attacks demonstrates the complexity of ensuring model safety in adversarial environments.</p> <p><strong>Key Technical Insights:</strong></p> <ol> <li> <p><strong>Architectural Vulnerabilities:</strong> Attention mechanisms, gradient-based optimization, and multi-modal processing introduce attack surfaces that require systematic analysis and mitigation.</p> </li> <li> <p><strong>Computational Efficiency:</strong> The development of efficient attack methods (Faster-GCG, MAC) demonstrates that computational barriers alone cannot prevent sophisticated attacks.</p> </li> <li> <p><strong>Transferability:</strong> The high transferability of attack methods across model architectures indicates shared vulnerabilities in current training and alignment procedures.</p> </li> </ol> <p><strong>Defense-in-Depth Strategy:</strong></p> <p>Effective LLM security requires a multi-layered approach:</p> <ol> <li> <strong>Adversarial Training:</strong> Incorporating jailbreak examples into training procedures</li> <li> <strong>Interpretability Monitoring:</strong> Real-time analysis of model internal states</li> <li> <strong>Architectural Hardening:</strong> Designing models with built-in safety mechanisms</li> <li> <strong>System-Level Security:</strong> Securing the entire deployment pipeline from data sources to hardware</li> </ol> <p><strong>Research Priorities:</strong></p> <ul> <li>Development of provably robust training procedures</li> <li>Advanced interpretability techniques for safety monitoring</li> <li>Hardware-level security mechanisms</li> <li>Formal verification of model safety properties</li> </ul> <p>The ongoing research in this domain is critical for the safe deployment of increasingly powerful AI systems in real-world applications.</p> <hr> <h2 id="further-reading">Further Reading</h2> <p>For readers interested in exploring this domain more deeply, the following resources provide comprehensive coverage of LLM security, adversarial attacks, and defense mechanisms:</p> <h3 id="latest-research-papers"><strong>Latest Research Papers</strong></h3> <ul> <li> <p><strong>LLM-Virus: Evolutionary Jailbreak Attack on Large Language Models</strong> - Introduces an evolutionary algorithm-based method for efficient and transferable jailbreak attacks (<a href="https://arxiv.org/abs/2501.00055" rel="external nofollow noopener" target="_blank">arXiv:2501.00055</a>)</p> </li> <li> <p><strong>SequentialBreak: Large Language Models Can be Fooled by Embedding Jailbreak Prompts into Sequential Prompt Chains</strong> - Novel attack that embeds harmful prompts within benign ones (<a href="https://arxiv.org/abs/2411.06426" rel="external nofollow noopener" target="_blank">arXiv:2411.06426</a>)</p> </li> <li> <p><strong>JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation</strong> - Defense framework for detecting and mitigating jailbreak attacks (<a href="https://arxiv.org/abs/2502.07557" rel="external nofollow noopener" target="_blank">arXiv:2502.07557</a>)</p> </li> <li> <p><strong>SecurityLingua: Efficient Defense of LLM Jailbreak Attacks via Security-Aware Prompt Compression</strong> - Prompt compression technique for defending against jailbreak attacks (<a href="https://arxiv.org/abs/2506.12707" rel="external nofollow noopener" target="_blank">arXiv:2506.12707</a>)</p> </li> <li> <p><strong>MAGIC: Exploiting the Index Gradients for Optimization-Based Jailbreaking</strong> - Acceleration techniques for GCG optimization, achieving 1.5x speedup (<a href="https://arxiv.org/abs/2412.08615" rel="external nofollow noopener" target="_blank">arXiv:2412.08615</a>)</p> </li> <li> <p><strong>I-GCG: Improved Techniques for Optimization-Based Jailbreaking</strong> - Enhanced GCG methods achieving near 100% success rates (<a href="https://arxiv.org/abs/2405.21018" rel="external nofollow noopener" target="_blank">arXiv:2405.21018</a>)</p> </li> </ul> <h3 id="open-source-tools-and-frameworks"><strong>Open Source Tools and Frameworks</strong></h3> <ul> <li> <p><strong>BrokenHill</strong> - Automated jailbreak generation tool (<a href="https://github.com/BishopFox/BrokenHill" rel="external nofollow noopener" target="_blank">GitHub</a>)</p> </li> <li> <p><strong>TextAttack</strong> - Framework for adversarial NLP research (<a href="https://github.com/QData/TextAttack" rel="external nofollow noopener" target="_blank">GitHub</a>)</p> </li> <li> <p><strong>RobustBench</strong> - Benchmark for evaluating model robustness (<a href="https://github.com/RobustBench/robustbench" rel="external nofollow noopener" target="_blank">GitHub</a>)</p> </li> </ul> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Prathamesh Devadiga. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" integrity="sha256-1rA678n2xEx7x4cTZ5x4wpUCj6kUMZEZ5cxLSVSFWxw=" crossorigin="anonymous"></script> <script defer src="/assets/al_charts/js/mermaid-setup.js" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-publications",
+          title: "publications",
+          description: "Publications in reversed chronological order.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "Selected projects across ML systems, distributed infrastructure, and applied AI research.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-talks",
+          title: "talks",
+          description: "Invited talks, guest lectures, teaching, and presentations.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/talks/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Curriculum vitae covering research, teaching, publications, projects, and service.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "post-advanced-jailbreak-attacks-on-large-language-models-a-technical-analysis",
+        
+          title: "Advanced Jailbreak Attacks on Large Language Models: A Technical Analysis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/jailbreakattacks/";
+          
+        },
+      },{id: "post-ml-system-load-testing-and-capacity-planning",
+        
+          title: "ML System Load Testing and Capacity Planning",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/mlsysloadtest/";
+          
+        },
+      },{id: "post-real-time-ml-inference-serving-models-with-low-latency",
+        
+          title: "Real-time ML Inference: Serving Models with Low Latency",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/mlinference/";
+          
+        },
+      },{id: "post-multi-gpu-and-distributed-training-strategies",
+        
+          title: "Multi-GPU and Distributed Training Strategies",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/distributedtraining/";
+          
+        },
+      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "news-research-affiliate-at-lossfunk-working-on-low-resource-nlp-and-structured-prompting",
+          title: 'Research affiliate at Lossfunk, working on low-resource NLP and structured prompting.',
+          description: "",
+          section: "News",},{id: "news-tulu-structured-prompting-paper-accepted-at-eacl-2025-loreslm-workshop",
+          title: 'Tulu structured prompting paper accepted at EACL 2025 LoResLM Workshop.',
+          description: "",
+          section: "News",},{id: "news-completed-google-summer-of-code-2025-with-ucsc-ospo-on-billion-scale-ann-embedding-benchmarks",
+          title: 'Completed Google Summer of Code 2025 with UCSC-OSPO on billion-scale ANN embedding benchmarks....',
+          description: "",
+          section: "News",},{id: "news-paper-accepted-at-icml-2026-ai4law-workshop-resistant-to-lawyers-defeated-by-disagreement",
+          title: 'Paper accepted at ICML 2026 AI4Law Workshop: Resistant to Lawyers, Defeated by Disagreement....',
+          description: "",
+          section: "News",},{id: "news-starting-cs-phd-at-dartmouth-college-with-prof-shawn-shan-working-on-ml-security-and-llm-privacy",
+          title: 'Starting CS PhD at Dartmouth College with Prof. Shawn Shan, working on ML...',
+          description: "",
+          section: "News",},{id: "projects-cerebrum",
+          title: 'Cerebrum',
+          description: "Production LLM training and serving with Mixture-of-Refusals safety routing, FSDP/DDP, vLLM, and Kubernetes deployment.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_cerebrum/";
+            },},{id: "projects-godfs",
+          title: 'goDFS',
+          description: "Decentralized content-addressable file storage in Go for streaming large files across distributed nodes.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_godfs/";
+            },},{id: "projects-jurisqwen",
+          title: 'JurisQwen',
+          description: "Qwen2.5-7B fine-tuned on Indian legal datasets with LoRA and 4-bit quantization, deployed on Modal.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_jurisqwen/";
+            },},{id: "projects-raft3d",
+          title: 'Raft3D',
+          description: "Distributed 3D printer management using the Raft consensus algorithm for persistence without centralized databases.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_raft3d/";
+            },},{id: "projects-kasper",
+          title: 'KASPER',
+          description: "PDF malware detection with adversarial robustness. Published in Applied Soft Computing (Q1).",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_kasper/";
+            },},{id: "projects-arcane-ml",
+          title: 'Arcane ML',
+          description: "Production-ready distributed ML training framework across SSH clusters, Modal Cloud GPUs, and local multi-GPU setups.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_arcane-ml/";
+            },},{id: "talks-building-neural-networks",
+          title: 'Building Neural Networks',
+          description: "Technical talk on deep learning fundamentals, neural network intuition, backpropagation, and practical model-building workflows.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/deep-learning-fundamentals/";
+            },},{id: "talks-fine-tuning-llms-with-lora",
+          title: 'Fine-Tuning LLMs with LoRA',
+          description: "Workshop on LoRA fine-tuning, lightweight adaptation, and practical deployment patterns for small language models.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/2024-gdsc-dspy/";
+            },},{id: "talks-dspy-for-structured-llm-pipelines",
+          title: 'DSPy for Structured LLM Pipelines',
+          description: "Technical talk on DSPy, prompt programming, and practical LLM fine-tuning workflows for student builders.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/2024-foss-united-dspy/";
+            },},{id: "teachings-deep-learning",
+          title: 'Deep Learning',
+          description: "Co-instructed an intensive 30-hour deep learning course for a cohort of 40 students, covering fundamentals through hands-on model building.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/deep-learning-pes/";
+            },},{id: "teachings-machine-learning",
+          title: 'Machine Learning',
+          description: "Teaching assistant for undergraduate machine learning, mentoring 75+ students across tutorials, labs, and assignments.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/ml-ta-pes/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%64%65%76%61%64%69%67%61%70%72%61%74%68%61%6D%38@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=JvdmV2YAAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/devadigapratham", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/prathamesh-devadiga", "_blank");
+        },
+      },{
+        id: 'social-x',
+        title: 'X',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://twitter.com/PrathameshD_8", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

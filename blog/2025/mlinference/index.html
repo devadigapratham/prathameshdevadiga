@@ -1,0 +1,341 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Real-time ML Inference: Serving Models with Low Latency | Prathamesh Devadiga </title> <meta name="author" content="Prathamesh Devadiga"> <meta name="description" content="Incoming CS PhD student at Dartmouth. Research on ML security, LLM privacy, and production AI systems. "> <meta name="keywords" content="machine learning, llm security, academic website, portfolio"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+
+  .post article h2,
+  .post article h3 {
+    margin-top: 1.75rem;
+  }
+
+  .post article hr + h2,
+  .post article hr + h3 {
+    margin-top: 1.25rem;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="stylesheet" href="/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://prathameshdevadiga.vercel.app/blog/2025/mlinference/"> <script src="/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Prathamesh</span> Devadiga </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/talks/">talks </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Real-time ML Inference: Serving Models with Low Latency</h1> <p class="post-meta"> Created on July 26, 2025 </p> <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/machine-learning"> <i class="fa-solid fa-hashtag fa-sm"></i> machine-learning</a>   <a href="/blog/tag/mlops"> <i class="fa-solid fa-hashtag fa-sm"></i> mlops</a>   <a href="/blog/tag/inference"> <i class="fa-solid fa-hashtag fa-sm"></i> inference</a>   <a href="/blog/tag/low-latency"> <i class="fa-solid fa-hashtag fa-sm"></i> low-latency</a>   <a href="/blog/tag/optimization"> <i class="fa-solid fa-hashtag fa-sm"></i> optimization</a>   <a href="/blog/tag/gpu"> <i class="fa-solid fa-hashtag fa-sm"></i> gpu</a>   ·   <a href="/blog/category/ml-engineering"> <i class="fa-solid fa-tag fa-sm"></i> ML Engineering</a>   <a href="/blog/category/infrastructure"> <i class="fa-solid fa-tag fa-sm"></i> Infrastructure</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <h2 id="introduction">Introduction</h2> <p>We’ve all used AI applications and it’s become an habit in the current era. You speak to your phone and get an instant answer. Your news feed recommends an article you actually want to read. Your bank flags a weird transaction moments after it happens. This isn’t just “smart” software; it’s the result of massive machine learning models working in <strong>real-time</strong>.</p> <p>While training these giant models gets all the headlines, it’s the <strong>inference</strong>, the process of using a trained model to make a prediction, where the real value is delivered to users. And for most user-facing applications, the single most important metric is <strong>latency</strong>. If a translation takes five seconds or a recommendation engine stutters, users will leave. High latency is a silent product killer.</p> <p>This creates a fundamental tension in AI:</p> <ul> <li> <strong>Accuracy demands large, complex models.</strong> More parameters often mean better performance.</li> <li> <strong>User experience demands low latency.</strong> Predictions must be returned in milliseconds.</li> </ul> <p>The challenge is that the very models that are incredibly powerful are also inherently slow. Serving a multi-billion parameter model isn’t like querying a database; it’s a massive computational task. So how do we serve these behemoths with the speed of a cheetah? It’s not one single trick, but a cascade of optimizations, from rewriting the model’s DNA to using a hyper-specialized serving engine.</p> <p>This process of squeezing every last millisecond out of the pipeline is the art of <strong>low-latency inference</strong>.</p> <hr> <h2 id="the-core-trade-off-latency-vs-throughput">The Core Trade-Off: Latency vs. Throughput</h2> <p>Before diving into optimizations, it’s crucial to understand the two metrics we are constantly balancing. They might sound similar, but they are often at odds.</p> <h3 id="latency-how-fast-is-one">Latency: How Fast is One?</h3> <p><strong>Latency</strong> is the time it takes to process a single request from start to finish. If you ask a model to translate “hello,” latency is the time you wait until you get “hola” back. For interactive applications like voice assistants or online gaming, low latency is non-negotiable. It’s measured in milliseconds (ms).</p> <h3 id="throughput-how-many-can-we-do">Throughput: How Many Can We Do?</h3> <p><strong>Throughput</strong> is the total number of requests the system can handle in a given period, like a second. It measures the overall capacity of your system. For offline or batch processing systems, like analyzing a day’s worth of sales data, high throughput is the main goal. It’s measured in inferences per second (IPS) or requests per second.</p> <p>The conflict arises from <strong>batching</strong>. The most effective way to increase throughput is to process many requests together in a single batch, as this lets the hardware (especially GPUs) operate at peak efficiency. However, if you wait to fill a large batch, the first request in that batch experiences terrible latency.</p> <p>It’s like the difference between a speedboat and a cargo ship:</p> <ul> <li> <strong>Low Latency (Speedboat):</strong> Can take one person across the bay instantly.</li> <li> <strong>High Throughput (Cargo Ship):</strong> Can move thousands of containers at once, but you have to wait for it to be fully loaded and unloaded.</li> </ul> <p>Our goal in real-time inference is to get the best of both worlds: to build a system of <em>many, very fast speedboats</em>.</p> <pre><code class="language-mermaid">graph TD
+subgraph "Focus on Latency"
+Req1_in[Request 1 In] --&gt; P1[Process 1] --&gt; Req1_out[Request 1 Out]
+Req2_in[Request 2 In] --&gt; P2[Process 2] --&gt; Req2_out[Request 2 Out]
+style P1 fill:#242,stroke:#5e5
+style P2 fill:#242,stroke:#5e5
+end
+subgraph "Focus on Throughput"
+direction LR
+ReqA_in[Request A] --&gt; B((Batch Collector))
+ReqB_in[Request B] --&gt; B
+ReqC_in[Request C] --&gt; B
+B --&gt;|Batch A,B,C| PB[Process Batch] --&gt; Res_out[Results A,B,C]
+style PB fill:#422,stroke:#e55
+end
+classDef default fill:#2d2d2d,stroke:#ccc,stroke-width:2px,color:#fff
+linkStyle default stroke:#fff,stroke-width:2px
+</code></pre> <hr> <h2 id="pre-deployment-model-optimization">Pre-Deployment: Model Optimization</h2> <p>The fastest way to run a model is to make the model itself smaller and more efficient. This happens <em>before</em> the model is ever deployed. These techniques permanently alter the model to reduce its computational footprint, often with a negligible impact on accuracy.</p> <h3 id="quantization-speaking-a-simpler-language">Quantization: Speaking a Simpler Language</h3> <p>This is the single most effective optimization for deep learning inference. Most models are trained using 32-bit floating-point numbers (<code class="language-plaintext highlighter-rouge">FP32</code>), which offer high precision. However, neural networks are surprisingly resilient to lower precision.</p> <p><strong>Quantization</strong> is the process of converting the model’s weights and activations from <code class="language-plaintext highlighter-rouge">FP32</code> to a lower-precision format, like 16-bit floats (<code class="language-plaintext highlighter-rouge">FP16</code>) or, even better, 8-bit integers (<code class="language-plaintext highlighter-rouge">INT8</code>).</p> <ul> <li> <strong>Why it works:</strong> <code class="language-plaintext highlighter-rouge">INT8</code> operations are dramatically faster on modern CPUs and GPUs (especially NVIDIA’s Tensor Cores). The model becomes 4x smaller, memory bandwidth usage drops, and computations speed up significantly.</li> <li> <strong>The Trade-off:</strong> There’s a small, often unnoticeable, drop in accuracy. For most applications, a 3x speedup for a 0.1% accuracy loss is an excellent deal.</li> </ul> <p>Think of it as approximating π as 3.14 instead of 3.14159265359. The shorter version is easier to work with and is good enough for almost all practical purposes.</p> <h3 id="pruning-trimming-the-fat">Pruning: Trimming the Fat</h3> <p>Neural networks are famously over-parameterized. Many of the connections (weights) in a trained network are close to zero and contribute very little to the final output. <strong>Structural pruning</strong> identifies and permanently removes these useless connections or even entire neurons and channels.</p> <p>This creates a “sparse” model that is smaller and has fewer calculations to perform. The result is a lighter model that’s faster to run and requires less memory.</p> <h3 id="knowledge-distillation-the-student-and-the-teacher">Knowledge Distillation: The Student and the Teacher</h3> <p>This technique involves using a large, highly accurate “teacher” model to train a much smaller “student” model. The student’s goal isn’t just to learn from the training data but to mimic the output probabilities of the teacher. In doing so, the student learns the “soft” logic of the teacher model, achieving much higher accuracy than if it were trained on the data alone.</p> <p>You get the best of both worlds: a compact, fast model with accuracy that is close to its much larger counterpart.</p> <h3 id="model-compilation-from-blueprint-to-executable">Model Compilation: From Blueprint to Executable</h3> <p>A standard model saved from PyTorch or TensorFlow is just a blueprint. A <strong>model compiler</strong> like <strong>NVIDIA’s TensorRT</strong> or <strong>ONNX Runtime</strong> acts like an optimizing compiler for C++. It takes this blueprint and performs a series of powerful optimizations:</p> <ul> <li> <strong>Layer Fusion:</strong> Merges multiple layers (e.g., a Convolution, a Bias addition, and a ReLU activation) into a single, highly optimized kernel. This reduces memory movement and kernel launch overhead.</li> <li> <strong>Hardware-Specific Tuning:</strong> It tailors the computational graph to the exact hardware it will run on, ensuring it uses the fastest available instructions.</li> </ul> <p>The output is not a general model anymore, but a highly optimized “inference engine” designed for one purpose: to run as fast as possible on a specific target device.</p> <pre><code class="language-mermaid">graph LR
+A[PyTorch/TF Model] --&gt;|Quantize/Prune| B(Optimized Model)
+B --&gt;|Export| C{ONNX Graph}
+C --&gt;|Compile| D[TensorRT Engine]
+D --&gt; E((GPU Deployment))
+classDef default fill:#2d2d2d,stroke:#ccc,stroke-width:2px,color:#fff
+classDef finalNode fill:#131,stroke:#0f0,stroke-width:2px,color:#fff
+class D finalNode
+linkStyle default stroke:#fff,stroke-width:2px,fill:#fff
+</code></pre> <hr> <h2 id="at-deployment-the-serving-infrastructure">At Deployment: The Serving Infrastructure</h2> <p>Once you have an optimized model, you need a high-performance system to run it. Simply wrapping your model in a Python Flask app won’t cut it for real-time applications.</p> <h3 id="dynamic-batching-the-smart-compromise">Dynamic Batching: The Smart Compromise</h3> <p>We know static batching (waiting for a fixed batch size) kills latency. The solution is <strong>dynamic batching</strong>. An inference server using this technique will collect incoming requests for a very short, configurable time window (e.g., 2-10 milliseconds). When the window closes, it batches whatever requests have arrived and sends them to the model.</p> <p>This is a brilliant compromise:</p> <ul> <li>It keeps latency low because no request waits for long.</li> <li>It improves throughput by creating small batches, allowing the GPU to work more efficiently than it would on single requests.</li> </ul> <pre><code class="language-mermaid">%%{init: {'theme': 'dark'}}%%
+sequenceDiagram
+    participant C1 as Client 1
+    participant C2 as Client 2
+    participant C3 as Client 3
+    participant Srv as Inference Server
+    participant GPU
+    
+    C1-&gt;&gt;+Srv: Request A (t=0ms)
+    Note over Srv: Start 5ms window...
+    C2-&gt;&gt;+Srv: Request B (t=2ms)
+    C3-&gt;&gt;+Srv: Request C (t=4ms)
+    
+    Note over Srv: Window closed!
+    Srv-&gt;&gt;+GPU: Process Batch [A, B, C]
+    GPU--&gt;&gt;-Srv: Results
+    
+    Srv--&gt;&gt;-C1: Result A
+    Srv--&gt;&gt;-C2: Result B
+    Srv--&gt;&gt;-C3: Result C
+</code></pre> <h3 id="dedicated-inference-servers">Dedicated Inference Servers</h3> <p>To handle challenges like dynamic batching, concurrency, and multi-model serving, we use specialized software. These aren’t web frameworks; they are high-performance C++ applications built for one thing: serving models.</p> <p>The industry leader is <strong>NVIDIA Triton Inference Server</strong>. It’s an open-source powerhouse that provides:</p> <ul> <li> <strong>Dynamic batching</strong> out of the box.</li> <li> <strong>Model concurrency</strong>, allowing multiple instances of a model to run on a single GPU to maximize utilization.</li> <li> <strong>Multi-framework support</strong> (TensorRT, PyTorch, TensorFlow, ONNX, etc.).</li> <li> <strong>HTTP and gRPC endpoints</strong> for high-performance communication.</li> <li> <strong>Model repository</strong> for easy management and updates.</li> </ul> <p>Using a tool like Triton abstracts away immense complexity and provides battle-tested performance that would be nearly impossible to replicate from scratch.</p> <h3 id="choosing-the-right-hardware">Choosing the Right Hardware</h3> <ul> <li> <strong>CPU:</strong> For very small models or applications where every microsecond of latency counts and you can’t afford the overhead of sending data to a GPU.</li> <li> <strong>GPU:</strong> The workhorse for most deep learning inference. Indispensable for large models (LLMs, Diffusion models) and achieving high throughput.</li> <li> <strong>Specialized Accelerators:</strong> Chips like <strong>Google TPUs</strong> or <strong>AWS Inferentia</strong> are designed from the ground up specifically for neural network computations and can offer the best performance-per-dollar for inference at scale.</li> </ul> <hr> <h2 id="a-typical-low-latency-workflow">A Typical Low-Latency Workflow</h2> <p>So, let’s put it all together. What does the journey from a trained model to a sub-10ms prediction look like?</p> <pre><code class="language-mermaid">%%{init: {'theme': 'dark'}}%%
+graph TD
+    subgraph "Offline Optimization"
+        A[1. Train Model in PyTorch] --&gt; B{2. Apply INT8 Quantization}
+        B --&gt; C[3. Export to ONNX Format]
+        C --&gt; D[4. Compile with TensorRT for GPU]
+    end
+    
+    subgraph "Online Serving"
+        E[5. Load TensorRT Engine into Triton Server] --&gt; F{6. Configure Dynamic Batching &amp; Concurrency}
+        G[Client App] --&gt;|gRPC Request| F
+        F --&gt; H[7. Triton batches requests]
+        H --&gt; I[8. GPU executes model]
+        I --&gt;|Prediction| G
+    end
+
+    classDef default fill:#2d2d2d,stroke:#ccc,stroke-width:2px,color:#fff
+    classDef process fill:#223,stroke:#88c,stroke-width:2px,color:#fff
+    class A,B,C,D,E,F,H,I process
+</code></pre> <p>This multi-stage pipeline is the standard for achieving state-of-the-art inference performance. Each step shaves off critical milliseconds, and together they turn a slow, unwieldy model into a real-time service.</p> <hr> <h2 id="conclusion">Conclusion</h2> <p>Real-time ML inference is a discipline that lives at the intersection of software engineering, hardware architecture, and machine learning. It’s a game of milliseconds where the prize is a seamless and responsive user experience. The key takeaway is that low latency is not achieved by a single silver bullet, but through a holistic approach.</p> <p>It begins with fundamentally changing the model itself through <strong>quantization, pruning, and compilation</strong>. It ends with a sophisticated serving stack using tools like <strong>Triton</strong> to manage <strong>dynamic batching</strong> and <strong>hardware concurrency</strong>. By mastering these techniques, we can unlock the full potential of today’s incredible AI models and deliver their magic to users in the blink of an eye.</p> <hr> <h2 id="further-reading">Further Reading</h2> <p>For those who want to dive deeper into the technical details and tools:</p> <ol> <li> <strong>NVIDIA TensorRT Documentation:</strong> The official portal for learning about NVIDIA’s high-performance inference compiler and runtime. A must-read for GPU-based inference. <a href="https://developer.nvidia.com/tensorrt" rel="external nofollow noopener" target="_blank">Explore TensorRT</a> </li> <li> <strong>NVIDIA Triton Inference Server:</strong> The GitHub repository and documentation for Triton, with examples and tutorials for setting up a production-grade inference service. <a href="https://developer.nvidia.com/triton-inference-server" rel="external nofollow noopener" target="_blank">Explore Triton</a> </li> <li> <strong>ONNX Runtime Documentation:</strong> Learn about the Open Neural Network Exchange (ONNX) format and its cross-platform runtime for high-performance inference on diverse hardware. <a href="https://onnxruntime.ai/" rel="external nofollow noopener" target="_blank">Read the Docs</a> </li> <li> <strong>“Chip-ing away at ML: A guide to ML compilers” by Chip Huyen:</strong> An excellent and accessible blog post that explains the role and importance of ML compilers like XLA and TensorRT. <a href="https://huyenchip.com/2021/09/07/a-friendly-introduction-to-machine-learning-compilers-and-optimizers.html" rel="external nofollow noopener" target="_blank">Read the Blog</a> </li> <li> <strong>Distilling the Knowledge in a Neural Network (Paper by Hinton et al.):</strong> The foundational paper that introduced the concept of knowledge distillation. A classic read. <a href="https://arxiv.org/abs/1503.02531" rel="external nofollow noopener" target="_blank">Read the Paper on arXiv</a> </li> </ol> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Prathamesh Devadiga. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" integrity="sha256-1rA678n2xEx7x4cTZ5x4wpUCj6kUMZEZ5cxLSVSFWxw=" crossorigin="anonymous"></script> <script defer src="/assets/al_charts/js/mermaid-setup.js" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-publications",
+          title: "publications",
+          description: "Publications in reversed chronological order.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "Selected projects across ML systems, distributed infrastructure, and applied AI research.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-talks",
+          title: "talks",
+          description: "Invited talks, guest lectures, teaching, and presentations.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/talks/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Curriculum vitae covering research, teaching, publications, projects, and service.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "post-advanced-jailbreak-attacks-on-large-language-models-a-technical-analysis",
+        
+          title: "Advanced Jailbreak Attacks on Large Language Models: A Technical Analysis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/jailbreakattacks/";
+          
+        },
+      },{id: "post-ml-system-load-testing-and-capacity-planning",
+        
+          title: "ML System Load Testing and Capacity Planning",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/mlsysloadtest/";
+          
+        },
+      },{id: "post-real-time-ml-inference-serving-models-with-low-latency",
+        
+          title: "Real-time ML Inference: Serving Models with Low Latency",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/mlinference/";
+          
+        },
+      },{id: "post-multi-gpu-and-distributed-training-strategies",
+        
+          title: "Multi-GPU and Distributed Training Strategies",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/distributedtraining/";
+          
+        },
+      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "news-research-affiliate-at-lossfunk-working-on-low-resource-nlp-and-structured-prompting",
+          title: 'Research affiliate at Lossfunk, working on low-resource NLP and structured prompting.',
+          description: "",
+          section: "News",},{id: "news-tulu-structured-prompting-paper-accepted-at-eacl-2025-loreslm-workshop",
+          title: 'Tulu structured prompting paper accepted at EACL 2025 LoResLM Workshop.',
+          description: "",
+          section: "News",},{id: "news-completed-google-summer-of-code-2025-with-ucsc-ospo-on-billion-scale-ann-embedding-benchmarks",
+          title: 'Completed Google Summer of Code 2025 with UCSC-OSPO on billion-scale ANN embedding benchmarks....',
+          description: "",
+          section: "News",},{id: "news-paper-accepted-at-icml-2026-ai4law-workshop-resistant-to-lawyers-defeated-by-disagreement",
+          title: 'Paper accepted at ICML 2026 AI4Law Workshop: Resistant to Lawyers, Defeated by Disagreement....',
+          description: "",
+          section: "News",},{id: "news-starting-cs-phd-at-dartmouth-college-with-prof-shawn-shan-working-on-ml-security-and-llm-privacy",
+          title: 'Starting CS PhD at Dartmouth College with Prof. Shawn Shan, working on ML...',
+          description: "",
+          section: "News",},{id: "projects-cerebrum",
+          title: 'Cerebrum',
+          description: "Production LLM training and serving with Mixture-of-Refusals safety routing, FSDP/DDP, vLLM, and Kubernetes deployment.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_cerebrum/";
+            },},{id: "projects-godfs",
+          title: 'goDFS',
+          description: "Decentralized content-addressable file storage in Go for streaming large files across distributed nodes.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_godfs/";
+            },},{id: "projects-jurisqwen",
+          title: 'JurisQwen',
+          description: "Qwen2.5-7B fine-tuned on Indian legal datasets with LoRA and 4-bit quantization, deployed on Modal.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_jurisqwen/";
+            },},{id: "projects-raft3d",
+          title: 'Raft3D',
+          description: "Distributed 3D printer management using the Raft consensus algorithm for persistence without centralized databases.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_raft3d/";
+            },},{id: "projects-kasper",
+          title: 'KASPER',
+          description: "PDF malware detection with adversarial robustness. Published in Applied Soft Computing (Q1).",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_kasper/";
+            },},{id: "projects-arcane-ml",
+          title: 'Arcane ML',
+          description: "Production-ready distributed ML training framework across SSH clusters, Modal Cloud GPUs, and local multi-GPU setups.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_arcane-ml/";
+            },},{id: "talks-building-neural-networks",
+          title: 'Building Neural Networks',
+          description: "Technical talk on deep learning fundamentals, neural network intuition, backpropagation, and practical model-building workflows.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/deep-learning-fundamentals/";
+            },},{id: "talks-fine-tuning-llms-with-lora",
+          title: 'Fine-Tuning LLMs with LoRA',
+          description: "Workshop on LoRA fine-tuning, lightweight adaptation, and practical deployment patterns for small language models.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/2024-gdsc-dspy/";
+            },},{id: "talks-dspy-for-structured-llm-pipelines",
+          title: 'DSPy for Structured LLM Pipelines',
+          description: "Technical talk on DSPy, prompt programming, and practical LLM fine-tuning workflows for student builders.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/2024-foss-united-dspy/";
+            },},{id: "teachings-deep-learning",
+          title: 'Deep Learning',
+          description: "Co-instructed an intensive 30-hour deep learning course for a cohort of 40 students, covering fundamentals through hands-on model building.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/deep-learning-pes/";
+            },},{id: "teachings-machine-learning",
+          title: 'Machine Learning',
+          description: "Teaching assistant for undergraduate machine learning, mentoring 75+ students across tutorials, labs, and assignments.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/ml-ta-pes/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%64%65%76%61%64%69%67%61%70%72%61%74%68%61%6D%38@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=JvdmV2YAAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/devadigapratham", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/prathamesh-devadiga", "_blank");
+        },
+      },{
+        id: 'social-x',
+        title: 'X',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://twitter.com/PrathameshD_8", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

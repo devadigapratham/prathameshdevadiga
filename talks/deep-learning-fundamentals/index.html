@@ -1,0 +1,305 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Building Neural Networks | Prathamesh Devadiga </title> <meta name="author" content="Prathamesh Devadiga"> <meta name="description" content="Technical talk on deep learning fundamentals, neural network intuition, backpropagation, and practical model-building workflows."> <meta name="keywords" content="machine learning, llm security, academic website, portfolio"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+
+  .post article h2,
+  .post article h3 {
+    margin-top: 1.75rem;
+  }
+
+  .post article hr + h2,
+  .post article hr + h3 {
+    margin-top: 1.25rem;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="stylesheet" href="/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://prathameshdevadiga.vercel.app/talks/deep-learning-fundamentals/"> <script src="/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Prathamesh</span> Devadiga </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item active"> <a class="nav-link" href="/talks/">talks <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Building Neural Networks</h1> <p class="post-description">Technical talk on deep learning fundamentals, neural network intuition, backpropagation, and practical model-building workflows.</p> </header> <article> <p>Deep learning feels magical only until you see the small set of ideas underneath it. At its core, a neural network is just a parameterized function that takes an input, transforms it through layers, compares the prediction against a target, and adjusts itself by following gradients that reduce error.</p> <p>That sentence sounds simple, but it hides the two things beginners usually struggle with most: <strong>representation</strong> and <strong>learning</strong>. Representation asks what the network can express; learning asks how the network discovers useful parameters in the first place.</p> <pre><code class="language-mermaid">flowchart LR
+    X[Input x] --&gt; L1[Linear layer]
+    L1 --&gt; A1[Activation]
+    A1 --&gt; L2[Linear layer]
+    L2 --&gt; Yhat[Prediction y_hat]
+    Yhat --&gt; Loss[Loss]
+    Loss -. gradients .-&gt; L2
+    L2 -. gradients .-&gt; A1
+    A1 -. gradients .-&gt; L1
+</code></pre> <h2 id="from-linear-models-to-networks">From Linear Models to Networks</h2> <p>A good starting point is the linear model. A linear model takes an input vector, applies weights, adds a bias, and produces a score. This is powerful enough for simple decision boundaries, but it quickly fails when the relationship between input and output is nonlinear.</p> <p>That is why hidden layers matter. Once nonlinear activation functions are inserted between linear transformations, the network stops being just one linear map and becomes a composition of many functions. This allows it to represent much richer patterns:</p> <ul> <li>curved decision boundaries</li> <li>hierarchical feature extraction</li> <li>interactions between input dimensions</li> <li>high-level abstractions built from low-level signals</li> </ul> <p>The practical lesson is that depth is useful not because “more layers are always better,” but because composition lets the model build increasingly expressive representations.</p> <p>One useful intuition is that each hidden layer is building a new representation space. The early layers respond to simpler patterns, while later layers can combine those patterns into more task-specific abstractions. In image models, this might look like edges becoming textures and then object parts. In text models, it might look like token-level patterns becoming phrase-level or sentence-level structure.</p> <h2 id="what-a-neuron-is-really-doing">What a Neuron Is Really Doing</h2> <p>A neuron is often introduced visually, but the essential idea is functional. It computes a weighted combination of its inputs and then passes the result through a nonlinearity. The nonlinearity is crucial. Without it, stacking layers would still collapse into one giant linear transformation.</p> <p>This is why activation functions matter. ReLU, tanh, GELU, and similar choices are not cosmetic details. They affect:</p> <ul> <li>how gradients flow</li> <li>how easily networks optimize</li> <li>how sparse or dense representations become</li> <li>how stable training is across depth</li> </ul> <p>Once you understand this, the basic architecture of a feedforward network feels much less mysterious: each layer transforms the representation into something more useful for the final prediction task.</p> <p>If you had to compress the entire idea into one sentence, it would be this: a neural network is a stack of learned feature transformations. The weights decide which signals matter, and the activation function decides how those signals are reshaped before they move to the next layer.</p> <h2 id="how-learning-actually-happens">How Learning Actually Happens</h2> <p>The forward pass is the easy part. The harder question is how the model improves. That is where the loss function and backpropagation come in.</p> <p>The loss function defines what “bad prediction” means. Backpropagation then answers a specific question: how much did each parameter contribute to that error? Using the chain rule, gradients are propagated backward from the output to earlier layers, assigning credit and blame throughout the network.</p> <p>This is the key idea: backpropagation is not a separate kind of intelligence. It is an efficient bookkeeping mechanism for computing how to change millions of parameters in the right direction.</p> <p>Gradient descent then uses that information to update weights. Over many iterations, the model gradually shifts from random behavior to task-specific competence.</p> <p>The forward pass and backward pass are tightly coupled:</p> <ul> <li>the <strong>forward pass</strong> computes predictions and stores intermediate values</li> <li>the <strong>backward pass</strong> reuses those values to compute derivatives efficiently</li> <li>the <strong>optimizer step</strong> updates parameters using those derivatives</li> </ul> <p>This is one reason training consumes more memory than inference. During training, the model has to remember enough of the computation graph to send gradient signals backward later.</p> <p>Even a toy implementation makes the workflow easier to see:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch</span>
+<span class="kn">import</span> <span class="n">torch.nn</span> <span class="k">as</span> <span class="n">nn</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
+    <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+    <span class="n">nn</span><span class="p">.</span><span class="nc">ReLU</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">MSELoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">optim</span><span class="p">.</span><span class="nc">Adam</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="nf">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+
+<span class="n">pred</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>          <span class="c1"># forward pass
+</span><span class="n">loss</span> <span class="o">=</span> <span class="nf">criterion</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">loss</span><span class="p">.</span><span class="nf">backward</span><span class="p">()</span>          <span class="c1"># backward pass
+</span><span class="n">optimizer</span><span class="p">.</span><span class="nf">step</span><span class="p">()</span>         <span class="c1"># parameter update
+</span><span class="n">optimizer</span><span class="p">.</span><span class="nf">zero_grad</span><span class="p">()</span>
+</code></pre></div></div> <p>This is small, but it already contains the full training loop used by much larger models: compute, compare, differentiate, update, repeat.</p> <h2 id="why-training-often-fails">Why Training Often Fails</h2> <p>Understanding the math is only half the story. In practice, most frustration comes from the gap between a correct-looking implementation and a model that actually learns.</p> <p>Training can fail for many reasons:</p> <ul> <li>the learning rate is too high and optimization diverges</li> <li>the learning rate is too low and progress becomes negligible</li> <li>initialization causes gradients to vanish or explode</li> <li>the model is too small to fit the task</li> <li>the model is too large and memorizes noise</li> <li>the data pipeline is inconsistent or poorly normalized</li> </ul> <p>This is why deep learning should be learned as a systems discipline, not just as equations on a whiteboard. A working model depends on architecture, optimization, data quality, batching, initialization, and evaluation all interacting correctly.</p> <p>Another practical issue is that gradients themselves can become pathological. In deep networks, they may shrink too much as they move backward, making early layers learn extremely slowly, or blow up so much that training becomes unstable. This is part of why initialization schemes, activation choices, normalization layers, and residual connections became so important in modern deep learning.</p> <h2 id="generalization-matters-more-than-memorization">Generalization Matters More Than Memorization</h2> <p>A network that performs well on the training set has not necessarily learned useful structure. It may simply have memorized examples. The real goal is generalization: learning patterns that transfer to unseen data.</p> <p>This is why validation curves matter so much. They help distinguish:</p> <ul> <li>underfitting, where the model has not learned enough</li> <li>healthy learning, where both training and validation improve</li> <li>overfitting, where training keeps improving but validation degrades</li> </ul> <p>Once students understand this, deep learning stops being “make the loss go down at any cost” and becomes a more disciplined process of balancing capacity, optimization, and generalization.</p> <p>This is also where regularization enters the picture. Techniques such as weight decay, dropout, data augmentation, and early stopping all try to make the model learn more robust structure instead of fitting accidental quirks of the training set.</p> <h2 id="why-the-fundamentals-scale">Why the Fundamentals Scale</h2> <p>The same ideas that explain a small multilayer perceptron also explain much larger systems. Convolutional networks add spatial structure. Recurrent networks add sequence dependence. Transformers change the mechanism of interaction. But the underlying logic remains familiar:</p> <ul> <li>represent inputs in a learnable way</li> <li>define an objective</li> <li>compute gradients</li> <li>optimize parameters</li> <li>evaluate generalization</li> </ul> <p>This continuity is important because it makes advanced architectures easier to approach. Once the core principles are clear, new model families feel like design extensions rather than entirely different worlds.</p> <p>That continuity is especially important for beginners. It means that understanding multilayer perceptrons is not wasted effort. The details of CNNs, RNNs, and Transformers differ, but the central logic of learning through differentiable computation is the same. The fundamentals transfer.</p> <h2 id="takeaway">Takeaway</h2> <p>The most useful mental model for deep learning is not “magic pattern recognition.” It is iterative function learning under optimization. A neural network is a compositional function approximator, and training is the process of reshaping that function through gradients until it captures useful structure in data. With that view, deep learning becomes far less mysterious and much more workable.</p> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Prathamesh Devadiga. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" integrity="sha256-1rA678n2xEx7x4cTZ5x4wpUCj6kUMZEZ5cxLSVSFWxw=" crossorigin="anonymous"></script> <script defer src="/assets/al_charts/js/mermaid-setup.js" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-publications",
+          title: "publications",
+          description: "Publications in reversed chronological order.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "Selected projects across ML systems, distributed infrastructure, and applied AI research.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-talks",
+          title: "talks",
+          description: "Invited talks, guest lectures, teaching, and presentations.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/talks/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Curriculum vitae covering research, teaching, publications, projects, and service.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "post-advanced-jailbreak-attacks-on-large-language-models-a-technical-analysis",
+        
+          title: "Advanced Jailbreak Attacks on Large Language Models: A Technical Analysis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/jailbreakattacks/";
+          
+        },
+      },{id: "post-ml-system-load-testing-and-capacity-planning",
+        
+          title: "ML System Load Testing and Capacity Planning",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/mlsysloadtest/";
+          
+        },
+      },{id: "post-real-time-ml-inference-serving-models-with-low-latency",
+        
+          title: "Real-time ML Inference: Serving Models with Low Latency",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/mlinference/";
+          
+        },
+      },{id: "post-multi-gpu-and-distributed-training-strategies",
+        
+          title: "Multi-GPU and Distributed Training Strategies",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/distributedtraining/";
+          
+        },
+      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "news-research-affiliate-at-lossfunk-working-on-low-resource-nlp-and-structured-prompting",
+          title: 'Research affiliate at Lossfunk, working on low-resource NLP and structured prompting.',
+          description: "",
+          section: "News",},{id: "news-tulu-structured-prompting-paper-accepted-at-eacl-2025-loreslm-workshop",
+          title: 'Tulu structured prompting paper accepted at EACL 2025 LoResLM Workshop.',
+          description: "",
+          section: "News",},{id: "news-completed-google-summer-of-code-2025-with-ucsc-ospo-on-billion-scale-ann-embedding-benchmarks",
+          title: 'Completed Google Summer of Code 2025 with UCSC-OSPO on billion-scale ANN embedding benchmarks....',
+          description: "",
+          section: "News",},{id: "news-paper-accepted-at-icml-2026-ai4law-workshop-resistant-to-lawyers-defeated-by-disagreement",
+          title: 'Paper accepted at ICML 2026 AI4Law Workshop: Resistant to Lawyers, Defeated by Disagreement....',
+          description: "",
+          section: "News",},{id: "news-starting-cs-phd-at-dartmouth-college-with-prof-shawn-shan-working-on-ml-security-and-llm-privacy",
+          title: 'Starting CS PhD at Dartmouth College with Prof. Shawn Shan, working on ML...',
+          description: "",
+          section: "News",},{id: "projects-cerebrum",
+          title: 'Cerebrum',
+          description: "Production LLM training and serving with Mixture-of-Refusals safety routing, FSDP/DDP, vLLM, and Kubernetes deployment.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_cerebrum/";
+            },},{id: "projects-godfs",
+          title: 'goDFS',
+          description: "Decentralized content-addressable file storage in Go for streaming large files across distributed nodes.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_godfs/";
+            },},{id: "projects-jurisqwen",
+          title: 'JurisQwen',
+          description: "Qwen2.5-7B fine-tuned on Indian legal datasets with LoRA and 4-bit quantization, deployed on Modal.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_jurisqwen/";
+            },},{id: "projects-raft3d",
+          title: 'Raft3D',
+          description: "Distributed 3D printer management using the Raft consensus algorithm for persistence without centralized databases.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_raft3d/";
+            },},{id: "projects-kasper",
+          title: 'KASPER',
+          description: "PDF malware detection with adversarial robustness. Published in Applied Soft Computing (Q1).",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_kasper/";
+            },},{id: "projects-arcane-ml",
+          title: 'Arcane ML',
+          description: "Production-ready distributed ML training framework across SSH clusters, Modal Cloud GPUs, and local multi-GPU setups.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_arcane-ml/";
+            },},{id: "talks-building-neural-networks",
+          title: 'Building Neural Networks',
+          description: "Technical talk on deep learning fundamentals, neural network intuition, backpropagation, and practical model-building workflows.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/deep-learning-fundamentals/";
+            },},{id: "talks-fine-tuning-llms-with-lora",
+          title: 'Fine-Tuning LLMs with LoRA',
+          description: "Workshop on LoRA fine-tuning, lightweight adaptation, and practical deployment patterns for small language models.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/2024-gdsc-dspy/";
+            },},{id: "talks-dspy-for-structured-llm-pipelines",
+          title: 'DSPy for Structured LLM Pipelines',
+          description: "Technical talk on DSPy, prompt programming, and practical LLM fine-tuning workflows for student builders.",
+          section: "Talks",handler: () => {
+              window.location.href = "/talks/2024-foss-united-dspy/";
+            },},{id: "teachings-deep-learning",
+          title: 'Deep Learning',
+          description: "Co-instructed an intensive 30-hour deep learning course for a cohort of 40 students, covering fundamentals through hands-on model building.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/deep-learning-pes/";
+            },},{id: "teachings-machine-learning",
+          title: 'Machine Learning',
+          description: "Teaching assistant for undergraduate machine learning, mentoring 75+ students across tutorials, labs, and assignments.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/ml-ta-pes/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%64%65%76%61%64%69%67%61%70%72%61%74%68%61%6D%38@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=JvdmV2YAAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/devadigapratham", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/prathamesh-devadiga", "_blank");
+        },
+      },{
+        id: 'social-x',
+        title: 'X',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://twitter.com/PrathameshD_8", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
