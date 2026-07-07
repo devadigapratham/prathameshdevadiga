@@ -57,68 +57,6 @@ layout = "about"
 
 </div>
 
-<div class="about-section-label">Background</div>
-
-<div class="about-timeline">
-
-<div class="about-timeline-row">
-  <span class="about-timeline-date">2026 —</span>
-  <div class="about-timeline-body">
-    <strong>PhD in Computer Science</strong>
-    <span>Dartmouth College · advised by Prof. Shawn Shan</span>
-  </div>
-</div>
-
-<div class="about-timeline-row">
-  <span class="about-timeline-date">2022–2026</span>
-  <div class="about-timeline-body">
-    <strong>B.Tech, Computer Science</strong>
-    <span>PES University, Bangalore · TA for ML and Deep Learning</span>
-  </div>
-</div>
-
-<div class="about-timeline-row">
-  <span class="about-timeline-date">2025</span>
-  <div class="about-timeline-body">
-    <strong>Google Summer of Code</strong>
-    <span>UCSC-OSPO · billion-scale ANN embedding benchmarks</span>
-  </div>
-</div>
-
-<div class="about-timeline-row">
-  <span class="about-timeline-date">2025</span>
-  <div class="about-timeline-body">
-    <strong>AI Research Intern</strong>
-    <span>Lossfunk · low-resource NLP and structured prompting</span>
-  </div>
-</div>
-
-<div class="about-timeline-row">
-  <span class="about-timeline-date">2024</span>
-  <div class="about-timeline-body">
-    <strong>Research Assistant</strong>
-    <span>Dartmouth College · ML security with Prof. Shawn Shan</span>
-  </div>
-</div>
-
-<div class="about-timeline-row">
-  <span class="about-timeline-date">2024</span>
-  <div class="about-timeline-body">
-    <strong>AI Research Intern</strong>
-    <span>Nokia · intent-based network management</span>
-  </div>
-</div>
-
-<div class="about-timeline-row">
-  <span class="about-timeline-date">2023</span>
-  <div class="about-timeline-body">
-    <strong>Undergraduate Research Intern</strong>
-    <span>IIT Indore · adversarial robustness and malware detection</span>
-  </div>
-</div>
-
-</div>
-
 <div class="about-section-label">Beyond Research</div>
 
 <p class="about-text">Co-instructed a 30-hour Deep Learning course, served as Head of Technology for the PES Entrepreneurship Club, mentored 50+ teams in hackathons and the WiDS Datathon, and delivered talks on DSPy and LLM fine-tuning at FOSS United and GDSC events.</p>
