@@ -13,12 +13,31 @@ body {
   background-color: var(--color-bg) !important;
 }
 
+body.colorscheme-dark {
+  color: var(--color-text-secondary) !important;
+  background-color: var(--color-bg) !important;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text) !important;
+  }
+
+  .navigation a,
+  .navigation span {
+    color: var(--color-muted) !important;
+  }
+
+  .footer a {
+    color: var(--color-muted) !important;
+    &:hover { color: var(--color-link-hover) !important; }
+  }
+}
+
 .wrapper {
   background-color: var(--color-bg);
 }
 
 // Override theme default blues (#1565c0 / #42a5f5)
-body.colorscheme-light a,
+body.colorscheme-dark a,
 body a {
   color: var(--color-link);
   font-weight: inherit;

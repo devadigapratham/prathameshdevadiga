@@ -1,20 +1,20 @@
-// Design tokens — professional academic (light mode only)
+// Design tokens — professional academic (dark mode only)
 
 :root {
-  --color-bg: #ffffff;
-  --color-text: #111827;
-  --color-text-secondary: #374151;
-  --color-muted: #6b7280;
-  --color-border: #e5e7eb;
-  --color-surface: #f9fafb;
+  --color-bg: #0f1419;
+  --color-text: #e8eaed;
+  --color-text-secondary: #b8c0cc;
+  --color-muted: #8b95a5;
+  --color-border: #2a3140;
+  --color-surface: #161b22;
 
-  // Muted navy links — no bright cyan/teal
-  --color-link: #1e3a5f;
-  --color-link-hover: #0f172a;
+  // Soft steel links — readable, not neon cyan or theme blue
+  --color-link: #9eb3c9;
+  --color-link-hover: #e8eaed;
   --color-accent: var(--color-link);
   --color-accent-hover: var(--color-link-hover);
 
-  --color-success: #047857;
+  --color-success: #3d9a72;
 
   // Typography families
   --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
