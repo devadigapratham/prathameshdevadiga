@@ -7,10 +7,27 @@ Incoming CS PhD student at Dartmouth College (fall 2026), advised by [Prof. Shaw
 
 <div class="pub-section-title">
   <h2>Published &amp; Accepted</h2>
-  <span class="section-count">5</span>
+  <span class="section-count">6</span>
 </div>
 
 <div class="pub-grid">
+
+<div class="pub-card">
+  <div class="pub-header">
+    <div class="pub-title">Resistant to Lawyers, Defeated by Disagreement: Evaluation Blindspots in Legal Language Models</div>
+    <span class="pub-badge badge-published">Accepted</span>
+  </div>
+  <div class="pub-venue">ICML 2026 · AI4Law Workshop · Poster</div>
+  <div class="pub-authors"><strong>Prathamesh Devadiga</strong>, Advika Lakshman</div>
+  <div class="pub-abstract">Legal LLMs that appear robust against attorney-authority challenges can still fail under ordinary conversational disagreement. Across <strong>6,305</strong> sequential interactions on a 180-question U.S. legal benchmark, models abandon initially correct answers in <strong>62.1%</strong> of cases; authority-weighted scores are uninformative about this risk.</div>
+  <div class="pub-tags">
+    <span class="pub-tag">Legal AI</span>
+    <span class="pub-tag">LLM Evaluation</span>
+    <span class="pub-tag">Sycophancy</span>
+    <span class="pub-tag">Robustness</span>
+    <span class="pub-tag">Adversarial Prompting</span>
+  </div>
+</div>
 
 <div class="pub-card">
   <div class="pub-header">
