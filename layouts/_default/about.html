@@ -1,0 +1,14 @@
+{{ define "title" }}
+  {{ .Title }} · {{ .Site.Title }}
+{{ end }}
+{{ define "content" }}
+<section class="container about-page">
+  <article>
+    <header class="about-header">
+      <h1 class="about-title">{{ .Title }}</h1>
+      <p class="about-role">{{ with .Site.Params.info }}{{ if reflect.IsSlice . }}{{ index . 0 }}{{ else }}{{ . }}{{ end }}{{ end }}</p>
+    </header>
+    {{ .Content }}
+  </article>
+</section>
+{{ end }}
