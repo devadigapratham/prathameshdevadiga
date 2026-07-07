@@ -1,83 +1,54 @@
 <div class="home-sections">
 
-  {{ with .Site.Data.research_focus }}
-  <div class="home-section home-research">
-    <div class="home-section-header">
-      <span class="home-section-title">Research Focus</span>
-    </div>
-    <p class="home-section-lead">Three threads that connect my publications, industry work, and PhD direction.</p>
-    <div class="home-research-grid">
-      {{ range . }}
-      <article class="home-research-card">
-        <h3 class="home-research-label">{{ .label }}</h3>
-        <p class="home-research-desc">{{ .description }}</p>
-      </article>
-      {{ end }}
-    </div>
-  </div>
-  {{ end }}
-
   {{ with .Site.Data.news }}
-  <div class="home-section">
-    <div class="home-section-header">
-      <span class="home-section-title">News</span>
-    </div>
-    <p class="home-section-lead">Recent milestones and updates.</p>
+  <section class="home-section" aria-labelledby="home-news-heading">
+    <h2 class="home-section-title" id="home-news-heading">News</h2>
     <div class="home-news">
-      {{ range $i, $item := . }}
-      <div class="home-news-row{{ if eq $i 0 }} is-latest{{ end }}">
-        <span class="home-news-marker" aria-hidden="true"></span>
-        <span class="home-news-date">{{ $item.date }}</span>
-        <span class="home-news-text">{{ $item.text }}</span>
+      {{ range . }}
+      <div class="home-news-row">
+        <span class="home-news-date">{{ .date }}</span>
+        <span class="home-news-text">{{ .text }}</span>
       </div>
       {{ end }}
     </div>
-  </div>
+  </section>
   {{ end }}
 
   {{ with .Site.Data.featured_pubs }}
-  <div class="home-section">
+  <section class="home-section" aria-labelledby="home-pubs-heading">
     <div class="home-section-header">
-      <span class="home-section-title">Selected Publications</span>
-      <a href="/publications/" class="home-section-link">all publications →</a>
+      <h2 class="home-section-title" id="home-pubs-heading">Selected Publications</h2>
+      <a href="/publications/" class="home-section-link">View all</a>
     </div>
-    <p class="home-section-lead">Peer-reviewed work across ML security, systems, and low-resource NLP.</p>
     <div class="home-featured-pubs">
       {{ range . }}
       <article class="home-pub-row">
-        <span class="home-pub-venue home-pub-venue--{{ .venueType }}">{{ .venue }}</span>
+        <span class="home-pub-venue">{{ .venue }}</span>
         <div class="home-pub-body">
           {{ $title := .title }}
           {{ with .url }}<a class="home-pub-title" href="{{ . }}">{{ $title }}</a>{{ else }}<span class="home-pub-title">{{ $title }}</span>{{ end }}
-          {{ with .highlight }}<p class="home-pub-highlight">{{ . }}</p>{{ end }}
         </div>
       </article>
       {{ end }}
     </div>
-  </div>
+  </section>
   {{ end }}
 
   {{ with .Site.Data.featured_projects }}
-  <div class="home-section">
+  <section class="home-section" aria-labelledby="home-projects-heading">
     <div class="home-section-header">
-      <span class="home-section-title">Projects</span>
-      <a href="/projects/" class="home-section-link">all projects →</a>
+      <h2 class="home-section-title" id="home-projects-heading">Projects</h2>
+      <a href="/projects/" class="home-section-link">View all</a>
     </div>
-    <p class="home-section-lead">Open-source systems from research prototypes to production infrastructure.</p>
     <div class="home-featured-projects">
       {{ range . }}
       <article class="home-project-card">
-        <div class="home-project-name"><a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a></div>
-        <div class="home-project-desc">{{ .description }}</div>
-        {{ with .tags }}
-        <div class="home-project-tags">
-          {{ range . }}<span class="home-project-tag">{{ . }}</span>{{ end }}
-        </div>
-        {{ end }}
+        <h3 class="home-project-name"><a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a></h3>
+        <p class="home-project-desc">{{ .description }}</p>
       </article>
       {{ end }}
     </div>
-  </div>
+  </section>
   {{ end }}
 
 </div>

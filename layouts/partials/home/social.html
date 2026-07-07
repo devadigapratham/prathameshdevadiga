@@ -1,30 +1,12 @@
 {{ with .Site.Params.social }}
-<div class="hero-contact">
-  {{ range sort . "weight" }}
-    {{ $url := .url }}
-    {{ if eq .name "CV" }}
-      {{ $url = $.Site.Params.cvURL | default "#" }}
-    {{ end }}
-    <a href="{{ $url | safeURL }}" {{ if .rel }}rel="{{ .rel }}"{{ end }} {{ if and (ne $url "#") .target }}target="{{ .target }}"{{ end }} {{ if .type }}type="{{ .type }}"{{ end }}>{{ .name }}</a>
-  {{ end }}
-</div>
-<ul class="hero-social" aria-label="Social links">
-  {{ range sort . "weight" }}
-    {{ $url := .url }}
-    {{ if eq .name "CV" }}
-      {{ $url = $.Site.Params.cvURL | default "#" }}
-    {{ end }}
-    {{ if .icon }}
-      <li>
-        <a href="{{ $url | safeURL }}" aria-label="{{ .name }}" {{ if .rel }}rel="{{ .rel }}"{{ end }} {{ if and (ne $url "#") .target }}target="{{ .target }}"{{ end }} {{ if .type }}type="{{ .type }}"{{ end }}>
-          <i class="{{ .icon }}" aria-hidden="true"></i>
-        </a>
-      </li>
-    {{ end }}
-  {{ end }}
-</ul>
-<div class="hero-cta">
-  <a class="hero-cta-primary" href="/publications/">View publications</a>
-  <a class="hero-cta-secondary" href="/about/">About &amp; research</a>
-</div>
+<p class="hero-links">
+  {{- range $i, $item := sort . "weight" -}}
+    {{- if $i }}<span class="hero-links-sep" aria-hidden="true">/</span>{{ end -}}
+    {{- $url := $item.url -}}
+    {{- if eq $item.name "CV" -}}
+      {{- $url = $.Site.Params.cvURL | default "#" -}}
+    {{- end -}}
+    <a href="{{ $url | safeURL }}" {{ if $item.rel }}rel="{{ $item.rel }}"{{ end }} {{ if and (ne $url "#") $item.target }}target="{{ $item.target }}"{{ end }} {{ if $item.type }}type="{{ $item.type }}"{{ end }}>{{ $item.name }}</a>
+  {{- end -}}
+</p>
 {{ end }}

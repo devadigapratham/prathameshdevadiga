@@ -26,9 +26,8 @@ author = "Prathamesh Devadiga"
 # license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
 description = "Prathamesh Devadiga's personal website"
 keywords = "blog,developer,personal"
-info = ["Incoming CS PhD Student, Dartmouth College", "ML Security · LLM Privacy · Production AI Systems"]
-heroThesis = "I build methods and systems that make AI safer to deploy — from LLM privacy and jailbreak analysis to production-scale infrastructure."
-heroBio = "Incoming CS PhD at Dartmouth with Prof. Shawn Shan. I founded Adhara AI Labs (generative AI + LLM fine-tuning), am a research affiliate at Lossfunk, and completed GSoC'25 with UCSC-OSPO."
+info = ["Incoming CS PhD Student, Dartmouth College"]
+heroBio = "I work on ML security, LLM privacy, and production AI systems. Incoming PhD at Dartmouth with [Prof. Shawn Shan](https://www.cs.dartmouth.edu/~sshan/). I founded [Adhara AI Labs](https://github.com/devadigapratham), am a research affiliate at Lossfunk, and completed GSoC'25 with UCSC-OSPO."
 cvURL = "#" # TODO: replace with real PDF URL before Phase 7
 avatarURL = "images/avatar.jpg"
 #gravatar = "john.doe@example.com"
@@ -145,33 +144,9 @@ tag = "tags"
 author = "authors"
 
 [[params.social]]
-name = "Github"
-icon = "fa-brands fa-github fa-2x"
-weight = 1
-url = "https://github.com/devadigapratham/"
-
-[[params.social]]
-name = "Google Scholar"
-icon = "fa-solid fa-graduation-cap fa-2x"
-weight = 2
-url = "https://scholar.google.com/citations?user=JvdmV2YAAAAJ&hl=en"
-
-[[params.social]]
-name = "LinkedIn"
-icon = "fa-brands fa-linkedin fa-2x"
-weight = 3
-url = "https://www.linkedin.com/in/prathamesh-devadiga/"
-
-[[params.social]]
-name = "Twitter"
-icon = "fa-brands fa-x-twitter fa-2x"
-weight = 4
-url = "https://twitter.com/PrathameshD_8/"
-
-[[params.social]]
 name = "Email"
 icon = "fa-solid fa-envelope fa-2x"
-weight = 5
+weight = 1
 url = "mailto:devadigapratham8@gmail.com"
 rel = "me"
 type = "text/plain"
@@ -179,8 +154,32 @@ type = "text/plain"
 [[params.social]]
 name = "CV"
 icon = "fa-solid fa-file-pdf fa-2x"
-weight = 6
+weight = 2
 url = "#"
+
+[[params.social]]
+name = "Google Scholar"
+icon = "fa-solid fa-graduation-cap fa-2x"
+weight = 3
+url = "https://scholar.google.com/citations?user=JvdmV2YAAAAJ&hl=en"
+
+[[params.social]]
+name = "GitHub"
+icon = "fa-brands fa-github fa-2x"
+weight = 4
+url = "https://github.com/devadigapratham/"
+
+[[params.social]]
+name = "LinkedIn"
+icon = "fa-brands fa-linkedin fa-2x"
+weight = 5
+url = "https://www.linkedin.com/in/prathamesh-devadiga/"
+
+[[params.social]]
+name = "Twitter"
+icon = "fa-brands fa-x-twitter fa-2x"
+weight = 6
+url = "https://twitter.com/PrathameshD_8/"
 
 [languages.en]
 languageName = ":uk:"
