@@ -1002,7 +1002,8 @@ hr {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--color-muted);
-  width: 5.5rem;
+  white-space: nowrap;
+  width: 8.75rem;
   flex-shrink: 0;
   padding-top: 0.15rem;
 }
