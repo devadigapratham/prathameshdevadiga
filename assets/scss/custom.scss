@@ -1,5 +1,12 @@
 @import "fonts";
 @import "tokens";
+@import "theme-reset";
+
+body {
+  font-family: var(--font-sans) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 // ============================================================
 //  Portfolio — Prathamesh Devadiga
@@ -7,17 +14,8 @@
 // ============================================================
 
 // ============================================================
-// GLOBAL
+// GLOBAL (hero-specific overrides layered on theme-reset)
 // ============================================================
-body {
-  font-family: var(--font-sans) !important;
-  font-size: var(--text-base);
-  line-height: var(--leading-body);
-  color: var(--color-text-secondary);
-  background-color: var(--color-bg);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
 hr {
   display: none !important;
@@ -36,15 +34,19 @@ hr {
 // NAVIGATION
 // ============================================================
 .navigation {
-  height: 5.6rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--space-6);
   border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-bg);
+  background-color: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  backdrop-filter: blur(8px);
 
   a, span { font-size: var(--text-sm); letter-spacing: 0; }
 
   .navigation-title {
     font-family: var(--font-serif);
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
     font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--color-text) !important;
@@ -55,13 +57,26 @@ hr {
     color: var(--color-muted) !important;
     font-weight: 400;
     &:hover, &:focus {
-      color: var(--color-accent) !important;
+      color: var(--color-text) !important;
       text-decoration: none !important;
       background: none !important;
     }
   }
 
   a:hover, a:focus { text-decoration: none !important; background: none !important; }
+
+  @media (max-width: 768px) {
+    .navigation-list {
+      background-color: var(--color-bg) !important;
+      border-top-color: var(--color-border) !important;
+      border-bottom-color: var(--color-border) !important;
+    }
+
+    .navigation-item a,
+    .navigation-item span {
+      line-height: var(--space-6) !important;
+    }
+  }
 }
 
 // ============================================================
@@ -70,7 +85,7 @@ hr {
 .hero {
   max-width: var(--width-wide);
   margin: 0 auto;
-  padding: var(--space-4) var(--space-2) 0;
+  padding: var(--space-6) var(--space-2) var(--space-4);
 }
 
 .hero-inner {
@@ -98,15 +113,16 @@ hr {
 .hero-content {
   flex: 1;
   min-width: 0;
+  max-width: 40rem;
 }
 
 .hero h1 {
   font-family: var(--font-serif);
   font-size: var(--text-h1);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--leading-heading);
-  letter-spacing: -0.025em;
-  margin: 0 0 var(--space-1);
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--space-2);
   color: var(--color-text);
 
   @media (max-width: 768px) {
@@ -119,7 +135,7 @@ hr {
   font-size: var(--text-sm);
   font-weight: 400;
   color: var(--color-muted);
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-3);
   line-height: var(--leading-body);
 }
 
@@ -128,21 +144,20 @@ hr {
   font-size: var(--text-base);
   color: var(--color-text-secondary);
   line-height: var(--leading-body);
-  margin: 0 0 var(--space-3);
-  max-width: 42rem;
+  margin: 0 0 var(--space-4);
 }
 
 .hero ul {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: var(--space-3);
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .hero ul li a {
-  font-size: 1.5rem;
+  font-size: var(--text-lg);
   color: var(--color-muted);
   text-transform: none !important;
   transition: color 0.15s ease;
@@ -153,24 +168,18 @@ hr {
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 768px) {
+  .hero {
+    padding-top: var(--space-4);
+  }
+
   .hero-inner {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    gap: var(--space-3);
   }
 
   .hero .avatar img {
     width: 4.5rem;
     height: 4.5rem;
-  }
-
-  .hero-bio {
-    max-width: none;
-  }
-
-  .hero ul {
-    justify-content: center;
   }
 }
 
@@ -258,7 +267,7 @@ hr {
   align-items: baseline;
   justify-content: space-between;
   margin-bottom: 0;
-  padding-bottom: 0.7rem;
+  padding-bottom: var(--space-1);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -274,11 +283,11 @@ hr {
 .home-section-link {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--color-accent);
+  color: var(--color-muted);
   text-decoration: none !important;
   border-bottom: none !important;
   transition: color 0.15s ease;
-  &:hover { color: var(--color-accent-hover); }
+  &:hover { color: var(--color-accent); }
 }
 
 .home-pub-row {
@@ -399,7 +408,7 @@ hr {
     }
 
     a {
-      color: var(--color-accent);
+      color: var(--color-link);
       text-decoration: underline;
       text-decoration-color: transparent;
       text-underline-offset: 0.15em;
