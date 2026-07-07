@@ -1,5 +1,4 @@
 // Reset hugo-coder base assumptions that conflict with our 16px token scale.
-// Root cause: theme sets html { font-size: 62.5% } so 3rem ≠ 48px.
 
 html {
   font-size: 100%;
@@ -18,16 +17,17 @@ body {
   background-color: var(--color-bg);
 }
 
-// Theme default link blue (#1565c0) — replace with readable link token
-a {
+// Override theme default blues (#1565c0 / #42a5f5)
+body.colorscheme-light a,
+body a {
   color: var(--color-link);
   font-weight: inherit;
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: color 0.12s ease;
 
   &:hover,
   &:focus {
-    color: var(--color-accent);
+    color: var(--color-link-hover);
   }
 }
 
@@ -45,14 +45,12 @@ a {
   padding-right: var(--space-2);
 }
 
-// Theme gives all headings huge top margins
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   color: var(--color-text);
   margin-top: 0;
 }
 
-.float-container a {
-  color: var(--color-muted) !important;
-  &:hover { color: var(--color-accent) !important; }
+.float-container {
+  display: none !important;
 }

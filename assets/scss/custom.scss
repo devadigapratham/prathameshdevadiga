@@ -10,7 +10,7 @@ body {
 
 // ============================================================
 //  Portfolio — Prathamesh Devadiga
-//  Fraunces + Inter + IBM Plex Mono · Slate & Cyan
+//  Fraunces + Inter + IBM Plex Mono · professional light
 // ============================================================
 
 // ============================================================
@@ -148,10 +148,10 @@ hr {
   a {
     color: var(--color-link);
     text-decoration: underline;
-    text-decoration-color: transparent;
+    text-decoration-color: color-mix(in srgb, var(--color-link) 30%, transparent);
     text-underline-offset: 0.12em;
     &:hover {
-      color: var(--color-accent-hover);
+      color: var(--color-link-hover);
       text-decoration-color: currentColor;
     }
   }
@@ -166,14 +166,19 @@ hr {
   a {
     color: var(--color-link);
     font-weight: 400;
-    &:hover { color: var(--color-accent-hover); }
+    text-decoration: none;
+    &:hover {
+      color: var(--color-link-hover);
+      text-decoration: underline;
+      text-underline-offset: 0.12em;
+    }
   }
-}
 
-.hero-links-sep {
-  margin: 0 0.35rem;
-  color: var(--color-muted);
-  user-select: none;
+  .hero-links-sep {
+    margin: 0 0.35rem;
+    color: var(--color-muted);
+    user-select: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -442,8 +447,8 @@ hr {
       font-weight: inherit;
       transition: text-decoration-color 0.12s, color 0.12s;
       &:hover, &:focus {
-        color: var(--color-accent-hover);
-        text-decoration-color: var(--color-accent-hover);
+        color: var(--color-link-hover);
+        text-decoration-color: currentColor;
       }
     }
 
@@ -552,7 +557,7 @@ hr {
   border: none !important;
   border-radius: 0 !important;
   &::before { display: none; }
-  &.badge-published { color: var(--color-success); }
+  &.badge-published { color: var(--color-muted); }
   &.badge-review, &.badge-preprint { color: var(--color-muted); }
 }
 
@@ -613,12 +618,12 @@ hr {
   transition: color 0.12s;
   svg { display: none; }
   &.link-arxiv, &.link-paper {
-    color: var(--color-accent);
-    &:hover { color: var(--color-accent-hover); }
+    color: var(--color-link);
+    &:hover { color: var(--color-link-hover); }
   }
   &.link-doi {
     color: var(--color-text-secondary);
-    &:hover { color: var(--color-accent); }
+    &:hover { color: var(--color-link); }
   }
 }
 
@@ -709,12 +714,12 @@ hr {
 .project-card-link {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--color-accent);
+  color: var(--color-link);
   text-decoration: none !important;
   border-bottom: none !important;
   flex-shrink: 0;
   transition: color 0.12s;
-  &:hover { color: var(--color-accent-hover); }
+  &:hover { color: var(--color-link-hover); }
 }
 
 .project-card-label {

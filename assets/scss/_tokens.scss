@@ -1,20 +1,20 @@
-// Design tokens — Slate & Cyan
-// Light/dark values swap via body.colorscheme-dark (theme toggle)
+// Design tokens — professional academic (light mode only)
 
 :root {
-  // Color — light mode
   --color-bg: #ffffff;
-  --color-text: #0f172a;
-  --color-text-secondary: #334155;
-  --color-accent: #0891b2;
-  --color-accent-hover: #0e7490;
-  --color-link: #0e7490;
-  --color-muted: #64748b;
-  --color-border: #e2e8f0;
-  --color-surface: #f8fafc;
-  --color-surface-elevated: #ffffff;
-  --color-accent-subtle: rgba(8, 145, 178, 0.08);
-  --color-success: #059669;
+  --color-text: #111827;
+  --color-text-secondary: #374151;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-surface: #f9fafb;
+
+  // Muted navy links — no bright cyan/teal
+  --color-link: #1e3a5f;
+  --color-link-hover: #0f172a;
+  --color-accent: var(--color-link);
+  --color-accent-hover: var(--color-link-hover);
+
+  --color-success: #047857;
 
   // Typography families
   --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
@@ -22,50 +22,34 @@
   --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
 
   // Type scale (base 16px)
-  --text-xs: 0.75rem;    // 12px — small/meta
-  --text-sm: 0.875rem;   // 14px
-  --text-base: 1rem;     // 16px — body
-  --text-lg: 1.125rem;   // 18px — lead
-  --text-h3: 1.5rem;     // 24px
-  --text-h2: 2rem;       // 32px
-  --text-h1: 3rem;       // 48px — name/hero desktop
-  --text-h1-mobile: 2rem; // 32px — h1 mobile
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-h3: 1.5rem;
+  --text-h2: 2rem;
+  --text-h1: 3rem;
+  --text-h1-mobile: 2rem;
 
   --leading-body: 1.6;
   --leading-heading: 1.15;
 
   // Spacing (8px base)
-  --space-1: 0.5rem;   // 8px
-  --space-2: 1rem;     // 16px
-  --space-3: 1.5rem;   // 24px
-  --space-4: 2rem;     // 32px
-  --space-5: 3rem;     // 48px
-  --space-6: 4rem;     // 64px
-  --space-7: 6rem;     // 96px
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
 
   // Layout
-  --width-content: 45rem;  // 720px — blog body
-  --width-wide: 60rem;     // 960px — homepage/grid
+  --width-content: 45rem;
+  --width-wide: 60rem;
   --section-gap: var(--space-6);
-  --section-gap-mobile: 2.5rem; // 40px
+  --section-gap-mobile: 2.5rem;
 
-  // Focus ring
-  --focus-ring: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent);
-}
-
-body.colorscheme-dark {
-  --color-bg: #0b1120;
-  --color-text: #e2e8f0;
-  --color-text-secondary: #cbd5e1;
-  --color-accent: #22d3ee;
-  --color-accent-hover: #67e8f9;
-  --color-link: #a5f3fc;
-  --color-muted: #94a3b8;
-  --color-border: #1e293b;
-  --color-surface: #111827;
-  --color-surface-elevated: #0f172a;
-  --color-accent-subtle: rgba(34, 211, 238, 0.1);
-  --color-success: #34d399;
+  --focus-ring: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-border);
 }
 
 @media (max-width: 768px) {
