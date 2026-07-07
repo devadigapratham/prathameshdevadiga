@@ -32,7 +32,6 @@ cvURL = "#" # TODO: replace with real PDF URL before Phase 7
 avatarURL = "images/avatar.jpg"
 #gravatar = "john.doe@example.com"
 dateFormat = "January 2, 2006"
-since = 2019
 # Git Commit in Footer, uncomment the line below to enable it
 commit = "https://github.com/luizdepra/hugo-coder/tree/"
 # Right To Left, shift content direction for languages such as Arabic
@@ -203,9 +202,4 @@ url = "projects/"
 name = "Publications"
 weight = 4
 url = "publications/"
-
-[[languages.en.menu.main]]
-name = "Contact me"
-weight = 5
-url = "contact/"
 

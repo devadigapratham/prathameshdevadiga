@@ -202,6 +202,7 @@ hr {
 // ============================================================
 .home-section-lead { display: none; }
 
+.home-update-row,
 .home-news-row {
   display: flex;
   align-items: baseline;
@@ -211,6 +212,7 @@ hr {
   &:last-child { border-bottom: none; }
 }
 
+.home-update-date,
 .home-news-date {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -220,6 +222,7 @@ hr {
   width: 6.5rem;
 }
 
+.home-update-text,
 .home-news-text {
   font-family: var(--font-sans);
   font-size: var(--text-sm);
@@ -394,15 +397,130 @@ hr {
 // CONTENT PAGES — general
 // ============================================================
 .content {
-  header h1 {
-    font-family: var(--font-serif);
-    font-weight: 600;
-    font-size: var(--text-h2);
-    line-height: var(--leading-heading);
-    letter-spacing: -0.025em;
-    color: var(--color-text);
-    background: none !important;
-    -webkit-text-fill-color: unset !important;
+  header {
+    margin-top: var(--space-5) !important;
+    margin-bottom: var(--space-3) !important;
+
+    h1, h1.title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.75rem !important;
+      line-height: 1.25 !important;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      background: none !important;
+      -webkit-text-fill-color: unset !important;
+    }
+  }
+
+  // Blog index
+  .list ul {
+    margin: var(--space-2) 0 var(--space-4) !important;
+    padding: 0;
+
+    li {
+      font-size: var(--text-base) !important;
+      margin: 0 !important;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--color-border);
+      display: flex !important;
+      align-items: baseline;
+      gap: var(--space-3);
+
+      .date {
+        font-family: var(--font-mono);
+        font-size: var(--text-xs) !important;
+        color: var(--color-muted);
+        width: 9rem !important;
+        min-width: 9rem;
+        margin-right: 0 !important;
+        text-align: left !important;
+        flex-shrink: 0;
+      }
+
+      .title {
+        font-family: var(--font-sans) !important;
+        font-size: var(--text-base) !important;
+        font-weight: 500 !important;
+        color: var(--color-text) !important;
+        &:hover, &:focus { color: var(--color-link) !important; }
+      }
+    }
+  }
+
+  // Blog post
+  .post article {
+    max-width: var(--width-content) !important;
+  }
+
+  .post .post-title {
+    margin-bottom: var(--space-2) !important;
+
+    h1, h1.title {
+      font-size: 1.875rem !important;
+      line-height: 1.2 !important;
+    }
+  }
+
+  .post .post-meta {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    margin-bottom: var(--space-4);
+
+    .date, .reading-time {
+      font-size: var(--text-sm);
+    }
+  }
+
+  .post .post-content {
+    font-size: var(--text-base) !important;
+    line-height: 1.65 !important;
+
+    p, li, td, th {
+      font-size: inherit !important;
+    }
+
+    p {
+      margin: 1em 0 !important;
+    }
+
+    h2 {
+      font-family: var(--font-serif) !important;
+      font-size: var(--text-lg) !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.01em !important;
+      text-transform: none !important;
+      color: var(--color-text) !important;
+      border: none;
+      padding: 0;
+      margin-top: var(--space-4) !important;
+      margin-bottom: var(--space-2) !important;
+    }
+
+    h3 {
+      font-family: var(--font-serif);
+      font-size: var(--text-base) !important;
+      font-weight: 600;
+      line-height: var(--leading-heading);
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+      margin-top: var(--space-3);
+    }
+
+    h4, h5, h6 {
+      font-size: var(--text-sm) !important;
+      font-weight: 600;
+    }
+
+    pre, code {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm) !important;
+    }
+
+    pre {
+      font-size: 0.8125rem !important;
+      line-height: 1.5;
+    }
   }
 
   article {
@@ -763,9 +881,15 @@ hr {
   font-size: var(--text-sm);
   color: var(--color-muted);
   background-color: var(--color-bg);
+  padding: var(--space-3) 0;
+
+  .footer-inner {
+    text-align: center;
+  }
+
   a {
     color: var(--color-muted);
     transition: color 0.12s;
-    &:hover { color: var(--color-accent); }
+    &:hover { color: var(--color-link-hover); }
   }
 }
