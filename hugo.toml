@@ -27,7 +27,8 @@ author = "Prathamesh Devadiga"
 description = "Prathamesh Devadiga's personal website"
 keywords = "blog,developer,personal"
 info = ["Incoming CS PhD Student, Dartmouth College", "ML Security · LLM Privacy · Production AI Systems"]
-heroBio = "I'm an incoming CS PhD student, working on ML security, LLM privacy, and production AI systems. I founded Adhara AI Labs, where I work on generative AI and LLM fine-tuning, and I'm affiliated with Lossfunk. I completed GSoC'25 with UCSC-OSPO, and my recent work spans low-resource NLP, LLM jailbreak analysis, and applied ML security research."
+heroThesis = "I build methods and systems that make AI safer to deploy — from LLM privacy and jailbreak analysis to production-scale infrastructure."
+heroBio = "Incoming CS PhD at Dartmouth with Prof. Shawn Shan. I founded Adhara AI Labs (generative AI + LLM fine-tuning), am a research affiliate at Lossfunk, and completed GSoC'25 with UCSC-OSPO."
 cvURL = "#" # TODO: replace with real PDF URL before Phase 7
 avatarURL = "images/avatar.jpg"
 #gravatar = "john.doe@example.com"
@@ -168,7 +169,7 @@ weight = 4
 url = "https://twitter.com/PrathameshD_8/"
 
 [[params.social]]
-name = "Mail"
+name = "Email"
 icon = "fa-solid fa-envelope fa-2x"
 weight = 5
 url = "mailto:devadigapratham8@gmail.com"

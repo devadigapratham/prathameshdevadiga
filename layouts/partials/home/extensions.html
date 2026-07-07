@@ -1,65 +1,83 @@
 <div class="home-sections">
 
+  {{ with .Site.Data.research_focus }}
+  <div class="home-section home-research">
+    <div class="home-section-header">
+      <span class="home-section-title">Research Focus</span>
+    </div>
+    <p class="home-section-lead">Three threads that connect my publications, industry work, and PhD direction.</p>
+    <div class="home-research-grid">
+      {{ range . }}
+      <article class="home-research-card">
+        <h3 class="home-research-label">{{ .label }}</h3>
+        <p class="home-research-desc">{{ .description }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
   {{ with .Site.Data.news }}
   <div class="home-section">
     <div class="home-section-header">
       <span class="home-section-title">News</span>
     </div>
+    <p class="home-section-lead">Recent milestones and updates.</p>
     <div class="home-news">
-      {{ range . }}
-      <div class="home-news-row">
-        <span class="home-news-date">{{ .date }}</span>
-        <span class="home-news-text">{{ .text }}</span>
+      {{ range $i, $item := . }}
+      <div class="home-news-row{{ if eq $i 0 }} is-latest{{ end }}">
+        <span class="home-news-marker" aria-hidden="true"></span>
+        <span class="home-news-date">{{ $item.date }}</span>
+        <span class="home-news-text">{{ $item.text }}</span>
       </div>
       {{ end }}
     </div>
   </div>
   {{ end }}
 
+  {{ with .Site.Data.featured_pubs }}
   <div class="home-section">
     <div class="home-section-header">
       <span class="home-section-title">Selected Publications</span>
       <a href="/publications/" class="home-section-link">all publications →</a>
     </div>
+    <p class="home-section-lead">Peer-reviewed work across ML security, systems, and low-resource NLP.</p>
     <div class="home-featured-pubs">
-      <div class="home-pub-row">
-        <span class="home-pub-venue">NeurIPS 2025</span>
-        <span class="home-pub-title">SLMs as Compiler Experts: Auto-Parallelization for Heterogeneous Systems</span>
-      </div>
-      <div class="home-pub-row">
-        <span class="home-pub-venue">EACL 2025 Workshop</span>
-        <span class="home-pub-title">Can LLMs Learn Tulu? Teaching Low-Resource Languages Through Hard Constraint Prompting</span>
-      </div>
-      <div class="home-pub-row">
-        <span class="home-pub-venue">App. Soft Comp.</span>
-        <span class="home-pub-title">PDF Malware Detection with Adversarial Robustness (KASPER)</span>
-      </div>
+      {{ range . }}
+      <article class="home-pub-row">
+        <span class="home-pub-venue home-pub-venue--{{ .venueType }}">{{ .venue }}</span>
+        <div class="home-pub-body">
+          {{ $title := .title }}
+          {{ with .url }}<a class="home-pub-title" href="{{ . }}">{{ $title }}</a>{{ else }}<span class="home-pub-title">{{ $title }}</span>{{ end }}
+          {{ with .highlight }}<p class="home-pub-highlight">{{ . }}</p>{{ end }}
+        </div>
+      </article>
+      {{ end }}
     </div>
   </div>
+  {{ end }}
 
+  {{ with .Site.Data.featured_projects }}
   <div class="home-section">
     <div class="home-section-header">
       <span class="home-section-title">Projects</span>
       <a href="/projects/" class="home-section-link">all projects →</a>
     </div>
+    <p class="home-section-lead">Open-source systems from research prototypes to production infrastructure.</p>
     <div class="home-featured-projects">
-      <div class="home-project-card">
-        <div class="home-project-name"><a href="https://github.com/devadigapratham" target="_blank" rel="noopener">Cerebrum</a></div>
-        <div class="home-project-desc">Production LLM training + serving system with Mixture-of-Refusals (MoR) safety routing, FSDP/DDP, vLLM, and Kubernetes deployment</div>
-      </div>
-      <div class="home-project-card">
-        <div class="home-project-name"><a href="https://github.com/devadigapratham/goDFS" target="_blank" rel="noopener">goDFS</a></div>
-        <div class="home-project-desc">Decentralized content-addressable file storage system in Go for streaming large files across distributed nodes</div>
-      </div>
-      <div class="home-project-card">
-        <div class="home-project-name"><a href="https://github.com/devadigapratham/JurisQwen" target="_blank" rel="noopener">JurisQwen</a></div>
-        <div class="home-project-desc">Qwen2.5-7B fine-tuned on Indian legal datasets with LoRA + 4-bit quantization deployed on Modal</div>
-      </div>
-      <div class="home-project-card">
-        <div class="home-project-name"><a href="https://github.com/devadigapratham/raft3d" target="_blank" rel="noopener">Raft3D</a></div>
-        <div class="home-project-desc">Distributed 3D printer management using the Raft Consensus Algorithm for persistence without centralized databases</div>
-      </div>
+      {{ range . }}
+      <article class="home-project-card">
+        <div class="home-project-name"><a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a></div>
+        <div class="home-project-desc">{{ .description }}</div>
+        {{ with .tags }}
+        <div class="home-project-tags">
+          {{ range . }}<span class="home-project-tag">{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+      </article>
+      {{ end }}
     </div>
   </div>
+  {{ end }}
 
 </div>

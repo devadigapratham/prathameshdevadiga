@@ -1,0 +1,15 @@
+- venue: NeurIPS 2025
+  venueType: conference
+  title: "SLMs as Compiler Experts: Auto-Parallelization for Heterogeneous Systems"
+  highlight: "6.81× average speedup vs. LLVM/TVM baselines"
+  url: "/publications/"
+- venue: EACL 2025
+  venueType: workshop
+  title: "Can LLMs Learn Tulu? Teaching Low-Resource Languages Through Hard Constraint Prompting"
+  highlight: "Reduced language leakage from 80% to 5%"
+  url: "/publications/"
+- venue: App. Soft Comp.
+  venueType: journal
+  title: "PDF Malware Detection with Adversarial Robustness (KASPER)"
+  highlight: "99.5% accuracy under FGSM and PGD attacks"
+  url: "/publications/"

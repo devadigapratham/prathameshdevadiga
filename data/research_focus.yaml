@@ -1,0 +1,6 @@
+- label: ML Security
+  description: Jailbreak analysis, adversarial robustness, and multi-agent defenses for deployed LLMs.
+- label: LLM Privacy
+  description: Data leakage, membership inference, and privacy-preserving fine-tuning.
+- label: Production AI
+  description: Training infrastructure, serving systems, and compiler-level optimization for real workloads.

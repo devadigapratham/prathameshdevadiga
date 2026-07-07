@@ -12,6 +12,8 @@
   --color-muted: #64748b;
   --color-border: #e2e8f0;
   --color-surface: #f8fafc;
+  --color-surface-elevated: #ffffff;
+  --color-accent-subtle: rgba(8, 145, 178, 0.08);
   --color-success: #059669;
 
   // Typography families
@@ -61,6 +63,8 @@ body.colorscheme-dark {
   --color-muted: #94a3b8;
   --color-border: #1e293b;
   --color-surface: #111827;
+  --color-surface-elevated: #0f172a;
+  --color-accent-subtle: rgba(34, 211, 238, 0.1);
   --color-success: #34d399;
 }
 

@@ -9,6 +9,16 @@
     {{- .Site.Params.info | markdownify -}}
   {{- end -}}
 </p>
+{{ with .Site.Params.heroThesis }}
+<p class="hero-thesis">{{ . }}</p>
+{{ end }}
 {{ with .Site.Params.heroBio }}
 <p class="hero-bio">{{ . }}</p>
+{{ end }}
+{{ with .Site.Data.research_focus }}
+<ul class="hero-focus" aria-label="Research focus areas">
+  {{ range . }}
+  <li>{{ .label }}</li>
+  {{ end }}
+</ul>
 {{ end }}

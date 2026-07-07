@@ -1,0 +1,16 @@
+- name: Cerebrum
+  url: "https://github.com/devadigapratham"
+  description: Production LLM training + serving with Mixture-of-Refusals safety routing, FSDP/DDP, vLLM, and Kubernetes deployment.
+  tags: [LLM, Kubernetes, vLLM]
+- name: goDFS
+  url: "https://github.com/devadigapratham/goDFS"
+  description: Decentralized content-addressable file storage in Go for streaming large files across distributed nodes.
+  tags: [Go, Distributed Systems]
+- name: JurisQwen
+  url: "https://github.com/devadigapratham/JurisQwen"
+  description: Qwen2.5-7B fine-tuned on Indian legal datasets with LoRA + 4-bit quantization on Modal.
+  tags: [LoRA, Legal AI, Modal]
+- name: Raft3D
+  url: "https://github.com/devadigapratham/raft3d"
+  description: Distributed 3D printer management using Raft consensus for persistence without centralized databases.
+  tags: [Raft, Go, IoT]
