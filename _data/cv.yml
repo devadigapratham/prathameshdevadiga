@@ -1,0 +1,291 @@
+cv:
+  name: Prathamesh Devadiga
+  label: Incoming CS PhD at Dartmouth
+  email: devadigapratham8@gmail.com
+  phone: "+91 7676831872"
+  location: Bangalore, India
+  website: https://prathameshdevadiga.vercel.app/
+  image: ""
+  summary: Incoming CS PhD student at Dartmouth working on machine learning security, LLM privacy, adversarial robustness, and production AI systems.
+
+  social_networks:
+    - network: LinkedIn
+      username: prathamesh-devadiga
+    - network: GitHub
+      username: devadigapratham
+
+  sections:
+    Academic Interests:
+      - name: Research Areas
+        keywords:
+          - Machine learning security
+          - Adversarial robustness
+          - LLM jailbreaking and data extraction
+          - Production AI systems
+          - Alignment safety
+          - Constraint-based defenses
+          - Low-resource language modeling
+          - Compiler optimization
+
+    Education:
+      - institution: Dartmouth College
+        location: Hanover, NH, USA
+        area: Computer Science
+        studyType: PhD
+        start_date: 2026
+        end_date: Present
+        highlights:
+          - "Advisor: Prof. Shawn Shan"
+          - "Research interests: trustworthy machine learning, AI security and privacy, large language models, memorization and generalization theory, adversarial machine learning, responsible AI systems"
+
+      - institution: PES University
+        location: Bangalore, India
+        area: Computer Science Engineering
+        studyType: BTech
+        start_date: 2022-08
+        end_date: 2026-05
+        score: 8.98/10.00
+        highlights:
+          - "Relevant coursework: Machine Learning, Deep Learning, Generative AI, Linear Algebra and its Applications, Statistics for Data Science, Data Structures and Algorithms, Operating Systems, Computer Networks, Distributed Systems"
+
+    Experience:
+      - company: Adhara AI Labs
+        position: Founder and Lead Researcher
+        location: Remote
+        start_date: 2025-02
+        end_date: Present
+        summary: Independent AI research lab
+        highlights:
+          - Founded an independent research lab focused on generative AI, LLMs, compiler optimization, and deep learning systems.
+          - Led research from concept to production across projects including PyraFuseNet, SLMs as Compiler Experts, RegimeNAS, MorphNAS, and a low-latency jailbreak prevention framework.
+
+      - company: Dartmouth College
+        position: Research Assistant (ML Security and LLM Privacy)
+        location: Remote
+        start_date: 2025-07
+        end_date: Present
+        summary: "Advisor: Prof. Shawn Shan"
+        highlights:
+          - Co-developed Hierarchical Extraction Search, a query-efficient framework for extracting memorized training data from instruction-tuned LLMs under black-box constraints.
+          - Demonstrated 10-100x lower extraction cost than brute-force sampling across 12 state-of-the-art LLMs and 100+ attack runs.
+          - Showed that models appearing robust to high-volume attacks remain vulnerable to low-footprint extraction.
+
+      - company: Lossfunk
+        position: AI Research Intern
+        location: Bangalore, India
+        start_date: 2025-09
+        end_date: Present
+        summary: Low-resource language modeling and world models
+        highlights:
+          - Built methods for extremely low-resource Indic language modeling in Tulu, around 0.001 percent of typical training data volume.
+          - Reduced catastrophic language leakage from 80 percent to 5 percent using hard negative constraints.
+          - Investigated world-model induction in transformers through modified objectives and architectural biases.
+
+      - company: Nokia
+        position: Intent-Based Network Management System (3GPP SON)
+        location: Bengaluru, India
+        start_date: 2025-08
+        end_date: 2025-10
+        summary: Industry research internship
+        highlights:
+          - Designed a self-organizing network system that translated high-level operator goals into 3GPP-compliant intents.
+          - Built an LLM-powered intent classification and orchestration pipeline with conflict detection, duplicate suppression, and intent expiry management.
+
+      - company: Google Summer of Code 2025, University of California Santa Cruz
+        position: Contributor
+        location: Remote
+        start_date: 2025-05
+        end_date: 2025-08
+        summary: Billion-scale ANN benchmarking infrastructure
+        highlights:
+          - Built billion-scale vector embedding benchmarks from open-source codebases for realistic ANN evaluation.
+          - Developed infrastructure for large-scale evaluation of approximate nearest neighbor algorithms.
+
+      - company: Indian Institute of Technology, Indore
+        position: Undergraduate Research Intern (Deep Learning)
+        location: Remote
+        start_date: 2023-12
+        end_date: 2024-08
+        summary: "Advisor: Prof. Nagendra Kumar"
+        highlights:
+          - Designed the KASPER framework for PDF malware detection with 99.5 percent accuracy and adversarial robustness.
+          - Built a malware injection pipeline and explainability analysis using Kolmogorov-Arnold Networks.
+
+      - company: PES University
+        position: Teaching Assistant, Machine Learning
+        location: Bangalore, India
+        start_date: 2025-06
+        end_date: 2025-11
+        summary: Teaching and mentoring for undergraduate ML
+        highlights:
+          - Mentored 75+ students across tutorials, labs, and practical assignments.
+          - Prepared instructional material, delivered tutorial sessions, and conducted weekly hands-on labs.
+
+      - company: PESU I/O
+        position: Subject Matter Expert, Deep Learning
+        location: Bangalore, India
+        start_date: 2024-10
+        end_date: 2024-11
+        summary: Deep Learning from Scratch course
+        highlights:
+          - Co-instructed a 30-hour Deep Learning from Scratch course for 40 students.
+          - Delivered 20 hours of in-person instruction on neural networks, CNNs, RNNs, LSTMs, GANs, and explainable AI.
+
+      - company: Entrepreneurship Club, PES University
+        position: Head of Technology
+        location: Bangalore, India
+        start_date: 2023
+        end_date: 2024
+        summary: Student leadership and technical operations
+        highlights:
+          - Led a 10+ member technical team and managed technology for entrepreneurship events and the club website.
+
+      - company: IEEE Robotics and Automation Society, PES University
+        position: Webmaster
+        location: Bangalore, India
+        start_date: 2023
+        end_date: 2024
+        summary: Student organization web and infra support
+        highlights:
+          - Managed technical infrastructure and web presence for the university robotics organization.
+
+      - company: Independent
+        position: Community Mentor and Technical Speaker
+        location: Various locations
+        start_date: 2023
+        end_date: Present
+        summary: Mentorship, workshops, and community service
+        highlights:
+          - Mentored 50+ teams in hackathons, research projects, and WiDS Datathon competitions.
+          - Delivered technical talks on DSPy, LoRA fine-tuning, and deep learning fundamentals.
+
+    Projects:
+      - name: Cerebrum
+        summary: Production LLM training and serving system.
+        highlights:
+          - End-to-end LLM system with distributed FSDP and DDP training, Flash Attention v2, and Mixture-of-Experts support.
+          - Introduced Mixture-of-Refusals, a defense mechanism delivering 2-3x speedups on safe queries while preserving safety guarantees.
+          - Built a vLLM-based inference stack with quantization, speculative decoding, and prefix caching.
+
+      - name: Arcane ML
+        summary: Distributed training framework for SSH clusters, cloud GPUs, and local setups.
+        highlights:
+          - Engineered PyTorch DDP support and a unified CLI for scalable distributed training workflows.
+
+    Publications:
+      - title: "Resistant to Lawyers, Defeated by Disagreement: Evaluation Blindspots in Legal Language Models"
+        authors:
+          - Prathamesh Devadiga
+          - Advika Lakshman
+        publisher: ICML 2026 Workshop on AI for Law
+        releaseDate: 2026
+        summary: Demonstrated that legal LLMs abandon initially correct answers in 62.1 percent of adversarial conversational interactions.
+
+      - title: "SLMs as Compiler Experts: Auto-Parallelization for Heterogeneous Systems"
+        authors:
+          - Prathamesh Devadiga
+          - et al.
+        publisher: NeurIPS 2025 Workshop on Machine Learning for Systems
+        releaseDate: 2025
+        summary: Achieved a 6.81x average speedup and 43.25x peak speedup over LLVM Polly, TVM, and Triton baselines.
+
+      - title: "PyraFuseNet: Dual-Path Network for Resource-Constrained Vision"
+        authors:
+          - Prathamesh Devadiga
+          - et al.
+        publisher: ICIAI 2025
+        releaseDate: 2025
+        summary: Achieved a 55 percent computational reduction compared with ResNet-18.
+
+      - title: "GUARDIAN: Multi-Agent Defense System for Large Language Model Security"
+        authors:
+          - Prathamesh Devadiga
+          - et al.
+        publisher: ICIAI 2025
+        releaseDate: 2025
+        summary: Proposed a multi-agent architecture with 99.5 percent prompt injection and jailbreak detection accuracy.
+
+      - title: "Can LLMs Learn Tulu? Teaching Low-Resource Languages Through Hard Constraint Prompting"
+        authors:
+          - Prathamesh Devadiga
+          - et al.
+        publisher: EACL 2025 LoResLM Workshop
+        releaseDate: 2025
+        summary: Showed that explicit hard constraints substantially improve low-resource language acquisition in LLMs.
+
+      - title: "The Prompt Space is Low-Rank: Efficient Memorization Extraction from Instruction-Tuned LLMs"
+        authors:
+          - Prathamesh Devadiga
+          - A. Krishna
+          - Shawn Shan
+        publisher: Under review at NeurIPS 2026 Main Conference
+        releaseDate: 2026
+        summary: Introduces CHASE, a Gaussian-process-based framework that exploits low-rank prompt structure to extract memorized training data from production LLM APIs.
+
+    Awards:
+      - title: Amazon AI-ML Scholar India
+        date: 2024
+        awarder: Amazon Web Services
+        summary: Selected among the top 1,000 AI and ML students in India.
+
+      - title: Winner, Cisco ThingQbator Hackathon 6.0
+        date: 2023-11
+        awarder: Cisco
+        summary: National hackathon win among 1,000+ competing teams.
+
+      - title: Oxford Machine Learning Summer School
+        date: 2024
+        awarder: University of Oxford
+        summary: Accepted to a selective summer program on advanced machine learning.
+
+    Skills:
+      - name: Programming
+        keywords:
+          - Python
+          - Go
+          - Julia
+          - SQL
+          - Bash
+
+      - name: ML and AI
+        keywords:
+          - PyTorch
+          - TensorFlow
+          - Hugging Face
+          - vLLM
+          - LangChain
+          - DSPy
+          - MLflow
+          - FastAI
+
+      - name: Systems and Infrastructure
+        keywords:
+          - Docker
+          - Kubernetes
+          - Apache Spark
+          - Apache Kafka
+          - Hadoop
+          - Modal
+          - FSDP
+          - DDP
+
+      - name: Research Areas
+        keywords:
+          - Adversarial machine learning
+          - LLM security
+          - Production ML systems
+          - Low-resource NLP
+          - Compiler optimization
+          - Vector search
+
+    Languages:
+      - name: Kannada
+        summary: Full professional
+      - name: English
+        summary: Native or bilingual
+      - name: Tulu
+        summary: Native or bilingual
+      - name: Hindi
+        summary: Full professional
+      - name: German
+        summary: Elementary
