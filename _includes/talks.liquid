@@ -1,5 +1,7 @@
 {% if site.talks and site.talks.size > 0 %}
-  {% assign talks_by_year = site.talks | sort: 'year' | reverse | group_by: 'year' %}
+  {% assign talks_with_year = site.talks | where_exp: 'talk', 'talk.year != nil' %}
+  {% assign talks_without_year = site.talks | where_exp: 'talk', 'talk.year == nil' %}
+  {% assign talks_by_year = talks_with_year | sort: 'year' | reverse | group_by: 'year' %}
   <div class="talks-list">
     {% for year_group in talks_by_year %}
       <h2 class="year">{{ year_group.name }}</h2>
@@ -23,7 +25,59 @@
         </div>
       {% endfor %}
     {% endfor %}
+
+    {% if talks_without_year.size > 0 %}
+      {% unless talks_with_year.size > 0 %}
+        <h2 class="year">Talks</h2>
+      {% endunless %}
+      {% for talk in talks_without_year %}
+        <div class="talk-item mb-4">
+          <h3 class="title font-medium">
+            {% if talk.url %}
+              <a href="{{ talk.url | relative_url }}">{{ talk.title }}</a>
+            {% else %}
+              {{ talk.title }}
+            {% endif %}
+          </h3>
+          <p class="meta text-sm text-gray-500 mb-1">
+            {% if talk.venue %}{{ talk.venue }}{% endif %}
+            {% if talk.location %}, {{ talk.location }}{% endif %}
+          </p>
+          {% if talk.description %}
+            <div class="description">{{ talk.description | markdownify }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endif %}
   </div>
-{% else %}
+{% endif %}
+
+{% if site.teachings and site.teachings.size > 0 %}
+  <div class="teaching-list mt-5">
+    <h2 class="year">Teaching</h2>
+    {% assign teachings_by_year = site.teachings | sort: 'year' | reverse %}
+    {% for course in teachings_by_year %}
+      <div class="talk-item mb-4">
+        <h3 class="title font-medium">
+          {% if course.url %}
+            <a href="{{ course.url | relative_url }}">{{ course.title }}</a>
+          {% else %}
+            {{ course.title }}
+          {% endif %}
+        </h3>
+        <p class="meta text-sm text-gray-500 mb-1">
+          {% if course.term %}{{ course.term }}{% endif %}
+          {% if course.role %}{{ course.role }}{% endif %}
+          {% if course.term and course.role %} · {% endif %}
+          {% if course.venue %}{{ course.venue }}{% endif %}
+          {% if course.location %}, {{ course.location }}{% endif %}
+        </p>
+        {% if course.description %}
+          <div class="description">{{ course.description | markdownify }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% elsif site.talks == nil or site.talks.size == 0 %}
   <p>No talks listed yet.</p>
 {% endif %}

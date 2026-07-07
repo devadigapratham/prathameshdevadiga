@@ -1,189 +1,291 @@
 cv:
-  name: Albert Einstein
-  label: Scientist
-  email: einstein@example.com
-  location: Princeton, NJ
+  name: Prathamesh Devadiga
+  label: Incoming CS PhD at Dartmouth
+  email: devadigapratham8@gmail.com
+  phone: "+91 7676831872"
+  location: Bangalore, India
+  website: https://prathameshdevadiga.vercel.app/
   image: ""
-  summary: A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time
+  summary: Incoming CS PhD student at Dartmouth working on machine learning security, LLM privacy, adversarial robustness, and production AI systems.
 
   social_networks:
-    - network: X
-      username: AlbertEinstein
-    - network: GitHub
-      username: example
     - network: LinkedIn
-      username: example
-
-  address:
-    street: 2712 Broadway St
-    city: San Francisco
-    region: California
-    postalCode: CA 94115
-    countryCode: US
+      username: prathamesh-devadiga
+    - network: GitHub
+      username: devadigapratham
 
   sections:
-    Education:
-      - institution: University of Zurich
-        location: Zurich, Switzerland
-        url: https://www.uzh.ch/
-        area: Physics
-        studyType: PhD
-        start_date: 1900
-        end_date: 1905
-        score: ""
-        courses: "Theory of Relativity"
-        highlights:
-          - Description 1.
-          - Description 2.
+    Academic Interests:
+      - name: Research Areas
+        keywords:
+          - Machine learning security
+          - Adversarial robustness
+          - LLM jailbreaking and data extraction
+          - Production AI systems
+          - Alignment safety
+          - Constraint-based defenses
+          - Low-resource language modeling
+          - Compiler optimization
 
-      - institution: Eidgenössische Technische Hochschule
-        location: Zurich, Switzerland
-        area: Physics
-        studyType: Federal teaching diploma
-        start_date: 1896
-        end_date: 1900
+    Education:
+      - institution: Dartmouth College
+        location: Hanover, NH, USA
+        area: Computer Science
+        studyType: PhD
+        start_date: 2026
+        end_date: Present
         highlights:
-          - Description 1.
-          - Description 2.
+          - "Advisor: Prof. Shawn Shan"
+          - "Research interests: trustworthy machine learning, AI security and privacy, large language models, memorization and generalization theory, adversarial machine learning, responsible AI systems"
+
+      - institution: PES University
+        location: Bangalore, India
+        area: Computer Science Engineering
+        studyType: BTech
+        start_date: 2022-08
+        end_date: 2026-05
+        score: 8.98/10.00
+        highlights:
+          - "Relevant coursework: Machine Learning, Deep Learning, Generative AI, Linear Algebra and its Applications, Statistics for Data Science, Data Structures and Algorithms, Operating Systems, Computer Networks, Distributed Systems"
 
     Experience:
-      - company: Institute for Advanced Study, Princeton University
-        position: Professor of Theoretical Physics
-        location: Princeton University, NJ
-        start_date: 1933
-        end_date: 1955
-        summary: Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.
+      - company: Adhara AI Labs
+        position: Founder and Lead Researcher
+        location: Remote
+        start_date: 2025-02
+        end_date: Present
+        summary: Independent AI research lab
         highlights:
-          - Relativity
-          - Description 2.
+          - Founded an independent research lab focused on generative AI, LLMs, compiler optimization, and deep learning systems.
+          - Led research from concept to production across projects including PyraFuseNet, SLMs as Compiler Experts, RegimeNAS, MorphNAS, and a low-latency jailbreak prevention framework.
 
-      - company: California Institute of Technology
-        position: Visiting Professor
-        location: Pasadena, California, US
-        start_date: 1933
-        end_date: 1933
+      - company: Dartmouth College
+        position: Research Assistant (ML Security and LLM Privacy)
+        location: Remote
+        start_date: 2025-07
+        end_date: Present
+        summary: "Advisor: Prof. Shawn Shan"
         highlights:
-          - Description 1.
-          - Description 2.
+          - Co-developed Hierarchical Extraction Search, a query-efficient framework for extracting memorized training data from instruction-tuned LLMs under black-box constraints.
+          - Demonstrated 10-100x lower extraction cost than brute-force sampling across 12 state-of-the-art LLMs and 100+ attack runs.
+          - Showed that models appearing robust to high-volume attacks remain vulnerable to low-footprint extraction.
 
-      - company: Kaiser Wilhelm Institute for Physics
-        position: Director
-        location: Berlin, Germany
-        start_date: 1917
-        end_date: 1933
-
-      - company: Karl-Ferdinand University
-        position: Professor of Theoretical Physics
-        location: Prague, Czechoslovakia
-        start_date: 1911
-        end_date: 1917
-
-      - company: University of Zurich
-        position: Associate Professor of Theoretical Physics
-        location: Zurich, Switzerland
-        start_date: 1909
-        end_date: 1911
-
-    Volunteer:
-      - company: People's Climate March
-        position: Lead Organizer
-        location: Zurich, Switzerland
-        start_date: 2014-04-01
-        end_date: 2015-07-01
-        summary: Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.
+      - company: Lossfunk
+        position: AI Research Intern
+        location: Bangalore, India
+        start_date: 2025-09
+        end_date: Present
+        summary: Low-resource language modeling and world models
         highlights:
-          - "Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march."
-          - "Men of the year 2014 by Time magazine"
+          - Built methods for extremely low-resource Indic language modeling in Tulu, around 0.001 percent of typical training data volume.
+          - Reduced catastrophic language leakage from 80 percent to 5 percent using hard negative constraints.
+          - Investigated world-model induction in transformers through modified objectives and architectural biases.
 
-    Awards:
-      - title: Nobel Prize in Physics
-        authors:
-          - "Royal Swedish Academy of Sciences"
-        date: 1921-11-01
-        awarder: Royal Swedish Academy of Sciences
-        url: https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/
-        summary: The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'
+      - company: Nokia
+        position: Intent-Based Network Management System (3GPP SON)
+        location: Bengaluru, India
+        start_date: 2025-08
+        end_date: 2025-10
+        summary: Industry research internship
+        highlights:
+          - Designed a self-organizing network system that translated high-level operator goals into 3GPP-compliant intents.
+          - Built an LLM-powered intent classification and orchestration pipeline with conflict detection, duplicate suppression, and intent expiry management.
 
-      - title: Max Planck Medal
-        authors:
-          - "German Physical Society"
-        date: 2029
-        awarder: German Physical Society
-        summary: Awarded for outstanding scientific achievement
+      - company: Google Summer of Code 2025, University of California Santa Cruz
+        position: Contributor
+        location: Remote
+        start_date: 2025-05
+        end_date: 2025-08
+        summary: Billion-scale ANN benchmarking infrastructure
+        highlights:
+          - Built billion-scale vector embedding benchmarks from open-source codebases for realistic ANN evaluation.
+          - Developed infrastructure for large-scale evaluation of approximate nearest neighbor algorithms.
 
-    Publications:
-      - title: Zur Elektrodynamik bewegter Körper
-        authors:
-          - Albert Einstein
-        publisher: Annalen der Physik
-        releaseDate: 1905-06-30
-        url: https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies
-        summary: It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source.
+      - company: Indian Institute of Technology, Indore
+        position: Undergraduate Research Intern (Deep Learning)
+        location: Remote
+        start_date: 2023-12
+        end_date: 2024-08
+        summary: "Advisor: Prof. Nagendra Kumar"
+        highlights:
+          - Designed the KASPER framework for PDF malware detection with 99.5 percent accuracy and adversarial robustness.
+          - Built a malware injection pipeline and explainability analysis using Kolmogorov-Arnold Networks.
 
-      - title: Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt
-        authors:
-          - Albert Einstein
-        publisher: Annalen der Physik
-        releaseDate: 1905-03-18
-        url: https://de.wikisource.org/wiki/Über_einen_die_Erzeugung_und_Verwandlung_des_Lichtes_betreffenden_heuristischen_Gesichtspunkt
-        summary: In the second paper, he applied the quantum theory to light to explain the photoelectric effect. In particular, he used the idea of light quanta (photons) to explain experimental results, but stressed the importance of the experimental results. The importance of his work on the photoelectric effect earned him the Nobel Prize in Physics in 1921.
+      - company: PES University
+        position: Teaching Assistant, Machine Learning
+        location: Bangalore, India
+        start_date: 2025-06
+        end_date: 2025-11
+        summary: Teaching and mentoring for undergraduate ML
+        highlights:
+          - Mentored 75+ students across tutorials, labs, and practical assignments.
+          - Prepared instructional material, delivered tutorial sessions, and conducted weekly hands-on labs.
 
-      - title: Die Grundlage der allgemeinen Relativitätstheorie
-        authors:
-          - Albert Einstein
-        publisher: Annalen der Physik
-        releaseDate: 1916-03-20
-        url: https://de.wikisource.org/wiki/Die_Grundlage_der_allgemeinen_Relativitätstheorie
-        summary: The publication of the theory of general relativity made him internationally famous. He was professor of physics at the universities of Zurich (1909–1911) and Prague (1911–1912), before he returned to ETH Zurich (1912–1914).
+      - company: PESU I/O
+        position: Subject Matter Expert, Deep Learning
+        location: Bangalore, India
+        start_date: 2024-10
+        end_date: 2024-11
+        summary: Deep Learning from Scratch course
+        highlights:
+          - Co-instructed a 30-hour Deep Learning from Scratch course for 40 students.
+          - Delivered 20 hours of in-person instruction on neural networks, CNNs, RNNs, LSTMs, GANs, and explainable AI.
 
-    Skills:
-      - name: Physics
-        level: Master
-        icon: fa-solid fa-hashtag
-        keywords: "Quantum Mechanics, Quantum Computing, Quantum Information, Quantum Cryptography, Quantum Communication, Quantum Teleportation"
+      - company: Entrepreneurship Club, PES University
+        position: Head of Technology
+        location: Bangalore, India
+        start_date: 2023
+        end_date: 2024
+        summary: Student leadership and technical operations
+        highlights:
+          - Led a 10+ member technical team and managed technology for entrepreneurship events and the club website.
 
-    Languages:
-      - name: German
-        summary: "Native speaker"
+      - company: IEEE Robotics and Automation Society, PES University
+        position: Webmaster
+        location: Bangalore, India
+        start_date: 2023
+        end_date: 2024
+        summary: Student organization web and infra support
+        highlights:
+          - Managed technical infrastructure and web presence for the university robotics organization.
 
-      - name: English
-        summary: "Fluent"
-
-    Interests:
-      - name: Physics
-        icon: fa-solid fa-tag
-        keywords: "Quantum Mechanics, Quantum Computing, Quantum Information, Quantum Cryptography, Quantum Communication, Quantum Teleportation"
-
-    Certificates:
-      - name: Machine Learning
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-location-dot
-
-      - name: Quantum Computing
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-tag
-
-      - name: Quantum Information
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-envelope
+      - company: Independent
+        position: Community Mentor and Technical Speaker
+        location: Various locations
+        start_date: 2023
+        end_date: Present
+        summary: Mentorship, workshops, and community service
+        highlights:
+          - Mentored 50+ teams in hackathons, research projects, and WiDS Datathon competitions.
+          - Delivered technical talks on DSPy, LoRA fine-tuning, and deep learning fundamentals.
 
     Projects:
-      - name: Quantum Computing
-        summary: Quantum computing is the use of quantum-mechanical phenomena such as superposition and entanglement to perform computation. Computers that perform quantum computations are known as quantum computers.
+      - name: Cerebrum
+        summary: Production LLM training and serving system.
         highlights:
-          - Quantum Teleportation
-          - Quantum Cryptography
-        start_date: 2018-01-01
-        end_date: 2018-01-01
+          - End-to-end LLM system with distributed FSDP and DDP training, Flash Attention v2, and Mixture-of-Experts support.
+          - Introduced Mixture-of-Refusals, a defense mechanism delivering 2-3x speedups on safe queries while preserving safety guarantees.
+          - Built a vLLM-based inference stack with quantization, speculative decoding, and prefix caching.
 
-    References:
-      - name: Professor John Doe
-        icon: fa-solid fa-laptop
-        reference: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit.
+      - name: Arcane ML
+        summary: Distributed training framework for SSH clusters, cloud GPUs, and local setups.
+        highlights:
+          - Engineered PyTorch DDP support and a unified CLI for scalable distributed training workflows.
 
-      - name: Professor Jane Smith
-        icon: fa-solid fa-thumbtack
-        reference: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit.
+    Publications:
+      - title: "Resistant to Lawyers, Defeated by Disagreement: Evaluation Blindspots in Legal Language Models"
+        authors:
+          - Prathamesh Devadiga
+          - Advika Lakshman
+        publisher: ICML 2026 Workshop on AI for Law
+        releaseDate: 2026
+        summary: Demonstrated that legal LLMs abandon initially correct answers in 62.1 percent of adversarial conversational interactions.
+
+      - title: "SLMs as Compiler Experts: Auto-Parallelization for Heterogeneous Systems"
+        authors:
+          - Prathamesh Devadiga
+          - et al.
+        publisher: NeurIPS 2025 Workshop on Machine Learning for Systems
+        releaseDate: 2025
+        summary: Achieved a 6.81x average speedup and 43.25x peak speedup over LLVM Polly, TVM, and Triton baselines.
+
+      - title: "PyraFuseNet: Dual-Path Network for Resource-Constrained Vision"
+        authors:
+          - Prathamesh Devadiga
+          - et al.
+        publisher: ICIAI 2025
+        releaseDate: 2025
+        summary: Achieved a 55 percent computational reduction compared with ResNet-18.
+
+      - title: "GUARDIAN: Multi-Agent Defense System for Large Language Model Security"
+        authors:
+          - Prathamesh Devadiga
+          - et al.
+        publisher: ICIAI 2025
+        releaseDate: 2025
+        summary: Proposed a multi-agent architecture with 99.5 percent prompt injection and jailbreak detection accuracy.
+
+      - title: "Can LLMs Learn Tulu? Teaching Low-Resource Languages Through Hard Constraint Prompting"
+        authors:
+          - Prathamesh Devadiga
+          - et al.
+        publisher: EACL 2025 LoResLM Workshop
+        releaseDate: 2025
+        summary: Showed that explicit hard constraints substantially improve low-resource language acquisition in LLMs.
+
+      - title: "The Prompt Space is Low-Rank: Efficient Memorization Extraction from Instruction-Tuned LLMs"
+        authors:
+          - Prathamesh Devadiga
+          - A. Krishna
+          - Shawn Shan
+        publisher: Under review at NeurIPS 2026 Main Conference
+        releaseDate: 2026
+        summary: Introduces CHASE, a Gaussian-process-based framework that exploits low-rank prompt structure to extract memorized training data from production LLM APIs.
+
+    Awards:
+      - title: Amazon AI-ML Scholar India
+        date: 2024
+        awarder: Amazon Web Services
+        summary: Selected among the top 1,000 AI and ML students in India.
+
+      - title: Winner, Cisco ThingQbator Hackathon 6.0
+        date: 2023-11
+        awarder: Cisco
+        summary: National hackathon win among 1,000+ competing teams.
+
+      - title: Oxford Machine Learning Summer School
+        date: 2024
+        awarder: University of Oxford
+        summary: Accepted to a selective summer program on advanced machine learning.
+
+    Skills:
+      - name: Programming
+        keywords:
+          - Python
+          - Go
+          - Julia
+          - SQL
+          - Bash
+
+      - name: ML and AI
+        keywords:
+          - PyTorch
+          - TensorFlow
+          - Hugging Face
+          - vLLM
+          - LangChain
+          - DSPy
+          - MLflow
+          - FastAI
+
+      - name: Systems and Infrastructure
+        keywords:
+          - Docker
+          - Kubernetes
+          - Apache Spark
+          - Apache Kafka
+          - Hadoop
+          - Modal
+          - FSDP
+          - DDP
+
+      - name: Research Areas
+        keywords:
+          - Adversarial machine learning
+          - LLM security
+          - Production ML systems
+          - Low-resource NLP
+          - Compiler optimization
+          - Vector search
+
+    Languages:
+      - name: Kannada
+        summary: Full professional
+      - name: English
+        summary: Native or bilingual
+      - name: Tulu
+        summary: Native or bilingual
+      - name: Hindi
+        summary: Full professional
+      - name: German
+        summary: Elementary

@@ -7,6 +7,9 @@ categories: ["ML Engineering", "Infrastructure"]
 description: 
 giscus_comments: false
 related_posts: false
+mermaid:
+  enabled: true
+  zoomable: true
 ---
 
 
