@@ -8,7 +8,7 @@ layout = "about"
 
 <p class="about-thesis">My research sits at the intersection of ML security, production AI systems, and trustworthy AI. The core question I keep coming back to: <em>what does a model actually know, and what are the limits of our ability to control that?</em></p>
 
-<p class="about-text">I also lead <strong>Ādhāra AI Labs</strong>, an independent research lab working on compiler optimization with small language models, efficient neural architectures, and production LLM infrastructure. Our work has appeared at NeurIPS, ICML, ICIAI, and various workshops.</p>
+<p class="about-text">I also lead <a href="https://aadhara-ai-labs.vercel.app" target="_blank" rel="noopener"><strong>Ādhāra AI Labs</strong></a>, an independent research lab working on compiler optimization with small language models, efficient neural architectures, and production LLM infrastructure. Our work has appeared at NeurIPS, ICML, ICIAI, and various workshops.</p>
 
 <div class="about-section-label">Current Research</div>
 
