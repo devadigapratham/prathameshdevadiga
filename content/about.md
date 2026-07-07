@@ -7,16 +7,14 @@ I'm Prathamesh Devadiga, an incoming CS PhD student at Dartmouth College, where 
 
 My research sits at the intersection of ML security, production AI systems, and trustworthy AI. The core question I keep coming back to: *what does a model actually know, and what are the limits of our ability to control that?*
 
-I also lead **Ādhāra AI Labs**, an independent research lab working on everything from compiler optimization with small language models to efficient neural architectures for resource-constrained environments. Our work has appeared at NeurIPS, ICIAI, ICML, and various workshops.
+I also lead **Ādhāra AI Labs**, an independent research lab working on everything from compiler optimization with small language models to efficient neural architectures for resource-constrained environments. Our work has appeared at NeurIPS, ICIAI, and various workshops.
 
 
 ## What I'm Working On
 
-**LLM Memorization & Data Extraction:** With Prof. Shan at Dartmouth, I built Hierarchical Extraction Search (HES), a query-efficient framework that extracts memorized training data from LLMs at 10–100× lower cost than brute-force sampling, demonstrated across 12 state-of-the-art models (7B to 123B parameters). The paper is under review at ICML 2026. The empirical result is clean; the theoretical question underneath it (why certain prompt structures unlock memorized content while nearly identical ones don't) is what I'm pursuing in the PhD.
+**LLM Memorization & Data Extraction:** With Prof. Shan at Dartmouth, I built Hierarchical Extraction Search (HES), a query-efficient framework that extracts memorized training data from LLMs at 10–100× lower cost than brute-force sampling, demonstrated across 12 state-of-the-art models (7B to 123B parameters). The empirical result is clean; the theoretical question underneath it (why certain prompt structures unlock memorized content while nearly identical ones don't) is what I'm pursuing in the PhD.
 
-**World Models in Transformers:** At Lossfunk, I'm investigating how to induce robust world models in Transformers by modifying training objectives and architectural biases. The goal is to mitigate structural decay in learned representations and force models toward stable, causally grounded internal states through long-horizon future prediction and action-conditioned counterfactuals.
-
-**Low-Resource Language Modeling:** I've built systems for Tulu (~0.001% of typical training data), where hard negative constraints reduced catastrophic language leakage from 80% to 5%. The insight: explicit prohibitions outperform positive instructions for maintaining language integrity. Under review at EACL 2025 LoResLM Workshop.
+**Low-Resource Language Modeling:** I've built systems for Tulu (~0.001% of typical training data), where hard negative constraints reduced catastrophic language leakage from 80% to 5%. The insight: explicit prohibitions outperform positive instructions for maintaining language integrity. Published at the EACL 2025 LoResLM Workshop.
 
 **Production AI Systems:** I build end-to-end LLM training and serving infrastructure: distributed training frameworks (FSDP/DDP), real-time jailbreak prevention under 5ms latency, and scalable serving with quantization and speculative decoding.
 
@@ -37,7 +35,6 @@ I've co-instructed a 30-hour Deep Learning course, served as Head of Technology 
 
 - **ML Security & LLM Privacy:** Data extraction, memorization leakage, adversarial robustness, jailbreak defenses
 - **Alignment Safety:** Privacy-alignment tradeoffs, safety training vulnerabilities, constraint-based defenses
-- **World Models & Representation Learning:** Causal grounding in Transformers, structural representation stability
 - **Production AI Systems:** Low-latency inference, distributed training, efficient serving infrastructure
 - **Low-Resource NLP:** Extremely low-resource languages, structured learning, Indic LLMs
 

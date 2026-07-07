@@ -91,31 +91,6 @@ Incoming CS PhD student at Dartmouth College (fall 2026), advised by [Prof. Shaw
 </div>
 
 <div class="pub-section-title">
-  <h2>Under Review</h2>
-  <span class="section-count">1</span>
-</div>
-
-<div class="pub-grid">
-
-<div class="pub-card">
-  <div class="pub-header">
-    <div class="pub-title">Breaking the Query Barrier: Efficient Verbatim Regurgitation from Large Language Models</div>
-    <span class="pub-badge badge-review">Under Review</span>
-  </div>
-  <div class="pub-venue">ICML 2026 · Main Conference</div>
-  <div class="pub-authors"><strong>Prathamesh Devadiga</strong>, Shawn Shan, A. Krishna · Dartmouth College</div>
-  <div class="pub-abstract">Hierarchical Extraction Search (HES): a query-efficient framework extracting memorized training data from LLMs under black-box constraints. Reduces extraction cost by <strong>10–100×</strong> vs. brute-force, demonstrated across 12 models (7B–123B). Models appearing robust to high-volume attacks remain vulnerable to low-footprint extraction.</div>
-  <div class="pub-tags">
-    <span class="pub-tag">LLM Privacy</span>
-    <span class="pub-tag">Memorization</span>
-    <span class="pub-tag">Data Extraction</span>
-    <span class="pub-tag">ML Security</span>
-  </div>
-</div>
-
-</div>
-
-<div class="pub-section-title">
   <h2>Preprints</h2>
   <span class="section-count">3</span>
 </div>

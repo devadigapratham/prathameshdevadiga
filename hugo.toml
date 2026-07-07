@@ -27,6 +27,8 @@ author = "Prathamesh Devadiga"
 description = "Prathamesh Devadiga's personal website"
 keywords = "blog,developer,personal"
 info = ["Incoming CS PhD Student, Dartmouth College", "ML Security · LLM Privacy · Production AI Systems"]
+heroBio = "I'm an incoming CS PhD student, working on ML security, LLM privacy, and production AI systems. I founded Adhara AI Labs, where I work on generative AI and LLM fine-tuning, and I'm affiliated with Lossfunk. I completed GSoC'25 with UCSC-OSPO, and my recent work spans low-resource NLP, LLM jailbreak analysis, and applied ML security research."
+cvURL = "#" # TODO: replace with real PDF URL before Phase 7
 avatarURL = "images/avatar.jpg"
 #gravatar = "john.doe@example.com"
 dateFormat = "January 2, 2006"
@@ -54,7 +56,7 @@ customSCSS = ["scss/custom.scss"]
 customJS = []
 
 # Custom remote JS files
-customRemoteJS = ["https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"]
+customRemoteJS = []
 
 # If you want to use fathom(https://usefathom.com) for analytics, add this section
 # [params.fathomAnalytics]
@@ -148,24 +150,36 @@ weight = 1
 url = "https://github.com/devadigapratham/"
 
 [[params.social]]
-name = "Twitter"
-icon = "fa-brands fa-x-twitter fa-2x"
-weight = 3
-url = "https://twitter.com/PrathameshD_8/"
+name = "Google Scholar"
+icon = "fa-solid fa-graduation-cap fa-2x"
+weight = 2
+url = "https://scholar.google.com/citations?user=JvdmV2YAAAAJ&hl=en"
 
 [[params.social]]
 name = "LinkedIn"
 icon = "fa-brands fa-linkedin fa-2x"
-weight = 4
+weight = 3
 url = "https://www.linkedin.com/in/prathamesh-devadiga/"
+
+[[params.social]]
+name = "Twitter"
+icon = "fa-brands fa-x-twitter fa-2x"
+weight = 4
+url = "https://twitter.com/PrathameshD_8/"
 
 [[params.social]]
 name = "Mail"
 icon = "fa-solid fa-envelope fa-2x"
-weight = 6
+weight = 5
 url = "mailto:devadigapratham8@gmail.com"
 rel = "me"
 type = "text/plain"
+
+[[params.social]]
+name = "CV"
+icon = "fa-solid fa-file-pdf fa-2x"
+weight = 6
+url = "#"
 
 [languages.en]
 languageName = ":uk:"
