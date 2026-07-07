@@ -1,0 +1,8 @@
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js" crossorigin="anonymous"></script>
+{{ if hugo.IsServer }}
+  {{ $mermaid := resources.Get "js/mermaid-init.js" }}
+  <script src="{{ $mermaid.RelPermalink }}"></script>
+{{ else }}
+  {{ $mermaid := resources.Get "js/mermaid-init.js" | minify | fingerprint }}
+  <script src="{{ $mermaid.RelPermalink }}" integrity="{{ $mermaid.Data.Integrity }}"></script>
+{{ end }}

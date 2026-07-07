@@ -161,7 +161,7 @@ Selected projects across ML systems, distributed infrastructure, and applied AI 
   </div>
   <div class="project-card-label">Distributed 3D Printer Management</div>
   <div class="project-card-desc">
-    Distributed 3D printer management system using the Raft Consensus Algorithm for data persistence — replacing traditional centralized databases with a consensus-based distributed log.
+    Distributed 3D printer management system using the Raft Consensus Algorithm for data persistence, replacing traditional centralized databases with a consensus-based distributed log.
   </div>
   <div class="project-card-tags">
     <span class="project-card-tag">Go</span>
@@ -204,7 +204,7 @@ Selected projects across ML systems, distributed infrastructure, and applied AI 
   </div>
   <div class="project-card-label">AlphaZero from Scratch</div>
   <div class="project-card-desc">
-    Complete AlphaZero implementation from scratch — self-play training, neural network-guided Monte Carlo Tree Search, achieving superhuman board game performance.
+    Complete AlphaZero implementation from scratch: self-play training, neural network-guided Monte Carlo Tree Search, achieving superhuman board game performance.
   </div>
   <div class="project-card-tags">
     <span class="project-card-tag">Python</span>

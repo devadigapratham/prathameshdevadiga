@@ -1,0 +1,12 @@
+{{ with .Site.Params.social }}
+<p class="hero-links">
+  {{- range $i, $item := sort . "weight" -}}
+    {{- if $i }}<span class="hero-links-sep" aria-hidden="true">/</span>{{ end -}}
+    {{- $url := $item.url -}}
+    {{- if eq $item.name "CV" -}}
+      {{- $url = $.Site.Params.cvURL | default "#" -}}
+    {{- end -}}
+    <a href="{{ $url | safeURL }}" {{ if $item.rel }}rel="{{ $item.rel }}"{{ end }} {{ if and (ne $url "#") $item.target }}target="{{ $item.target }}"{{ end }} {{ if $item.type }}type="{{ $item.type }}"{{ end }}>{{ $item.name }}</a>
+  {{- end -}}
+</p>
+{{ end }}

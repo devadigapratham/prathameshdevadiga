@@ -1,45 +1,62 @@
 +++
 title = "About"
 slug = "about"
+layout = "about"
 +++
 
-I'm Prathamesh Devadiga, an incoming CS PhD student at Dartmouth College, where I'll be working with [Prof. Shawn Shan](https://www.shawnshan.com) on machine learning security and LLM privacy. I'm finishing my B.Tech in Computer Science at PES University, Bangalore (GPA: 8.91/10).
+<p class="about-lead">I'm Prathamesh Devadiga, an incoming CS PhD student at Dartmouth College, working with <a href="https://www.shawnshan.com">Prof. Shawn Shan</a> on machine learning security and LLM privacy. I completed my B.Tech in Computer Science at PES University, Bangalore.</p>
 
-My research sits at the intersection of ML security, production AI systems, and trustworthy AI. The core question I keep coming back to: *what does a model actually know, and what are the limits of our ability to control that?*
+<p class="about-thesis">My research sits at the intersection of ML security, production AI systems, and trustworthy AI. The core question I keep coming back to: <em>what does a model actually know, and what are the limits of our ability to control that?</em></p>
 
-I also lead **Ādhāra AI Labs**, an independent research lab working on everything from compiler optimization with small language models to efficient neural architectures for resource-constrained environments. Our work has appeared at NeurIPS, ICIAI, ICML, and various workshops.
+<p class="about-text">I also lead <a href="https://aadhara-ai-labs.vercel.app" target="_blank" rel="noopener"><strong>Ādhāra AI Labs</strong></a>, an independent research lab working on compiler optimization with small language models, efficient neural architectures, and production LLM infrastructure. Our work has appeared at NeurIPS, ICML, ICIAI, and various workshops.</p>
 
+<div class="about-section-label">Current Research</div>
 
-## What I'm Working On
+<div class="about-work-grid">
 
-**LLM Memorization & Data Extraction:** With Prof. Shan at Dartmouth, I built Hierarchical Extraction Search (HES), a query-efficient framework that extracts memorized training data from LLMs at 10–100× lower cost than brute-force sampling, demonstrated across 12 state-of-the-art models (7B to 123B parameters). The paper is under review at ICML 2026. The empirical result is clean; the theoretical question underneath it (why certain prompt structures unlock memorized content while nearly identical ones don't) is what I'm pursuing in the PhD.
+<div class="about-work-card">
+  <h3>LLM Memorization &amp; Data Extraction</h3>
+  <p>With Prof. Shan at Dartmouth, I built Hierarchical Extraction Search (HES), a query-efficient framework that extracts memorized training data from LLMs at <strong>10–100× lower cost</strong> than brute-force sampling, demonstrated across 12 state-of-the-art models (7B to 123B parameters). The empirical result is clean; the theoretical question underneath it is what I'm pursuing in the PhD.</p>
+</div>
 
-**World Models in Transformers:** At Lossfunk, I'm investigating how to induce robust world models in Transformers by modifying training objectives and architectural biases. The goal is to mitigate structural decay in learned representations and force models toward stable, causally grounded internal states through long-horizon future prediction and action-conditioned counterfactuals.
+<div class="about-work-card">
+  <h3>Low-Resource Language Modeling</h3>
+  <p>Systems for Tulu (~0.001% of typical training data), where hard negative constraints reduced catastrophic language leakage from <strong>80% to 5%</strong>. Published at the EACL 2025 LoResLM Workshop.</p>
+</div>
 
-**Low-Resource Language Modeling:** I've built systems for Tulu (~0.001% of typical training data), where hard negative constraints reduced catastrophic language leakage from 80% to 5%. The insight: explicit prohibitions outperform positive instructions for maintaining language integrity. Under review at EACL 2025 LoResLM Workshop.
+<div class="about-work-card">
+  <h3>Production AI Systems</h3>
+  <p>End-to-end LLM training and serving infrastructure: distributed training (FSDP/DDP), real-time jailbreak prevention under <strong>5ms latency</strong>, and scalable serving with quantization and speculative decoding.</p>
+</div>
 
-**Production AI Systems:** I build end-to-end LLM training and serving infrastructure: distributed training frameworks (FSDP/DDP), real-time jailbreak prevention under 5ms latency, and scalable serving with quantization and speculative decoding.
+</div>
 
+<div class="about-section-label">Research Interests</div>
 
-## Background
+<div class="research-areas">
 
-B.Tech, Computer Science, PES University, Bangalore (GPA: 8.91/10, 2022–2026). Teaching Assistant for ML and Deep Learning, mentoring 75+ students. Previously: Research Assistant at Dartmouth College, AI Research Intern at Lossfunk, Nokia (Intent-Based Network Management), Google Summer of Code 2025 at UC Santa Cruz, and Undergraduate Research Intern at IIT Indore.
+<div class="research-area-card">
+  <strong>ML Security &amp; LLM Privacy</strong>
+  Data extraction, memorization leakage, adversarial robustness, jailbreak defenses
+</div>
 
-Recognition: Amazon AI-ML Scholar (top 1,000 in India), Cisco ThingQbator Hackathon winner, Oxford Machine Learning School, Cohere AI Summer School, 6× Merit Scholarships at PES University.
+<div class="research-area-card">
+  <strong>Alignment Safety</strong>
+  Privacy-alignment tradeoffs, safety training vulnerabilities, constraint-based defenses
+</div>
 
+<div class="research-area-card">
+  <strong>Production AI Systems</strong>
+  Low-latency inference, distributed training, efficient serving infrastructure
+</div>
 
-## Beyond Research
+<div class="research-area-card">
+  <strong>Low-Resource NLP</strong>
+  Extremely low-resource languages, structured learning, Indic LLMs
+</div>
 
-I've co-instructed a 30-hour Deep Learning course, served as Head of Technology for the PES Entrepreneurship Club, mentored 50+ teams in hackathons and the WiDS Datathon, and delivered talks on DSPy and LLM fine-tuning at FOSS United and GDSC events. I believe in open-source research and making AI accessible beyond well-resourced labs.
+</div>
 
+<div class="about-section-label">Beyond Research</div>
 
-## Research Interests
-
-- **ML Security & LLM Privacy:** Data extraction, memorization leakage, adversarial robustness, jailbreak defenses
-- **Alignment Safety:** Privacy-alignment tradeoffs, safety training vulnerabilities, constraint-based defenses
-- **World Models & Representation Learning:** Causal grounding in Transformers, structural representation stability
-- **Production AI Systems:** Low-latency inference, distributed training, efficient serving infrastructure
-- **Low-Resource NLP:** Extremely low-resource languages, structured learning, Indic LLMs
-
-
-*Starting PhD at Dartmouth in fall 2026. Reach out via [email](mailto:devadigapratham8@gmail.com) or [LinkedIn](https://linkedin.com/in/prathamesh-devadiga).*
+<p class="about-text">Co-instructed a 30-hour Deep Learning course, served as Head of Technology for the PES Entrepreneurship Club, mentored 50+ teams in hackathons and the WiDS Datathon, and delivered talks on DSPy and LLM fine-tuning at FOSS United and GDSC events.</p>

@@ -1,0 +1,28 @@
+{{ define "title" }}
+  {{ .Title }} · {{ .Site.Title }}
+{{ end }}
+{{ define "content" }}
+<section class="container about-page">
+  <article>
+    <header class="about-header">
+      <h1 class="about-title">{{ .Title }}</h1>
+    </header>
+    {{ .Content }}
+
+    {{ with .Site.Data.about_timeline }}
+    <div class="about-section-label">Background</div>
+    <div class="about-timeline">
+      {{ range . }}
+      <div class="about-timeline-row">
+        <span class="about-timeline-date">{{ .period }}</span>
+        <div class="about-timeline-body">
+          <strong>{{ .title }}</strong>
+          <span>{{ .subtitle }}</span>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+  </article>
+</section>
+{{ end }}

@@ -1,53 +1,54 @@
 <div class="home-sections">
 
-  <div class="home-section">
+  {{ with .Site.Data.news }}
+  <section class="home-section" aria-labelledby="home-updates-heading">
+    <h2 class="home-section-title" id="home-updates-heading">Updates</h2>
+    <div class="home-updates">
+      {{ range . }}
+      <div class="home-update-row">
+        <span class="home-update-date">{{ .date }}</span>
+        <span class="home-update-text">{{ .text }}</span>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with .Site.Data.featured_pubs }}
+  <section class="home-section" aria-labelledby="home-pubs-heading">
     <div class="home-section-header">
-      <span class="home-section-title">Selected Publications</span>
-      <a href="/publications/" class="home-section-link">all publications →</a>
+      <h2 class="home-section-title" id="home-pubs-heading">Selected Publications</h2>
+      <a href="/publications/" class="home-section-link">View all</a>
     </div>
     <div class="home-featured-pubs">
-      <div class="home-pub-row">
-        <span class="home-pub-venue">ICML 2026</span>
-        <span class="home-pub-title">Breaking the Query Barrier: Efficient Verbatim Regurgitation from Large Language Models</span>
-      </div>
-      <div class="home-pub-row">
-        <span class="home-pub-venue">NeurIPS 2025</span>
-        <span class="home-pub-title">SLMs as Compiler Experts: Auto-Parallelization for Heterogeneous Systems</span>
-      </div>
-      <div class="home-pub-row">
-        <span class="home-pub-venue">EACL 2025 Workshop</span>
-        <span class="home-pub-title">Can LLMs Learn Tulu? Teaching Low-Resource Languages Through Hard Constraint Prompting</span>
-      </div>
-      <div class="home-pub-row">
-        <span class="home-pub-venue">App. Soft Comp.</span>
-        <span class="home-pub-title">PDF Malware Detection with Adversarial Robustness (KASPER)</span>
-      </div>
+      {{ range . }}
+      <article class="home-pub-row">
+        <span class="home-pub-venue">{{ .venue }}</span>
+        <div class="home-pub-body">
+          {{ $title := .title }}
+          {{ with .url }}<a class="home-pub-title" href="{{ . }}">{{ $title }}</a>{{ else }}<span class="home-pub-title">{{ $title }}</span>{{ end }}
+        </div>
+      </article>
+      {{ end }}
     </div>
-  </div>
+  </section>
+  {{ end }}
 
-  <div class="home-section">
+  {{ with .Site.Data.featured_projects }}
+  <section class="home-section" aria-labelledby="home-projects-heading">
     <div class="home-section-header">
-      <span class="home-section-title">Projects</span>
-      <a href="/projects/" class="home-section-link">all projects →</a>
+      <h2 class="home-section-title" id="home-projects-heading">Projects</h2>
+      <a href="/projects/" class="home-section-link">View all</a>
     </div>
     <div class="home-featured-projects">
-      <div class="home-project-card">
-        <div class="home-project-name"><a href="https://github.com/devadigapratham" target="_blank" rel="noopener">Cerebrum</a></div>
-        <div class="home-project-desc">Production LLM training + serving system with Mixture-of-Refusals (MoR) safety routing, FSDP/DDP, vLLM, and Kubernetes deployment</div>
-      </div>
-      <div class="home-project-card">
-        <div class="home-project-name"><a href="https://github.com/devadigapratham/goDFS" target="_blank" rel="noopener">goDFS</a></div>
-        <div class="home-project-desc">Decentralized content-addressable file storage system in Go for streaming large files across distributed nodes</div>
-      </div>
-      <div class="home-project-card">
-        <div class="home-project-name"><a href="https://github.com/devadigapratham/JurisQwen" target="_blank" rel="noopener">JurisQwen</a></div>
-        <div class="home-project-desc">Qwen2.5-7B fine-tuned on Indian legal datasets with LoRA + 4-bit quantization deployed on Modal</div>
-      </div>
-      <div class="home-project-card">
-        <div class="home-project-name"><a href="https://github.com/devadigapratham/raft3d" target="_blank" rel="noopener">Raft3D</a></div>
-        <div class="home-project-desc">Distributed 3D printer management using the Raft Consensus Algorithm for persistence without centralized databases</div>
-      </div>
+      {{ range . }}
+      <article class="home-project-card">
+        <h3 class="home-project-name"><a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a></h3>
+        <p class="home-project-desc">{{ .description }}</p>
+      </article>
+      {{ end }}
     </div>
-  </div>
+  </section>
+  {{ end }}
 
 </div>

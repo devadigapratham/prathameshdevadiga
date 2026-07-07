@@ -1,0 +1,12 @@
+- venue: ICML 2026
+  venueType: workshop
+  title: "Resistant to Lawyers, Defeated by Disagreement: Evaluation Blindspots in Legal Language Models"
+  url: "/publications/"
+- venue: NeurIPS 2025
+  venueType: conference
+  title: "SLMs as Compiler Experts: Auto-Parallelization for Heterogeneous Systems"
+  url: "/publications/"
+- venue: EACL 2025
+  venueType: workshop
+  title: "Can LLMs Learn Tulu? Teaching Low-Resource Languages Through Hard Constraint Prompting"
+  url: "/publications/"

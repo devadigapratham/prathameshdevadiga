@@ -7,10 +7,27 @@ Incoming CS PhD student at Dartmouth College (fall 2026), advised by [Prof. Shaw
 
 <div class="pub-section-title">
   <h2>Published &amp; Accepted</h2>
-  <span class="section-count">5</span>
+  <span class="section-count">6</span>
 </div>
 
 <div class="pub-grid">
+
+<div class="pub-card">
+  <div class="pub-header">
+    <div class="pub-title">Resistant to Lawyers, Defeated by Disagreement: Evaluation Blindspots in Legal Language Models</div>
+    <span class="pub-badge badge-published">Accepted</span>
+  </div>
+  <div class="pub-venue">ICML 2026 · AI4Law Workshop · Poster</div>
+  <div class="pub-authors"><strong>Prathamesh Devadiga</strong>, Advika Lakshman</div>
+  <div class="pub-abstract">Legal LLMs that appear robust against attorney-authority challenges can still fail under ordinary conversational disagreement. Across <strong>6,305</strong> sequential interactions on a 180-question U.S. legal benchmark, models abandon initially correct answers in <strong>62.1%</strong> of cases; authority-weighted scores are uninformative about this risk.</div>
+  <div class="pub-tags">
+    <span class="pub-tag">Legal AI</span>
+    <span class="pub-tag">LLM Evaluation</span>
+    <span class="pub-tag">Sycophancy</span>
+    <span class="pub-tag">Robustness</span>
+    <span class="pub-tag">Adversarial Prompting</span>
+  </div>
+</div>
 
 <div class="pub-card">
   <div class="pub-header">
@@ -85,31 +102,6 @@ Incoming CS PhD student at Dartmouth College (fall 2026), advised by [Prof. Shaw
     <span class="pub-tag">Malware Detection</span>
     <span class="pub-tag">Adversarial Robustness</span>
     <span class="pub-tag">Deep Learning</span>
-  </div>
-</div>
-
-</div>
-
-<div class="pub-section-title">
-  <h2>Under Review</h2>
-  <span class="section-count">1</span>
-</div>
-
-<div class="pub-grid">
-
-<div class="pub-card">
-  <div class="pub-header">
-    <div class="pub-title">Breaking the Query Barrier: Efficient Verbatim Regurgitation from Large Language Models</div>
-    <span class="pub-badge badge-review">Under Review</span>
-  </div>
-  <div class="pub-venue">ICML 2026 · Main Conference</div>
-  <div class="pub-authors"><strong>Prathamesh Devadiga</strong>, Shawn Shan, A. Krishna · Dartmouth College</div>
-  <div class="pub-abstract">Hierarchical Extraction Search (HES): a query-efficient framework extracting memorized training data from LLMs under black-box constraints. Reduces extraction cost by <strong>10–100×</strong> vs. brute-force, demonstrated across 12 models (7B–123B). Models appearing robust to high-volume attacks remain vulnerable to low-footprint extraction.</div>
-  <div class="pub-tags">
-    <span class="pub-tag">LLM Privacy</span>
-    <span class="pub-tag">Memorization</span>
-    <span class="pub-tag">Data Extraction</span>
-    <span class="pub-tag">ML Security</span>
   </div>
 </div>
 
