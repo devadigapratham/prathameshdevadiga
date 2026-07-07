@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mlops on Prathamesh Devadiga</title>
+    <link>//localhost:1313/tags/mlops/</link>
+    <description>Recent content in Mlops on Prathamesh Devadiga</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 05 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/mlops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ML System Load Testing and Capacity Planning</title>
+      <link>//localhost:1313/posts/mlsysloadtest/</link>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/mlsysloadtest/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;In machine learning, creating a model with high accuracy is often celebrated as the finish line. But in reality, it&amp;rsquo;s just the starting pistol for the race to production. A model that performs amazingly well in a Jupyter notebook can fail spectacularly under the chaotic, high-stakes conditions of live traffic. Imagine building a recommendation engine and it starts crashing during a holiday sale or your fraud detection API timing out on every transaction. This isn&amp;rsquo;t just a technical glitch; it&amp;rsquo;s a direct impact on business revenue and user trust.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Real-time ML Inference: Serving Models with Low Latency</title>
+      <link>//localhost:1313/posts/mlinference/</link>
+      <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/mlinference/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;We&amp;rsquo;ve all used AI applications and it&amp;rsquo;s become an habit in the current era. You speak to your phone and get an instant answer. Your news feed recommends an article you actually want to read. Your bank flags a weird transaction moments after it happens. This isn&amp;rsquo;t just &amp;ldquo;smart&amp;rdquo; software; it&amp;rsquo;s the result of massive machine learning models working in &lt;strong&gt;real-time&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Multi-GPU and Distributed Training Strategies</title>
+      <link>//localhost:1313/posts/distributedtraining/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/distributedtraining/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;In the world of machine learning, it feels like we&amp;rsquo;re living in a shell due to all the new advancements that &lt;em&gt;literally&lt;/em&gt; happen every week. Models like Gemini 2.5 Pro, Kimi K2, GPT-4o and Stable Diffusion aren&amp;rsquo;t just small improvements; they&amp;rsquo;re a massive leap in capability which in turn is also an increase in scale. A few years ago, training a top model on a single, powerful GPU was normal. Today, that’s like trying to build a skyscraper with a single crane. It’s simply not possible.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
