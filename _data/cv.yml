@@ -173,6 +173,14 @@ cv:
           - Engineered PyTorch DDP support and a unified CLI for scalable distributed training workflows.
 
     Publications:
+      - title: "Deletion Scars: Inferring Deleted Artist Styles from Paired Diffusion Models"
+        authors:
+          - Prathamesh Devadiga
+        publisher: ECCV 2026 Workshop on Unlearning and Model Editing (UandME)
+        url: https://openreview.net/forum?id=dHReFhkmCB
+        releaseDate: 2026
+        summary: Showed that paired original and concept-erased diffusion checkpoints leak which artist style was erased, with susceptibility calibration raising top-1 identification accuracy from 50 to 70 percent against a 10 percent chance rate.
+
       - title: "Resistant to Lawyers, Defeated by Disagreement: Evaluation Blindspots in Legal Language Models"
         authors:
           - Prathamesh Devadiga
