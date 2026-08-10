@@ -29,7 +29,7 @@ I am an incoming CS PhD student at [Dartmouth College](https://www.dartmouth.edu
 
 My research sits at the intersection of ML security, production AI systems, and trustworthy AI. The core question I keep coming back to: *what does a model actually know, and what are the limits of our ability to control that?*
 
-I also lead [Ādhāra AI Labs](https://aadhara-ai-labs.vercel.app), an independent research lab working on compiler optimization with small language models, efficient neural architectures, and production LLM infrastructure. I am a research affiliate at Lossfunk and completed Google Summer of Code 2025 with UCSC-OSPO.
+I also lead [Ādhāra AI Labs](https://aadhara-ai-labs.vercel.app), an independent research lab working on compiler optimization with small language models, efficient neural architectures, and production LLM infrastructure. I was previously a research intern at Lossfunk and completed Google Summer of Code 2025 with UCSC-OSPO.
 
 If you would like to chat about ML security research, collaborations, or graduate school, feel free to [email me](mailto:devadigapratham8@gmail.com).
 

@@ -74,7 +74,7 @@ cv:
         position: AI Research Intern
         location: Bangalore, India
         start_date: 2025-09
-        end_date: Present
+        end_date: 2026-06
         summary: Low-resource language modeling and world models
         highlights:
           - Built methods for extremely low-resource Indic language modeling in Tulu, around 0.001 percent of typical training data volume.
