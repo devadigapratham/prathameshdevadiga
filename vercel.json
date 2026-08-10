@@ -1,1 +1,1 @@
-{"installCommand":"bundle install && npm ci","buildCommand":"JEKYLL_ENV=production bundle exec jekyll build","outputDirectory":"_site","framework":null}
+{"installCommand":"bundle install && npm ci","buildCommand":"LANG=C.UTF-8 LC_ALL=C.UTF-8 JEKYLL_ENV=production bundle exec jekyll build","outputDirectory":"_site","framework":null}
