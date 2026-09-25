@@ -4,9 +4,9 @@ permalink: /cv/
 title: CV
 nav: true
 nav_order: 6
-cv_pdf:
+cv_pdf: /assets/pdf/cv.pdf
 cv_format: rendercv # options: rendercv, jsonresume
-description: Curriculum vitae covering research, teaching, publications, projects, and service.
+description: Research experience, publications, teaching, and service. A PDF version is linked on the right.
 toc:
   sidebar: left
 ---

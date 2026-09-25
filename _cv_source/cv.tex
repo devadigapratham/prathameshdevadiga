@@ -1,0 +1,249 @@
+% Source for /assets/pdf/cv.pdf. Rebuild with:
+%   tectonic _cv_source/cv.tex --outdir assets/pdf
+
+% Document class and font size
+\documentclass[a4paper,9pt]{extarticle}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{letterpaper, margin=0.75in}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+
+% Formatting
+\setlist{noitemsep}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{\baselineskip}{\baselineskip}
+
+% Begin document
+\begin{document}
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead{}
+\fancyhead[L]{\textit{Prathamesh Devadiga}}
+\fancyhead[R]{\textit{September 2026}}
+\thispagestyle{empty}
+
+% Header
+\begin{flushleft}
+\textbf{\LARGE Prathamesh Devadiga}\\[2pt]
+CS PhD Student, JASPR Lab, Dartmouth College
+\\ \href{mailto:prathamesh.p.devadiga.gr@dartmouth.edu}{prathamesh.p.devadiga.gr@dartmouth.edu} | \href{https://www.linkedin.com/in/prathamesh-devadiga}{linkedin.com/in/prathamesh-devadiga} | \href{https://prathameshdevadiga.vercel.app}{prathameshdevadiga.vercel.app}
+\end{flushleft}
+
+% Research Interests
+\section*{RESEARCH INTERESTS}
+\noindent
+Machine learning security and privacy, memorization and training-data extraction in LLMs, machine unlearning and model editing auditing, adversarial robustness, LLM jailbreaks and defenses, production AI systems
+
+% Education Section
+\section*{EDUCATION}
+
+\noindent
+\textbf{Dartmouth College}, Hanover, NH, USA \hfill Aug 2026 -- Present\\
+Doctor of Philosophy (PhD) in Computer Science\\
+Advisor: Prof. Shawn Shan, JASPR Lab (Joint AI Security Privacy Research)\\
+Research Interests: Trustworthy Machine Learning, AI Security and Privacy, Large Language Models, Memorization and Generalization Theory, Adversarial Machine Learning, Responsible AI Systems
+
+\vspace{0.5em}
+
+\noindent
+\textbf{PES University}, Bangalore, India \hfill Aug 2022 -- May 2026\\
+Bachelor of Technology in Computer Science Engineering \hfill Cumulative GPA: 8.98/10.00\\
+Relevant Coursework: Machine Learning, Deep Learning, Generative AI, Linear Algebra and its Applications, Statistics for Data Science, Engineering Mathematics I \& II, Data Structures and Algorithms, Operating Systems, Computer Networks, Distributed Systems
+
+% Research Experience
+\section*{RESEARCH EXPERIENCE}
+
+\noindent
+\textbf{Dartmouth College} \hfill Remote\\
+\textit{Research Assistant (ML Security \& LLM Privacy) — Advisor: Prof. Shawn Shan} \hfill July 2025 -- July 2026
+\begin{itemize}
+    \item Co-developed \textbf{CHASE (Correlated Hierarchical Adaptive Search for Extraction)}, a Gaussian Process bandit framework for query-efficient memorization extraction from instruction-tuned large language models
+    \item Discovered that the prompt space for memorization extraction exhibits a \textbf{low-rank, kernel-correlated structure}, enabling effective prompt optimization with as few as \textbf{100 API queries} per target passage
+    \item Evaluated CHASE across \textbf{9 instruction-tuned LLMs from 7 model families}, including production APIs, demonstrating up to \textbf{2.9$\times$} higher extraction success than random search while maintaining over \textbf{10$\times$} gains under seven defense strategies
+    \item Showed that ordinary academic and continuation prompts consistently outperform adversarial jailbreaks for memorization extraction, highlighting limitations of existing prompt-level safety defenses
+\end{itemize}
+
+\noindent
+\textbf{Adhāra AI Labs} \hfill Remote\\
+\textit{Founder \& Lead Researcher} \hfill Feb 2025 -- Present
+\begin{itemize}
+    \item Founded independent research laboratory focused on Generative AI, Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and deep learning systems
+    \item Leading research initiatives from concept to production, ensuring results translate into scalable, real-world applications
+    \item Research outputs include PyraFuseNet (ICIAI), SLMs as Compiler Experts (NeurIPS Workshop), RegimeNAS, MorphNAS, and a low-latency jailbreak prevention framework
+\end{itemize}
+
+\noindent
+\textbf{Lossfunk} \hfill Bangalore, India\\
+\textit{AI Research Intern} \hfill Sep 2025 -- June 2026
+\begin{itemize}
+    \item Built an Indic LLM pipeline for extremely low-resource languages (Tulu: $\sim$0.001\% of typical training data)
+    \item Developed a framework using hard negative constraints to reduce catastrophic language leakage from 80\% to 5\%, demonstrating that explicit prohibitions outperform positive instructions
+    \item Paper accepted at the EACL 2026 Workshop on Language Models for Low-Resource Languages (LoResLM): ``Making Large Language Models Speak Tulu: Structured Prompting for an Extremely Low-Resource Language''
+\end{itemize}
+
+\noindent
+\textbf{Nokia} \hfill Bengaluru, India\\
+\textit{Intent-Based Network Management System (3GPP SON)} \hfill Aug 2025 -- Oct 2025
+\begin{itemize}
+    \item Designed an intent-based self-organizing network (SON) system enabling operators to express high-level network goals in natural language, automatically translated into 3GPP-compliant intents
+    \item Built an LLM-powered intent classification pipeline using Retrieval-Augmented Generation (RAG) to dynamically map natural language inputs to structured intent schemas
+    \item Architected an intent orchestration layer supporting synchronous and asynchronous execution, conflict detection, duplicate intent suppression, and intent expiry management
+    \item Developed a REST-based workflow integrating an interactive web frontend, intent classifier, orchestrator, and Auto Pilot (AP) APIs for automated network configuration
+\end{itemize}
+
+\noindent
+\textbf{Google Summer of Code 2025} \hfill Remote\\
+\textit{University of California Santa Cruz} \hfill May 2025 -- Aug 2025
+\begin{itemize}
+    \item Selected for highly competitive global program (acceptance rate less than 10\%)
+    \item Built billion-scale vector embedding benchmarks (768, 1024, 2048 dimensions) from open-source codebases
+    \item Developed infrastructure for evaluating Approximate Nearest Neighbor (ANN) algorithms at scale under realistic workloads
+\end{itemize}
+
+\noindent
+\textbf{Indian Institute of Technology, Indore} \hfill Remote\\
+\textit{Undergraduate Research Intern (Deep Learning) — Advisor: Prof. Nagendra Kumar} \hfill Dec 2023 -- Aug 2024
+\begin{itemize}
+    \item Designed KASPER framework achieving 99.5\% accuracy in PDF malware detection with adversarial robustness
+    \item Developed custom malware injection pipeline for realistic payload embedding and comprehensive model evaluation
+    \item Maintained 99.5\% detection accuracy against FGSM and PGD adversarial attacks
+    \item Led benchmarking and explainability analysis using Kolmogorov-Arnold Networks (KANs)
+    \item Contributions formed core technical implementation for paper accepted at Applied Soft Computing (Q1 Journal)
+\end{itemize}
+
+\section*{PUBLICATIONS}
+\noindent
+\textbf{Conference and Workshop Papers}
+\begin{itemize}
+
+\item \textbf{Devadiga, P.} (2026). \textit{Deletion Scars: Inferring Deleted Artist Styles from Paired Diffusion Models}. \textit{ECCV 2026 Workshop on Unlearning and Model Editing (U\&ME)}.
+
+\item \textbf{Devadiga, P.}, Lakshman, A. (2026). \textit{Resistant to Lawyers, Defeated by Disagreement: Evaluation Blindspots in Legal Language Models}. \textit{ICML 2026 Workshop on AI for Law (AI4Law)}.
+
+\item \textbf{Devadiga, P.}, et al. (2026). \textit{Making Large Language Models Speak Tulu: Structured Prompting for an Extremely Low-Resource Language}. \textit{EACL 2026 Workshop on Language Models for Low-Resource Languages (LoResLM)}.
+
+\item \textbf{Devadiga, P.}, et al. (2026). \textit{GUARDIAN: Multi-Agent Defense System for Large Language Model Security}. \textit{International Conference on Artificial Intelligence and Information (ICIAI), Waseda University, Japan}.
+
+\item \textbf{Devadiga, P.}, et al. (2025). \textit{SLMs as Compiler Experts: Auto-Parallelization for Heterogeneous Systems}. \textit{NeurIPS 2025 Workshop on Machine Learning for Systems}.
+
+\item \textbf{Devadiga, P.}, et al. (2025). \textit{PyraFuseNet: Dual-Path Network for Resource-Constrained Vision}. \textit{International Conference on Artificial Intelligence and Information (ICIAI), Nanyang Technological University, Singapore}.
+
+\end{itemize}
+
+\noindent\textbf{Preprints}
+\begin{itemize}
+
+\item \textbf{Devadiga, P.}, et al. (2025). \textit{SAMVAD: Multi-Agent Framework for Modeling Judicial Reasoning in Indian Jurisprudence}. arXiv:2509.03793.
+
+\item \textbf{Devadiga, P.}, et al. (2025). \textit{RegimeNAS: Regime-Aware Neural Architecture Search for Financial Trading}. arXiv:2508.11338.
+
+\item \textbf{Devadiga, P.}, et al. (2025). \textit{MorphNAS: Differentiable Neural Architecture Search for Multilingual Named Entity Recognition}. arXiv:2508.15836.
+
+\end{itemize}
+
+\noindent\textbf{Media Coverage}
+\begin{itemize}
+
+\item Featured in \textit{The Times of India} for research on enabling large language models to generate Tulu through structured prompting (2026).
+
+\item Featured on the \textit{AIM Network} podcast to discuss AI for low-resource languages and structured prompting techniques for Tulu (2026).
+
+\end{itemize}
+
+% Projects Section
+\section*{KEY PROJECTS}
+\noindent
+\textbf{Cerebrum: Production LLM Training and Serving System} \hfill 2025\\
+\textit{Independent Research Project}
+\begin{itemize}
+    \item Built end-to-end LLM system featuring distributed FSDP/DDP training, Flash Attention v2, and Mixture-of-Experts support
+    \item Developed \textbf{Mixture-of-Refusals (MoR)}: defense mechanism achieving 2-3x speedup on safe queries while maintaining identical safety guarantees through conditional safety routing
+    \item Implemented vLLM-based inference engine with quantization, speculative decoding, and prefix caching; deployed with Docker, Kubernetes, and Prometheus
+\end{itemize}
+
+\noindent
+\textbf{Arcane ML: Distributed Training Framework} \hfill 2024\\
+\textit{Open Source Project}
+\begin{itemize}
+    \item Built framework for distributed ML training across SSH clusters, Modal Cloud GPUs, and local setups, with PyTorch DDP support and a unified CLI
+\end{itemize}
+
+\section*{TEACHING EXPERIENCE}
+\noindent
+\textbf{PES University} \hfill Bangalore, India\\
+\textit{Teaching Assistant — Machine Learning \& Deep Learning} \hfill Sep 2025 -- May 2026
+\begin{itemize}
+    \item Taught and mentored a cohort of 75+ students across Machine Learning and Deep Learning courses
+    \item Prepared lecture slides, delivered tutorial sessions, and conducted weekly hands-on laboratory sessions
+    \item Designed and graded assignments, lab exercises, and hackathons to reinforce practical understanding
+\end{itemize}
+
+\noindent
+\textbf{PESU I/O} \hfill Bangalore, India\\
+\textit{Subject Matter Expert — Deep Learning} \hfill Oct 2024 -- Nov 2024
+\begin{itemize}
+    \item Co-instructed a 30-hour course on Deep Learning from Scratch for a cohort of 40 students
+    \item Delivered 20 hours of in-person instruction covering neural networks, CNNs, RNNs, LSTMs, GANs, and Explainable AI
+\end{itemize}
+
+\section*{AWARDS \& HONORS}
+\noindent
+\textbf{Amazon AI-ML Scholar} \hfill 2024\\
+Selected from top 1,000 AI/ML students in India
+
+\medskip
+\noindent
+\textbf{Oxford Machine Learning Summer School} \hfill 2024\\
+Selected participant, University of Oxford
+
+\medskip
+\noindent
+\textbf{Cohere AI Summer School} \hfill 2024\\
+Selected participant in program on large language models and NLP
+
+\medskip
+\noindent
+\textbf{Winner, Cisco ThingQbator Hackathon 6.0} \hfill Nov 2023\\
+National hackathon win among 1,000+ competing teams in IoT and emerging technologies
+
+\medskip
+\noindent
+\textbf{Merit Scholarships (6x)} \hfill 2022--2025\\
+MRD Scholarship (2x), CN Rao Scholarship (2x), Distinction Scholarship (2x) for top 5--20\% academic performance, PES University
+
+\section*{LEADERSHIP \& SERVICE}
+\noindent
+\textbf{Community Mentor \& Technical Speaker}, Independent \hfill 2023 -- Present
+\begin{itemize}
+    \item Mentored 50+ teams in hackathons, research projects, and WiDS Datathon competitions
+    \item Delivered technical talks on the DSPy framework and LLM fine-tuning with LoRA at FOSS United and GDSC events
+\end{itemize}
+
+\noindent
+\textbf{Head of Technology}, Entrepreneurship Club, PES University \hfill 2023 -- 2024
+\begin{itemize}
+    \item Led 10+ member technical team; developed club website and managed technical operations for 100+ members
+\end{itemize}
+
+\noindent
+\textbf{Webmaster}, IEEE Robotics and Automation Society, PES University \hfill 2023 -- 2024
+
+\noindent
+\textbf{Core Member}, Google Developer Student Clubs \& Hacker Space, PES University \hfill 2022 -- 2024
+
+% Skills Section
+\section*{TECHNICAL SKILLS}
+\begin{itemize}
+    \item \textbf{Programming Languages:} Python, Go, Julia, SQL, Bash
+    \item \textbf{ML/AI Frameworks:} PyTorch, TensorFlow, Hugging Face, vLLM, LangChain, DSPy, MLflow, FastAI
+    \item \textbf{Systems \& Infrastructure:} Docker, Kubernetes, Apache Spark, Apache Kafka, Hadoop, Modal, distributed training (FSDP/DDP)
+\end{itemize}
+
+\end{document}

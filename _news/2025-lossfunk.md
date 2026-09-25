@@ -1,7 +1,7 @@
 ---
 layout: post
-date: 2025-01-01 12:00:00-0400
+date: 2025-09-01 12:00:00-0400
 inline: true
 ---
 
-Research affiliate at Lossfunk, working on low-resource NLP and structured prompting.
+Joined Lossfunk as an AI Research Intern, working on language modeling for extremely low-resource languages.
