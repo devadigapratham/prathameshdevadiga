@@ -1,6 +1,6 @@
 ---
 layout: page
-title: projects
+title: Projects
 permalink: /projects/
 description: Selected projects across ML systems, distributed infrastructure, and applied AI research.
 nav: true

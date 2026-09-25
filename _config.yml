@@ -9,9 +9,9 @@ last_name: Devadiga
 contact_note: >
   The best way to reach me is by email.
 description: >
-  Incoming CS PhD student at Dartmouth. Research on ML security, LLM privacy, and production AI systems.
+  CS PhD student at Dartmouth College in the JASPR Lab, working on AI security and privacy: memorization and training-data extraction, provenance and auditing of generative models, and adversarial ML.
 footer_text:
-keywords: machine learning, llm security, academic website, portfolio
+keywords: Prathamesh Devadiga, Dartmouth, JASPR Lab, AI security, ML privacy, LLM memorization, machine unlearning, adversarial machine learning
 lang: en
 icon:
 
@@ -81,23 +81,23 @@ al_folio:
 # -----------------------------------------------------------------------------
 
 navbar_fixed: true
-footer_fixed: true
+footer_fixed: false
 search_enabled: true
 socials_in_search: true
 posts_in_search: true
 bib_search: true
 
 # Dimensions
-max_width: 930px
+max_width: 1000px
 
 # -----------------------------------------------------------------------------
 # Open Graph & Schema.org
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
-serve_schema_org: false # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+serve_og_meta: true # Include Open Graph meta tags in the HTML head
+serve_schema_org: true # Include Schema.org in the HTML head
+og_image: https://prathameshdevadiga.vercel.app/assets/img/prof_pic.jpg # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
@@ -119,8 +119,8 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: blog
-blog_description: Technical writing on ML systems, LLM security, and infrastructure.
+blog_name: Blog
+blog_description: Notes on ML security, LLM systems, and infrastructure.
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
@@ -222,6 +222,12 @@ exclude:
   - package.json
   - package-lock.json
   - _pages/about_einstein.md
+  - _pages/profiles.md
+  - _pages/dropdown.md
+  - _pages/plugins.md
+  - _pages/books.md
+  - _pages/repositories.md
+  - _pages/teaching.md
   - purgecss.config.js
   - README.md
   - readme_preview/

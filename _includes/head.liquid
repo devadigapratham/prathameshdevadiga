@@ -102,7 +102,13 @@
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
 {% if site.enable_darkmode %}
-  <!-- Dark Mode -->
+  <!-- Dark Mode: this site is dark-only, so pin the stored preference before theme.js reads it -->
+  <script>
+    try {
+      localStorage.setItem('theme', 'dark');
+    } catch (e) {}
+    document.documentElement.setAttribute('data-theme', 'dark');
+  </script>
   <script src="{{ '/assets/js/theme.js' | relative_url | bust_file_cache }}"></script>
   <link
     defer
@@ -167,3 +173,12 @@
   <!-- Cookie Consent -->
   {% include plugins/al_cookie_styles.liquid %}
 {% endif %}
+
+<!-- Site design: fonts and stylesheet loaded last so they override theme defaults -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+>
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url | bust_file_cache }}">

@@ -1,36 +1,145 @@
 ---
-layout: about
+layout: default
 title: about
 permalink: /
-subtitle: Incoming CS PhD student, Dartmouth College · ML Security · LLM Privacy · Production AI Systems
-
-profile:
-  align: right
-  image: prof_pic.jpg
-  image_circular: false
-  more_info: >
-    <p>Hanover, NH</p>
-
-selected_papers: true
-social: true
-
-announcements:
-  enabled: true
-  scrollable: true
-  limit: 10
-
-latest_posts:
-  enabled: true
-  scrollable: true
-  limit: 3
+description: PhD student in Computer Science at Dartmouth College (JASPR Lab), working on AI security and privacy.
 ---
 
-I am an incoming CS PhD student at [Dartmouth College](https://www.dartmouth.edu/), working with [Prof. Shawn Shan](https://www.shawnshan.com) on machine learning security and LLM privacy. I completed my B.Tech in Computer Science at PES University, Bangalore.
+<div class="home">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">PhD Student · Computer Science · Dartmouth College</p>
+      <h1 class="hero-name">{{ site.first_name }} {{ site.last_name }}</h1>
+      <p class="hero-role">
+        <a href="https://www.jasprlab.com/">JASPR Lab</a> · Advised by <a href="https://www.shawnshan.com">Prof. Shawn Shan</a>
+      </p>
+      <p class="hero-lede">
+        I work on the security and privacy of generative AI: what models reveal about their training data, whether that data can be verifiably
+        removed, and how deployed systems fail under attack.
+      </p>
 
-My research sits at the intersection of ML security, production AI systems, and trustworthy AI. The core question I keep coming back to: *what does a model actually know, and what are the limits of our ability to control that?*
+      <div class="hero-links">
+        <a class="term-btn term-btn-primary" href="{{ '/cv/' | relative_url }}"><i class="fa-solid fa-file-lines"></i> CV</a>
+        <a class="term-btn" href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}"><i class="ai ai-google-scholar"></i> Scholar</a>
+        <a class="term-btn" href="https://github.com/{{ site.data.socials.github_username }}"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a class="term-btn" href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        <a class="term-btn" href="https://x.com/{{ site.data.socials.x_username }}" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a class="term-btn" href="mailto:{{ site.data.socials.email }}"><i class="fa-solid fa-envelope"></i> Email</a>
+      </div>
+    </div>
 
-I also lead [Ādhāra AI Labs](https://aadhara-ai-labs.vercel.app), an independent research lab working on compiler optimization with small language models, efficient neural architectures, and production LLM infrastructure. I was previously a research intern at Lossfunk and completed Google Summer of Code 2025 with UCSC-OSPO.
+    <figure class="hero-photo">
+      <img src="{{ '/assets/img/prof_pic_portrait.jpg' | relative_url }}" alt="Photo of {{ site.first_name }} {{ site.last_name }}" loading="eager">
+      <figcaption><i class="fa-solid fa-location-dot"></i> Hanover, NH</figcaption>
+    </figure>
+  </section>
 
-If you would like to chat about ML security research, collaborations, or graduate school, feel free to [email me](mailto:devadigapratham8@gmail.com).
+  <!-- Research -->
+  <section class="home-section">
+    <div class="research-panel">
+      <div class="panel-bar">
+        <span class="panel-cmd"><span class="ps1">$</span> cat research.txt</span>
+      </div>
+      <p class="panel-intro">
+        I build attacks and audits for generative models. My work is organized around three questions:
+      </p>
+      <ol class="research-rows">
+        <li>
+          <div class="row-head">
+            <span class="row-num">01</span>
+            <h3>Training Data &amp; Memorization</h3>
+            <p class="row-lab">What do models retain from the data they were trained on?</p>
+          </div>
+          <div class="row-mine">
+            <p>
+              I build query-efficient, black-box attacks that extract memorized
+              training data from instruction-tuned models and production APIs, and study why prompt-level safety defenses fail to stop them.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="row-head">
+            <span class="row-num">02</span>
+            <h3>Provenance &amp; Auditing</h3>
+            <p class="row-lab">Can we verify what a model learned, or unlearned?</p>
+          </div>
+          <div class="row-mine">
+            <p>
+              Machine unlearning often doesn't remove what it claims. I show that concept-erased diffusion models leave traces: comparing the original
+              and edited checkpoints reveals which artist style was deleted.
+            </p>
+            <a class="row-ref" href="https://openreview.net/forum?id=dHReFhkmCB">Deletion Scars · ECCV 2026 U&amp;ME Workshop</a>
+          </div>
+        </li>
+        <li>
+          <div class="row-head">
+            <span class="row-num">03</span>
+            <h3>Security &amp; Privacy of Deployed Models</h3>
+            <p class="row-lab">How do real-world systems fail under attack?</p>
+          </div>
+          <div class="row-mine">
+            <p>
+              I have worked on multi-agent defenses against jailbreaks and prompt injection,
+              evaluation blind spots in legal LLMs, and adversarially robust malware detection.
+            </p>
+            <a class="row-ref" href="{{ '/publications/' | relative_url }}">ICML 2026 AI4Law · GUARDIAN · KASPER (Applied Soft Computing)</a>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-On this site, you can find my [publications](/publications/), [projects](/projects/), [talks](/talks/), and [blog](/blog/).
+  <!-- Bio + News -->
+  <section class="home-section two-col">
+    <div>
+      <h2 class="section-label">About</h2>
+      <div class="bio">
+        <p>
+          I am a first-year PhD student in Computer Science at <a href="https://web.cs.dartmouth.edu/">Dartmouth College</a>, where I am a member of
+          the <a href="https://www.jasprlab.com/">JASPR Lab</a> (Joint AI Security Privacy Research).
+        </p>
+        <p>
+          Before Dartmouth, I received my B.Tech in Computer Science from PES University, Bangalore. Along the way I was a research intern at Lossfunk
+          (low-resource language modeling), an undergraduate researcher at IIT Indore (adversarially robust malware detection), and a Google Summer of
+          Code 2025 contributor with UC Santa Cruz OSPO. I also founded <a href="https://aadhara-ai-labs.vercel.app">Ādhāra AI Labs</a>, an
+          independent group working on efficient models and ML systems.
+        </p>
+        <p>I am happy to talk about research and collaborations. The best way to reach me is by <a href="mailto:{{ site.data.socials.email }}">email</a>.</p>
+      </div>
+    </div>
+    <div>
+      <h2 class="section-label">News <a class="section-more" href="{{ '/news/' | relative_url }}">View all →</a></h2>
+      <ul class="log-list">
+        {% assign news = site.news | reverse %}
+        {% for item in news limit: 6 %}
+          <li>
+            <time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: '%Y-%m' }}</time>
+            <span>{{ item.content | remove: '<p>' | remove: '</p>' | strip }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Selected publications -->
+  <section class="home-section">
+    <h2 class="section-label">Publications <a class="section-more" href="{{ '/publications/' | relative_url }}">View all →</a></h2>
+    <div class="publications">
+      {% bibliography --group_by none --query @*[selected=true]* %}
+    </div>
+  </section>
+
+  <!-- Writing -->
+  <section class="home-section">
+    <h2 class="section-label">Writing <a class="section-more" href="{{ '/blog/' | relative_url }}">View all →</a></h2>
+    <ul class="log-list">
+      {% for post in site.posts limit: 3 %}
+        <li>
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m' }}</time>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+</div>
