@@ -259,6 +259,16 @@ cv:
           - Framework for distributed training across SSH clusters, Modal cloud GPUs, and local setups, with PyTorch DDP support and a unified CLI.
 
     Honors and Awards:
+      - title: Second Place, AI @ 70 Hackathon
+        date: 2026
+        awarder: Anthropic and Dartmouth College
+        summary: Runner-up at the AI @ 70 hackathon hosted by Anthropic and Dartmouth College.
+
+      - title: Third Place, TechniGala
+        date: 2026
+        awarder: Dartmouth College
+        summary: Third place at TechniGala, Dartmouth College.
+
       - title: Amazon AI-ML Scholar
         date: 2024
         awarder: Amazon Web Services
